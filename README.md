@@ -51,4 +51,4 @@ deviseでのモデル作成
 docker-compose run web bundle exec　rails g devise Admin
 
 model作成
-docker-compose run web bundle exec rails g model
+docker-compose run web bundle exec rails g model Locale
