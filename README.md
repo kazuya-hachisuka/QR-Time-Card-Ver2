@@ -50,5 +50,8 @@ docker-compose exec web bundle exec rails g devise:install
 deviseでのモデル作成
 docker-compose run web bundle exec　rails g devise Admin
 
+deviseでのview作成
+docker-compose run web bundle exec rails g devise:views
+
 model作成
 docker-compose run web bundle exec rails g model Locale
