@@ -46,3 +46,9 @@ deviseのinstall用のコマンド
 docker-compose bundleを実行した後
 docker-compose up -dでコンテナを再起動したあとに下記を実行
 docker-compose exec web bundle exec rails g devise:install
+
+deviseでのモデル作成
+docker-compose run web bundle exec　rails g devise Admin
+
+model作成
+docker-compose run web bundle exec rails g model
