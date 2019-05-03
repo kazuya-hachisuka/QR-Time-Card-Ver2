@@ -26,11 +26,8 @@ ActiveRecord::Schema.define(version: 2019_05_03_081609) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
-    t.string "family_name", null: false
-    t.string "family_name_kana", null: false
-    t.string "given_name", null: false
-    t.string "given_name_kana", null: false
-    t.integer "locale_id"
+    t.string "company_name", null: false
+    t.string "company_name_kana", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
