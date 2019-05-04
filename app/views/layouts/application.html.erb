@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>App</title>
+    <title>QR-Time-Card-ver2</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,20 @@
   </head>
 
   <body>
-    <%= yield %>
+  <header>
+    <nav class="navbar sticky-top" style="background-color:#ff8e00;">
+      <a class="navbar-brand" href="#">Sticky top</a>
+    </nav>
+  </header>
+    <div class="container">
+      <%= yield %>
+    </div>
+    <footer class="fixed-bottom" style="background-color:#ff8e00">
+      <div class="container">
+        <div class="row">
+          <span class="text-monospace m-2">QR-TimeCard</span>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
