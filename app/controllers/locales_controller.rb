@@ -20,6 +20,6 @@ class LocalesController < ApplicationController
   end
 
   def admin_params
-    params.require(:admin).permit(:id)
+    params.require(:admin).permit(:id,:company_name)
   end
 end
