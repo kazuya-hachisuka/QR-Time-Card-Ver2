@@ -65,3 +65,7 @@ docker-compose run web bundle exec rails g model Locale
 
 controller作成
 docker-compose run web bundle exec rails g controller admins
+
+コンテナのbashに接続
+docker exec -it  qr-timecard-ver2_web_1 bash
+bundle exec rails c

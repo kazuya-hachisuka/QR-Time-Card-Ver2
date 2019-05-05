@@ -36,8 +36,10 @@ ActiveRecord::Schema.define(version: 2019_05_03_133146) do
 
   create_table "locales", force: :cascade do |t|
     t.string "locale_name", null: false
+    t.integer "admin_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["admin_id"], name: "index_locales_on_admin_id"
     t.index ["locale_name"], name: "index_locales_on_locale_name"
   end
 
