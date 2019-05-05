@@ -31,6 +31,8 @@ $ docker-compose run web rails new . --force --database=mysql
 Railsイメージのビルド実行コマンド
 $ docker-compose build
 
+rm tmp/pids/server.pid
+
 config/database.ymlの修正内容
 default内の項目を修正
 password: password
@@ -42,16 +44,24 @@ $ docker-compose up -d
 RailsのコンテナでDB作成のタスクを実行するコマンド
 $ docker-compose run web bundle exec rake db:create
 
+docker-compose run web bundle exec rake db:migrate
+
 deviseのinstall用のコマンド
 docker-compose bundleを実行した後
 docker-compose up -dでコンテナを再起動したあとに下記を実行
 docker-compose exec web bundle exec rails g devise:install
 
 deviseでのモデル作成
-docker-compose run web bundle exec　rails g devise Admin
+docker-compose run web bundle exec rails g devise Admin
+
+deviseでコントローラ作成
+docker-compose run web bundle exec rails g devise:controllers admins
 
 deviseでのview作成
 docker-compose run web bundle exec rails g devise:views
 
 model作成
 docker-compose run web bundle exec rails g model Locale
+
+controller作成
+docker-compose run web bundle exec rails g controller admins
