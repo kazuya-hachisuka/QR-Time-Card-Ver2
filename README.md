@@ -31,6 +31,8 @@ $ docker-compose run web rails new . --force --database=mysql
 Railsイメージのビルド実行コマンド
 $ docker-compose build
 
+rm tmp/pids/server.pid
+
 config/database.ymlの修正内容
 default内の項目を修正
 password: password
