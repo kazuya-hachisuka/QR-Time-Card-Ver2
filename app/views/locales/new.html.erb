@@ -1,8 +1,17 @@
 <div class="form-group">
   <%= form_for @locale do |l|%>
-    <%= l.label :ロケール名%>
+    <%= l.label :ロケール名 %>
     <%= l.text_field :locale_name, class: "form-control" %>
+
+    <%= l.label :管理番号 %>
+    <%= l.text_field :control_number, class: "form_control"%>
     <%= l.hidden_field :admin_id, value: current_admin.id %>
+
+    <%= l.label :パスワード %>
+    <%= l.password_field :password, class: "form-contlor" %>
+
+    <%= l.label :パスワード確認 %>
+    <%= l.password_field :password_confirmation, class: "form-control"%>
     <%= l.submit "作成", class: "btn btn-info" %>
   <% end %>
 </div>
