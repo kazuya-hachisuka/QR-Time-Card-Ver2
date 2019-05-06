@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
     @current_locale = locale
   end
 
+  def sign_out
+    cookies.delete(:locale_remember_token)
+  end
+
   protected
 
   def configure_permitted_parameters
