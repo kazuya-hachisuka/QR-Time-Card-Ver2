@@ -1,4 +1,5 @@
 class LocalesController < ApplicationController
+  skip_before_action :require_sign_in!, only: [:new, :create]
 
   def index
     @locale = Locale.all
