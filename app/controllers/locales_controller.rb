@@ -1,4 +1,5 @@
 class LocalesController < ApplicationController
+  # skip_before_action :require_sign_in!, only: [:new, :create]
 
   def index
     @locale = Locale.all
@@ -9,17 +10,22 @@ class LocalesController < ApplicationController
   end
 
   def create
-    Locale.create(locale_params)
-    binding.pry
+    @locale = Locale.new(locale_params)
+    if @locale.save
+      redirect_to login_path
+    else
+      render 'new'
+    end
+
   end
 
   private
 
   def locale_params
-    params.require(:locale).permit(:locale_name,:admin_id)
+    params.require(:locale).permit(:locale_name, :admin_id, :control_number, :password, :password_confirmation)
   end
 
   def admin_params
-    params.require(:admin).permit(:id,:company_name)
+    params.require(:admin).permit(:id, :company_name)
   end
 end

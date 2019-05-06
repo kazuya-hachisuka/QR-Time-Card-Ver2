@@ -35,11 +35,15 @@ ActiveRecord::Schema.define(version: 2019_05_03_133146) do
   end
 
   create_table "locales", force: :cascade do |t|
-    t.string "locale_name", null: false
+    t.string "locale_name", limit: 191, null: false
     t.integer "admin_id", null: false
+    t.string "control_number", limit: 191, null: false
+    t.string "password_digest", limit: 191, null: false
+    t.string "remember_token", limit: 191
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["admin_id"], name: "index_locales_on_admin_id"
+    t.index ["control_number"], name: "index_locales_on_control_number"
     t.index ["locale_name"], name: "index_locales_on_locale_name"
   end
 
