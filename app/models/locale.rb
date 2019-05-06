@@ -19,5 +19,7 @@
 #
 
 class Locale < ApplicationRecord
+  has_secure_password validations: true
+  validates :admin_id,presence: true, uniqueness: true
   belongs_to :admin
 end
