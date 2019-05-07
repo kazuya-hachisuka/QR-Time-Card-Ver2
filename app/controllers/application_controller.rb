@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if admin_signed_in?
-      root_path
+      admin_path(current_admin[:id])
     else
       new_admin_session_path
     end
