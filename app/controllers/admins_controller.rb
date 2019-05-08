@@ -1,7 +1,8 @@
 class AdminsController < ApplicationController
+  before_action :correct_admin?
 
   def show
-    @admin = Admin.find(current_admin[:id])
+    @admin = Admin.find(params[:id])
   end
 
   private

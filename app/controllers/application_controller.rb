@@ -52,4 +52,18 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys:[:email, :company_name, :company_name_kana])
     devise_parameter_sanitizer.permit(:sign_in, keys:[:email])
   end
+
+  def correct_admin?
+		admin = Admin.where(id: params[:id]).exists? && Admin.find(params[:id])
+		if admin
+			unless admin == current_admin
+				flash[:error] = "他のユーザー情報は変更できません！"
+				redirect_back(fallback_location: root_path)
+			end
+		else
+			flash[:error] = "ユーザーが存在しません！"
+			redirect_back(fallback_location: root_path)
+		end
+  end
+
 end
