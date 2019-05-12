@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :admins, only:[:show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'top#top'
-  resources :locales, only:[:index, :new, :create]
+  resources :locales, only:[:index, :new, :create, :show]
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'

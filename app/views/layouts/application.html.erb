@@ -10,20 +10,18 @@
   </head>
 
   <body>
-  <header>
-    <nav class="navbar sticky-top" style="background-color:#ff8e00;">
-      <a class="navbar-brand" href="#">Sticky top</a>
-      <% if admin_signed_in? %>
-        <%= link_to "ログアウト", destroy_admin_session_path, class: "btn btn-danger", method: :delete %>
-      <% else %>
-        <%= link_to "ログイン", new_admin_session_path, class: "btn btn-info" %>
-        <%= link_to "登録", new_admin_registration_path, class: "btn btn-primary" %>
-      <% end %>
-    </nav>
-  </header>
-    <div class="container">
-      <%= yield %>
-    </div>
+    <header>
+      <nav class="navbar sticky-top" style="background-color:#ff8e00;">
+        <a class="navbar-brand" href="#">Sticky top</a>
+        <% if admin_signed_in? %>
+          <%= link_to "ログアウト", destroy_admin_session_path, class: "nav-item", method: :delete %>
+        <% else %>
+          <%= link_to "ログイン", new_admin_session_path, class: "nav-item" %>
+          <%= link_to "登録", new_admin_registration_path, class: "nav-item" %>
+        <% end %>
+      </nav>
+    </header>
+    <%= yield %>
     <footer class="fixed-bottom" style="background-color:#ff8e00">
       <div class="container">
         <div class="row">
