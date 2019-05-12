@@ -57,12 +57,12 @@ class ApplicationController < ActionController::Base
 		admin = Admin.where(id: params[:id]).exists? && Admin.find(params[:id])
 		if admin
 			unless admin == current_admin
-				flash[:error] = "他のユーザー情報は変更できません！"
-				redirect_back(fallback_location: root_path)
+				flash[:error] = "他の管理者情報は変更できません！"
+				redirect_back(fallback_location: admin_path(current_admin))
 			end
 		else
-			flash[:error] = "ユーザーが存在しません！"
-			redirect_back(fallback_location: root_path)
+			flash[:error] = "管理者が存在しません！"
+			redirect_back(fallback_location: admin_path(current_admin))
 		end
   end
 
