@@ -3,3 +3,6 @@
 <h2>
   <%= @admin.company_name %>
 </h2>
+<% @locale.each do |locale| %>
+<%= locale.locale_name %>
+<% end %>
