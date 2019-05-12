@@ -1,8 +1,2 @@
-<h1>admins show</h1>
 <%= flash[:error] %>
-<h2>
-  <%= @admin.company_name %>
-</h2>
-<% @locale.each do |locale| %>
-<%= locale.locale_name %>
-<% end %>
+<%= render partial:'sidebar' %>
