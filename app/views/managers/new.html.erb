@@ -1,0 +1,31 @@
+<h1>manager test</h1>
+<div class="container">
+  <%= form_for @manager, url: admin_managers_create_path do |f| %>
+    <%= f.text_field :admin_id, readonly: true, value: @admin.id, class: "form-control-plaintext" %>
+    <%= f.collection_select :locale_id, @locale, :id,:locale_name %>
+    <div class="form-group">
+      <label>姓</label>
+      <%= f.text_field :family_name, class: "form-control" %>
+    </div>
+      <%= f.text_field :given_name, class: "form-control" %>
+    <div class="form-group">
+    </div>
+    <div class="form-group">
+      <%= f.text_field :family_name_kana, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.text_field :given_name_kana, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.email_field :email, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.password_field :password, class: "form-control"%>
+    </div>
+    <div class="form-group">
+      <%= f.password_field :encrypted_password, class:"form-control" %>
+    </div>
+    <%= f.submit '作成',class:"btn btn-outline-info" %>
+  <% end %>
+  <%# <% binding.pry %> %>
+</div>

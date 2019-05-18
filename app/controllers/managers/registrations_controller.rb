@@ -11,7 +11,7 @@ class Managers::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   # def create
-  #   super
+  #   # super
   # end
 
   # GET /resource/edit
@@ -59,4 +59,9 @@ class Managers::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  private
+  def manager_params
+    params.require(:manager).permit(:family_name, :family_name_kana, :given_name, :given_name_kana, :locale_id, :admin_id)
+  end
 end

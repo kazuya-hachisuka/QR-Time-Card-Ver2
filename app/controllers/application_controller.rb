@@ -1,11 +1,22 @@
 class ApplicationController < ActionController::Base
-  # protect_from_forgery with: :exception
+  protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :authenticate_admin!
   # before_action :current_locale
   # before_action :require_sign_in!
   # helper_method :sign_in?
+  def after_sign_in_path_for(resource)
+    if admin_signed_in?
+      admins_top_path
+    elsif manager_signed_in?
+      manager_path(id: current_manager[:id])
+    else
+			root_path
+    end
+  end
 
+  def after_sing_out_path_for(resource)
+    root_path
+  end
 
   # def current_locale
   #   remember_token = Locale.encrypt(cookies[:locale_remember_token])
@@ -30,16 +41,18 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def after_sign_in_path_for(resource)
+  def authenticate_admin
     if admin_signed_in?
-      admin_path(current_admin[:id])
     else
-      new_admin_session_path
+      redirect_to root_path
     end
   end
 
-  def after_sing_out_path_for(resource)
-    new_admin_session_path
+  def authenticate_manager
+    if manager_signed_in?
+    else
+      redirect_to root_path
+    end
   end
 
   # def require_sign_in!

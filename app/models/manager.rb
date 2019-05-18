@@ -40,5 +40,6 @@ class Manager < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  belongs_to :admin
+  belongs_to :admin, optional: true
+  has_one :locale, through: :admin
 end

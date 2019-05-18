@@ -9,8 +9,13 @@ Rails.application.routes.draw do
   }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'top#top'
-  resources :admins, only:[:show]
-  resources :managers
+
+  resources :admins, only:[:show] do
+    get '/managers/sing_up' => 'managers#new'
+    post '/managers/create' => 'managers#create'
+  end
+
+  resources :managers, only:[:show]
   resources :locales, only:[:index, :new, :create, :show]
 
   get 'login', to: 'sessions#new'
