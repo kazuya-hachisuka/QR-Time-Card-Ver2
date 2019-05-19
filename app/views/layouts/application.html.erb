@@ -12,18 +12,26 @@
   <body>
     <header>
       <nav class="navbar sticky-top" style="background-color:#ff8e00;">
-        <a class="navbar-brand" href="#">Sticky top</a>
-        <% if admin_signed_in? %>
-          <%= link_to "管理者ログアウト", destroy_admin_session_path, class: "nav-item", method: :delete %>
-        <% else %>
-          <%= link_to "管理者ログイン", new_admin_session_path, class: "nav-item" %>
-          <%= link_to "管理者登録", new_admin_registration_path, class: "nav-item" %>
-        <% end %>
-        <% if manager_signed_in? %>
-          <%= link_to "managerログアウト", destroy_manager_session_path, class: "nav-item", method: :delete %>
-        <% else %>
-          <%= link_to "managerログイン", manager_session_path, class: "nav-item" %>
-        <% end %>
+        <a class="navbar-brand" href="#">
+          <% if admin_signed_in? %>
+            <%= @admin.company_name %>
+          <% else %>
+            Kintaiくん
+          <% end %>
+        </a>
+        <div class="nav-item">
+          <% if admin_signed_in? || manager_signed_in? %>
+            <% if admin_signed_in? %>
+              <%= link_to "管理者ログアウト", destroy_admin_session_path, class: "nav-item btn btn-outline-dark", method: :delete %>
+            <% else %>
+              <%= link_to "managerログアウト", destroy_manager_session_path, class: "nav-item btn btn-outline-dark", method: :delete %>
+            <% end %>
+          <% else %>
+            <%= link_to "管理者登録", new_admin_registration_path, class: "nav-item btn btn-outline-dark" %>
+            <%= link_to "管理者ログイン", new_admin_session_path, class: "nav-item btn btn-outline-dark" %>
+            <%= link_to "managerログイン", manager_session_path, class: "nav-item btn btn-outline-dark" %>
+          <% end %>
+        </div>
       </nav>
     </header>
     <%= yield %>
