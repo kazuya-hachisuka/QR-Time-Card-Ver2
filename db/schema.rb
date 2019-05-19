@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 2019_05_03_133146) do
     t.string "family_name_kana", null: false
     t.string "given_name", null: false
     t.string "given_name_kana", null: false
-    t.integer "locale", null: false
+    t.integer "locale_id", null: false
     t.integer "admin_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 2019_05_03_133146) do
     t.index ["family_name_kana"], name: "index_managers_on_family_name_kana"
     t.index ["given_name"], name: "index_managers_on_given_name"
     t.index ["given_name_kana"], name: "index_managers_on_given_name_kana"
-    t.index ["locale"], name: "index_managers_on_locale"
+    t.index ["locale_id"], name: "index_managers_on_locale_id"
     t.index ["reset_password_token"], name: "index_managers_on_reset_password_token", unique: true
   end
 
