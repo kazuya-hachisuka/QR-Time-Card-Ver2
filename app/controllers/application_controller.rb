@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   # helper_method :sign_in?
   def after_sign_in_path_for(resource)
     if admin_signed_in?
-      admins_top_path
+      admin_path(id: current_admin[:id])
     elsif manager_signed_in?
       manager_path(id: current_manager[:id])
     else

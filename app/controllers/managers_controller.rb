@@ -3,6 +3,8 @@ class ManagersController < ApplicationController
 
   def show
     @manager = Manager.find(params[:id])
+    @locale = Locale.find_by(id: @manager.locale_id)
+    @admin = Admin.find_by(id: @manager.admin_id)
   end
 
   def new
@@ -27,7 +29,7 @@ class ManagersController < ApplicationController
   end
 
   def admin_params
-    params.require(:admin).permit(:id)
+    params.require(:admin).permit(:id, :company_name)
   end
 
   def locale_params
