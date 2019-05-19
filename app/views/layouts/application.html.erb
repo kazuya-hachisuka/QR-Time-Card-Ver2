@@ -14,7 +14,7 @@
       <nav class="navbar sticky-top" style="background-color:#ff8e00;">
         <a class="navbar-brand" href="#">
           <% if admin_signed_in? %>
-            <%= @admin.company_name %>
+            <%= current_admin.company_name %>
           <% else %>
             Kintaiくん
           <% end %>

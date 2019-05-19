@@ -1,7 +1,8 @@
-<%= form_for :session, url: new_locale_path do |f| %>
+<%= form_for :session, url: login_path do |f| %>
 <%= f.label :管理番号 %>
-<%= f.text_field :controller_number, class: "form-control" %>
+<%= f.text_field :control_number, class: "form-control" %>
 
 <%= f.label :パスワード %>
 <%= f.password_field :password, class: "form-control" %>
 <%= f.submit :ログイン, class: "btn btn-info" %>
+<% end %>

@@ -1,8 +1,16 @@
 class LocalesController < ApplicationController
-  # skip_before_action :require_sign_in!, only: [:new, :create]
+  before_action :current_locale
+  before_action :require_sign_in!
+  helper_method :sign_in?
+
+  skip_before_action :require_sign_in!, only: [:new, :create]
 
   def index
     @locale = Locale.all
+  end
+
+  def show
+    
   end
 
   def new
@@ -11,6 +19,7 @@ class LocalesController < ApplicationController
 
   def create
     @locale = Locale.new(locale_params)
+    # binding.pry
     if @locale.save
       redirect_to login_path
     else

@@ -20,7 +20,7 @@
 
 class Locale < ApplicationRecord
   has_secure_password validations: true
-  validates :admin_id,presence: true, uniqueness: true
+  validates :admin_id,presence: true
 
   def self.new_remember_token
     SecureRandom.urlsafe_base64

@@ -1,6 +1,10 @@
 class SessionsController < ApplicationController
-  # skip_before_action :require_sign_in!, only: [:new, :create]
-  # before_action :set_user, only:[:create]
+  before_action :current_locale
+  before_action :require_sign_in!
+  helper_method :sign_in?
+
+  skip_before_action :require_sign_in!, only: [:new, :create]
+  before_action :set_locale, only:[:create]
 
   def new
   end
@@ -11,7 +15,7 @@ class SessionsController < ApplicationController
       redirect_to root_path
     else
       flash.now[:danger] = t('.flash.invaled_password')
-      render 'sessions#new'
+      render 'new'
     end
   end
 
