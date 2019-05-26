@@ -18,8 +18,8 @@ Rails.application.routes.draw do
   resources :managers, only:[:show]
   resources :locales, only:[:index, :new, :create, :show]
 
-  get 'login', to: 'sessions#new'
-  post 'login', to: 'sessions#create'
-  delete 'logout', to: 'sessions#destroy'
-
+  #localeでのログイン/ログアウト
+  get 'login', to: 'sessions#new' #mailとpasswordをnewで入力させる
+  post 'login', to: 'sessions#create' #入力された情報を検証し、cookieにログイン情報を格納する
+  delete 'logout', to: 'sessions#destroy' #ログアウトさせる
 end

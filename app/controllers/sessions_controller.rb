@@ -1,23 +1,29 @@
 class SessionsController < ApplicationController
-  # skip_before_action :require_sign_in!, only: [:new, :create]
-  # before_action :set_user, only:[:create]
+  # before_action :current_locale
+  skip_before_action :require_sign_in!, only: [:create], raise: false
+  before_action :set_locale, only:[:create]
+  helper_method :sign_in?
 
   def new
   end
 
+  #ログイン画面で入力された値を検証
   def create
+  #authenticateメソッドで入力されたpasswordを暗号化し、DBのpassword_digestと一致するかを検証
     if @locale.authenticate(session_params[:password])
-      sign_in(@locale)
-      redirect_to root_path
+      #検証が通ればsing_inメソッドを呼び出し、remember_tokenを作成し、localeモデルのcookieにセットし、ログイン後の画面に遷移
+      locale_sign_in(@locale)
+      redirect_to locale_path(@locale[:id])
     else
       flash.now[:danger] = t('.flash.invaled_password')
-      render 'sessions#new'
+      render 'new'
     end
   end
 
+  #ログアウト処理
   def destroy
-    sign_out
-    redirect_to login_path
+    locale_sign_out
+    redirect_to root_path
   end
 
   private

@@ -19,8 +19,11 @@
 #
 
 class Locale < ApplicationRecord
+  #passwordの入力必須
   has_secure_password validations: true
-  validates :admin_id,presence: true, uniqueness: true
+  #admin_idが同じ場合にcontroller_numberをunique: trueにしたい
+  #validates :
+  validates :admin_id,presence: true
 
   def self.new_remember_token
     SecureRandom.urlsafe_base64
