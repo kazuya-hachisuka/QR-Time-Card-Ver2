@@ -1,15 +1,13 @@
-<div class="container-fluid">
-  <div class="row">
-    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-      <div class="sidebar-sticky">
-        <ul class="nav flex-column">
-          <li class="nav-item"><%= link_to "ダッシュボード", admin_path, class: "nav-link active" %></li>
-          <% @locale.each do |locale| %>
-            <li class="nav-item"><%= link_to "#{locale.locale_name}", locale_path(locale), class: "nav-link active" %></li>
-          <% end %>
-          <%= link_to "Staff一覧", '#', class: "nav-link active" %>
-        </ul>
-      </div>
-    </nav>
-  </div>
+<div class="row">
+  <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky ml-2">
+      <ul class="nav flex-column">
+        <li class="nav-item"><%= link_to "ダッシュボード", admin_path, class: "nav-link active" %></li>
+        <% @locale.each do |locale| %>
+          <li class="nav-item"><%= link_to "#{locale.locale_name}", locale_path(locale), class: "nav-link active" %></li>
+        <% end %>
+        <%= link_to "Staff一覧", '#', class: "nav-link active" %>
+      </ul>
+    </div>
+  </nav>
 </div>
