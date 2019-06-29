@@ -16,7 +16,9 @@ Rails.application.routes.draw do
   end
 
   resources :managers, only:[:show]
-  resources :locales, only:[:index, :new, :create, :show]
+  resources :locales, only:[:index, :new, :create, :show] do
+    resources :staffs
+  end
 
   #localeでのログイン/ログアウト
   get 'login', to: 'sessions#new' #mailとpasswordをnewで入力させる
