@@ -1,8 +1,40 @@
-<div class="container">
-<%= @manager.family_name %>
-<%= @manager.given_name %>
-<%= @manager.admin_id %>
-<%= @manager.locale_id %>
-<%= @locale.locale_name %>
-<%= @admin.company_name %>
+<div class="row">
+  <div class="col-3">
+    <div class="card mt-3 ml-3" style="width: 18rem;">
+      <h5 class="card-header">
+        <%= @manager.family_name %>
+        <%= @manager.given_name %>
+      </h5>
+      <div class="card-body">
+        <h6 class="card-text">所属：<%= @locale.locale_name %>&emsp;id：<%= @manager.locale_id %></h6>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">所属スタッフ：４名</li>
+        <li class="list-group-item">staff1</li>
+        <li class="list-group-item">staff2</li>
+        <li class="list-group-item">staff3</li>
+        <li class="list-group-item">staff4</li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-9">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>勤怠合計時間</th>
+        <th>212h</th>
+        <th>出勤中</th>
+        <th>３名</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>スタッフ名</td>
+        <td>9898</td>
+        <td>4444</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
 </div>

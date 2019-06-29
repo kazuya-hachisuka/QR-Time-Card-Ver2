@@ -4,7 +4,6 @@
     <title>QR-Time-Card-ver2</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -12,17 +11,21 @@
   <body>
     <header>
       <nav class="navbar sticky-top" style="background-color:#ff8e00;">
-        <% if admin_signed_in? %>
-          <%= link_to "#{current_admin.company_name}", admin_path(current_admin) %>
+        <% if admin_signed_in? || manager_signed_in? %>
+          <% if admin_signed_in? %>
+            <%= link_to "#{current_admin.company_name}", admin_path(current_admin) %>
+          <% else %>
+            <%= link_to "#{@admin.company_name}" %>
+          <% end %>
         <% else %>
           <p>Kintaiくん</p>
         <% end %>
-        </a>
         <div class="nav-item">
           <% if admin_signed_in? || manager_signed_in? %>
             <% if admin_signed_in? %>
               <%= link_to "管理者ログアウト", destroy_admin_session_path, class: "nav-item btn btn-outline-dark", method: :delete %>
             <% else %>
+              <%= link_to "#{@manager.family_name}#{@manager.given_name}", class: "nav-item" %>
               <%= link_to "managerログアウト", destroy_manager_session_path, class: "nav-item btn btn-outline-dark", method: :delete %>
             <% end %>
           <% else %>
@@ -34,7 +37,9 @@
         </div>
       </nav>
     </header>
-    <%= yield %>
+    <div class="container-fluid">
+      <%= yield %>
+    </div>
     <footer class="fixed-bottom" style="background-color:#ff8e00">
       <div class="container mt-2">
         <div class="row">
