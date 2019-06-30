@@ -8,7 +8,7 @@ class StaffsController < ApplicationController
     @staff = Staff.new(staff_params)
     @staff.locale_id = params[:locale_id]
     if @staff.save
-      redirect_to root_path
+      redirect_to locale_path(params[:locale_id])
     else
       redirect_to new_locale_staff_path
     end

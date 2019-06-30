@@ -1,10 +1,10 @@
 <div class="container">
-  <h2>ロケール名：<%= @locale.locale_name %><%= @locale.admin_id %></h2>
+  <h2>ロケール名：<%= @locale.locale_name %> admin_id:<%= @locale.admin_id %></h2>
   <%= link_to "ログアウト", logout_path, class: "btn btn-outline-danger", method: :delete %>
   <%= link_to "Staff追加", new_locale_staff_path(@locale.id), class: "btn btn-outline-info" %>
 </div>
 <div class="container">
-  <table class="table">
+  <table class="table table-hover">
     <thead>
       <tr>
         <th>名前</th>
@@ -13,10 +13,18 @@
       </tr>
     </thead>
     <tbody>
-      <% @staff.each do |f| %>
-      <td><%= f.family_name %><%= f.given_name %></td>
-      <td></td>
-      <td></td>
+      <% if @staff.count == 0 %>
+        <td>所属スタッフはいません</td>
+        <td></td>
+        <td></td>
+      <% else %>
+        <% @staff.each do |f| %>
+        <tr>
+          <td><%= f.family_name %><%= f.given_name %></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>
