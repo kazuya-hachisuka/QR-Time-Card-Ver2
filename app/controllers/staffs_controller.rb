@@ -1,7 +1,7 @@
 class StaffsController < ApplicationController
   def new
     @staff = Staff.new
-    @locale = Locale.find(params[:locale_id])
+    @locale = Locale.find_by(params[:id])
   end
 
   def create

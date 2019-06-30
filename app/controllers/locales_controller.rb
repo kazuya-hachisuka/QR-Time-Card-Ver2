@@ -10,6 +10,7 @@ class LocalesController < ApplicationController
 
   def show
     @locale = Locale.find(params[:id])
+    @staff = Staff.where(locale_id: @locale)
   end
 
   def new
