@@ -8,7 +8,8 @@
     <thead>
       <tr>
         <th>名前</th>
-        <th></th>
+        <th>勤怠時間</th>
+        <th>出退勤ステータス</th>
         <th></th>
       </tr>
     </thead>
@@ -17,12 +18,18 @@
         <td>所属スタッフはいません</td>
         <td></td>
         <td></td>
+        <td></td>
       <% else %>
         <% @staff.each do |f| %>
         <tr>
           <td><%= f.family_name %><%= f.given_name %></td>
-          <td></td>
-          <td></td>
+          <td>勤怠時間</td>
+          <% if f.status == 0 %>
+            <td>-</td>
+          <% else %>
+            <td>出勤中</td>
+          <% end %>
+          <td><%= link_to '編集', edit_locale_staff_path(f.locale_id, f.id) %></td>
         </tr>
         <% end %>
       <% end %>

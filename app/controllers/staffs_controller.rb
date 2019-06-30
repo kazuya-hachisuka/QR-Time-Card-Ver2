@@ -14,6 +14,20 @@ class StaffsController < ApplicationController
     end
   end
 
+  def edit
+    @staff = Staff.find(params[:id])
+    @locale = Locale.where(admin_id: current_admin)
+  end
+
+  def update
+    staff = Staff.find(params[:id])
+    if staff.update(staff_params)
+      redirect_to admin_path(current_admin)
+    else
+      redirect_to edit_locale_staff_path
+    end
+  end
+
   private
   def staff_params
     params.require(:staff).permit(:family_name, :family_name_kana, :given_name, :given_name_kana, :locale_id, :qrcode)
@@ -22,4 +36,5 @@ class StaffsController < ApplicationController
   def locale_params
     params.require(:locale).permit(:id, :locale_name)
   end
+
 end
