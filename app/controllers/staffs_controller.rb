@@ -5,7 +5,8 @@ class StaffsController < ApplicationController
   end
 
   def create
-    @staff = Staff.new(staff_params[:locale_id])
+    @staff = Staff.new(staff_params)
+    @staff.locale_id = params[:locale_id]
     if @staff.save
       redirect_to root_path
     else
