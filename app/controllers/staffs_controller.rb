@@ -30,7 +30,7 @@ class StaffsController < ApplicationController
 
   private
   def staff_params
-    params.require(:staff).permit(:family_name, :family_name_kana, :given_name, :given_name_kana, :locale_id, :qrcode)
+    params.require(:staff).permit(:family_name, :family_name_kana, :given_name, :given_name_kana, :admin_id, :locale_id, :qrcode)
   end
 
   def locale_params
