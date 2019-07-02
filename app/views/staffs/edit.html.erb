@@ -1,7 +1,7 @@
 <h2>Staff Edit</h2>
-<div class="container">
 <%= form_for @staff, url:locale_staff_path do |f| %>
-  <div class="form-row col-6">
+<div class="container">
+  <div class="form-row col-md-6">
     <div class="form-group col-md-6">
       <%= f.label :姓 %>
       <%= f.text_field :family_name, class: "form-control" %>
@@ -20,9 +20,9 @@
     </div>
     <div class="form-group col-md-6">
       <%= f.label :所属 %>
-      <%= f.collection_select :locale_id, @locale, :id, :locale_name, {},{class:"form-control"} %>
-      <%= f.submit '更新', class: "btn btn-outline-info" %>
+      <%= f.collection_select :locale_id, @locale, :id, :locale_name, {},class:"form-control" %>
+      <%= f.submit '更新', class: "btn btn-outline-info mt-3" %>
     </div>
   </div>
-<% end %>
 </div>
+<% end %>
