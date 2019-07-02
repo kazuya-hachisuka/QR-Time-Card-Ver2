@@ -71,3 +71,5 @@ docker exec -it  qr-timecard-ver2_web_1 bash
 bundle exec rails c
 
 docker attach qr-timecard-ver2_web_1
+
+出勤時にadmin_id == locale.admin_id を調べる
