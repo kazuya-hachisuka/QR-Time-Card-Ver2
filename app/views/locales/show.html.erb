@@ -1,3 +1,38 @@
-<%= link_to "ログアウト", logout_path, class: "btn btn-outline-danger", method: :delete %>
-<%= @locale.locale_name %>
-<%= @locale.admin_id %>
+<div class="container">
+  <h2>ロケール名：<%= @locale.locale_name %> admin_id:<%= @locale.admin_id %></h2>
+  <%= link_to "ログアウト", logout_path, class: "btn btn-outline-danger", method: :delete %>
+  <%= link_to "Staff追加", new_locale_staff_path(@locale.id), class: "btn btn-outline-info" %>
+</div>
+<div class="container">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>名前</th>
+        <th>勤怠時間</th>
+        <th>出退勤ステータス</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @staff.count == 0 %>
+        <td>所属スタッフはいません</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      <% else %>
+        <% @staff.each do |f| %>
+        <tr>
+          <td><%= f.family_name %><%= f.given_name %></td>
+          <td>勤怠時間</td>
+          <% if f.status == 0 %>
+            <td>-</td>
+          <% else %>
+            <td>出勤中</td>
+          <% end %>
+          <td><%= link_to '編集', edit_locale_staff_path(f.locale_id, f.id) %></td>
+        </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

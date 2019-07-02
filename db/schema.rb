@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_03_133146) do
+ActiveRecord::Schema.define(version: 2019_06_29_064841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,23 @@ ActiveRecord::Schema.define(version: 2019_05_03_133146) do
     t.index ["given_name_kana"], name: "index_managers_on_given_name_kana"
     t.index ["locale_id"], name: "index_managers_on_locale_id"
     t.index ["reset_password_token"], name: "index_managers_on_reset_password_token", unique: true
+  end
+
+  create_table "staffs", force: :cascade do |t|
+    t.string "family_name", null: false
+    t.string "family_name_kana", null: false
+    t.string "given_name", null: false
+    t.string "given_name_kana", null: false
+    t.integer "locale_id"
+    t.text "qrcode"
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["family_name"], name: "index_staffs_on_family_name"
+    t.index ["family_name_kana"], name: "index_staffs_on_family_name_kana"
+    t.index ["given_name"], name: "index_staffs_on_given_name"
+    t.index ["given_name_kana"], name: "index_staffs_on_given_name_kana"
+    t.index ["locale_id"], name: "index_staffs_on_locale_id"
   end
 
 end
