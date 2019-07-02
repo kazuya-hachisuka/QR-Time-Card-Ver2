@@ -2,6 +2,7 @@ class StaffsController < ApplicationController
   def new
     @staff = Staff.new
     @locale = Locale.find_by(params[:id])
+    @admin_id = Locale.where(id: params[:locale_id]).pluck(:admin_id) #もう少し簡単に書けそう
   end
 
   def create
@@ -34,7 +35,7 @@ class StaffsController < ApplicationController
   end
 
   def locale_params
-    params.require(:locale).permit(:id, :locale_name)
+    params.require(:locale).permit(:id, :locale_name, :admin_id)
   end
 
 end
