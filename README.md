@@ -73,3 +73,5 @@ bundle exec rails c
 docker attach qr-timecard-ver2_web_1
 
 出勤時にadmin_id == locale.admin_id を調べる
+QRcodeに配列をもたせることはできるか？
+配列をバラし絵、出退勤を可能にする
