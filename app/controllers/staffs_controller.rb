@@ -18,6 +18,13 @@ class StaffsController < ApplicationController
   def edit
     @staff = Staff.find(params[:id])
     @locale = Locale.where(admin_id: current_admin)
+    require 'rqrcode'
+    require 'rqrcode_png'
+    content = 'https://www.google.co.jp/'
+    size    = 5
+    level   = :h            # l, m, q, h
+    @qr = RQRCode::QRCode.new(content, size: size, level: level).as_svg.html_safe
+
   end
 
   def update
