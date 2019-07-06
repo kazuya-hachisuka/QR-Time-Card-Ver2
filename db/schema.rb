@@ -81,7 +81,8 @@ ActiveRecord::Schema.define(version: 2019_06_29_064841) do
     t.string "family_name_kana", null: false
     t.string "given_name", null: false
     t.string "given_name_kana", null: false
-    t.integer "locale_id"
+    t.integer "locale_id", null: false
+    t.integer "admin_id", null: false
     t.text "qrcode"
     t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false

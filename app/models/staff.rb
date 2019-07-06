@@ -11,7 +11,8 @@
 #  status           :integer          default(0), not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  locale_id        :integer
+#  admin_id         :integer          not null
+#  locale_id        :integer          not null
 #
 # Indexes
 #
@@ -27,5 +28,6 @@ class Staff < ApplicationRecord
   validates :family_name_kana, presence: true
   validates :given_name, presence: true
   validates :given_name_kana, presence: true
+  validates :admin_id, presence: true
   belongs_to :locale
 end

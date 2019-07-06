@@ -11,7 +11,8 @@
 #  status           :integer          default(0), not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  locale_id        :integer
+#  admin_id         :integer          not null
+#  locale_id        :integer          not null
 #
 # Indexes
 #
