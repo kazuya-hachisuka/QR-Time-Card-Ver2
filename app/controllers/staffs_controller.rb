@@ -20,11 +20,11 @@ class StaffsController < ApplicationController
     @locale = Locale.where(admin_id: current_admin)
     require 'rqrcode'
     require 'rqrcode_png'
-    content = 'https://www.google.co.jp/'
-    size    = 5
+    content = "https://www.google.co.jp/"
+    size    = 4
     level   = :h            # l, m, q, h
-    @qr = RQRCode::QRCode.new(content, size: size, level: level).as_svg.html_safe
-
+    @qr = RQRCode::QRCode.new(content, size: size, level: level).as_svg(module_size: 5).html_safe
+    #@qr = qr.as_png.to_data_url
   end
 
   def update

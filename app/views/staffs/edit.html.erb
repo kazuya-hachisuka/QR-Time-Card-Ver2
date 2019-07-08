@@ -1,7 +1,7 @@
 <h2>Staff Edit</h2>
 <%= form_for @staff, url:locale_staff_path do |f| %>
-<div class="container-fluid">
-  <div class="row">
+<div class="container justify-content-center">
+  <div class="row con">
     <div class="form-row col-md-6">
       <div class="form-group col-md-6">
         <%= f.label :姓 %>
@@ -26,7 +26,19 @@
       </div>
     </div>
     <div class="col-md-6">
-      <%= @qr %>
+      <div class="card" style="width:18rem;">
+        <div class="card-header">
+          <div class="h3 text-center">
+            <%= "#{@staff.family_name} #{@staff.given_name}" %>
+          </div>
+        </div>
+        <div class="card-body text-center">
+          <%= @qr %>
+        </div>
+        <div class="card-footer">
+          <%= @staff.admin_id %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
