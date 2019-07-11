@@ -66,11 +66,21 @@ docker-compose run web bundle exec rails g model Locale
 controller作成
 docker-compose run web bundle exec rails g controller admins
 
+gem instal
+docker-compose run web bundle install
+
+db:migrate db:seed_fu
+docker-compose run web bundle exec rails db:migrate db:seed_fu
+
 コンテナのbashに接続
 docker exec -it  qr-timecard-ver2_web_1 bash
 bundle exec rails c
 
 docker attach qr-timecard-ver2_web_1
+
+docker imageの削除
+docker rmi -f id
+-fでforce
 
 出勤時にadmin_id == locale.admin_id を調べる
 QRcodeに配列をもたせることはできるか？
