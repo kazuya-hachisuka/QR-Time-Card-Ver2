@@ -1,3 +1,16 @@
 // Place all the styles related to the locales controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#canvas{
+  display: none;
+}
+
+#today{
+  font-size:1.5rem;
+  margin:2px
+}
+#clock{
+  font-size:6rem;
+  font-weight:bold;
+  margin:8px;
+}
