@@ -44,8 +44,6 @@ $ docker-compose up -d
 RailsのコンテナでDB作成のタスクを実行するコマンド
 $ docker-compose run web bundle exec rake db:create
 
-docker-compose run web bundle exec rake db:migrate
-
 deviseのinstall用のコマンド
 docker-compose bundleを実行した後
 docker-compose up -dでコンテナを再起動したあとに下記を実行
@@ -62,6 +60,8 @@ docker-compose run web bundle exec rails g devise:views
 
 model作成
 docker-compose run web bundle exec rails g model Locale
+
+docker-compose run web bundle exec rake db:migrate
 
 controller作成
 docker-compose run web bundle exec rails g controller admins
