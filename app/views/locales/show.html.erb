@@ -1,3 +1,5 @@
+<%= @test %>
+<% if admin_signed_in? || manager_signed_in? %>
 <div class="container">
   <h2>ロケール名：<%= @locale.locale_name %> admin_id:<%= @locale.admin_id %></h2>
   <%= link_to "ログアウト", logout_path, class: "btn btn-outline-danger", method: :delete %>
@@ -36,3 +38,6 @@
     </tbody>
   </table>
 </div>
+<% elsif signed_in? %>
+<%= render 'punch', locale: @locale %>
+<% end %>

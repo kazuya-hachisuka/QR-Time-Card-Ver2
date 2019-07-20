@@ -47,7 +47,7 @@ class ApplicationController < ActionController::Base
       cookies.delete(:locale_remember_token)
     end
 
-    def signd_in?
+    def signed_in?
       @current_locale.present?
     end
 

@@ -11,6 +11,13 @@ class LocalesController < ApplicationController
   def show
     @locale = Locale.find(params[:id])
     @staff = Staff.where(locale_id: @locale)
+    if admin_signed_in?
+      @test = "Admin"
+    elsif manager_signed_in?
+      @test = "Manager"
+    elsif signed_in?
+      @test = "Locale"
+    end
   end
 
   def new
