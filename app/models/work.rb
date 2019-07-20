@@ -17,4 +17,5 @@
 #
 
 class Work < ApplicationRecord
+  has_many :work_breaks
 end
