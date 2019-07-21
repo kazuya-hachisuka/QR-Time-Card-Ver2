@@ -4,7 +4,7 @@ class CreateWorks < ActiveRecord::Migration[5.2]
       t.datetime :in, null: false
       t.datetime :out
       t.integer :staff_id, null: false, index: true
-      t.integer :locael_id, null: false, index: true
+      t.integer :locale_id, null: false, index: true
 
       t.timestamps
     end

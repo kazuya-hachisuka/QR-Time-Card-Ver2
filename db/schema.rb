@@ -107,10 +107,10 @@ ActiveRecord::Schema.define(version: 2019_07_20_110851) do
     t.datetime "in", null: false
     t.datetime "out"
     t.integer "staff_id", null: false
-    t.integer "locael_id", null: false
+    t.integer "locale_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["locael_id"], name: "index_works_on_locael_id"
+    t.index ["locale_id"], name: "index_works_on_locale_id"
     t.index ["staff_id"], name: "index_works_on_staff_id"
   end
 

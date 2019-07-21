@@ -16,8 +16,14 @@ Rails.application.routes.draw do
   end
 
   resources :managers, only:[:show]
+
   resources :locales, only:[:index, :new, :create, :show] do
     resources :staffs
+  end
+
+  resources :staffs do
+    resources :works
+      patch 'punch_out/:work_id/' => 'works#punch_out', as: 'punch_out'
   end
 
   #localeでのログイン/ログアウト

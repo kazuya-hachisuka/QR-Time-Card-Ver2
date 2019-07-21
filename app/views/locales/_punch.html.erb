@@ -5,12 +5,12 @@
 </div>
 <div class="container">
   <div class="row justify-content-center">
-    <div id="today"></div>
+    <div id="today" class="punch_today"></div>
   </div>
 </div>
 <div class="container">
   <div class="row justify-content-center">
-    <div id="clock"</div>
+    <div id="clock" class="punch_clock"></div>
   </div>
 </div>
 <div class="container">
@@ -83,22 +83,4 @@
     }
     // requestAnimationFrame(tick);
   }
-　//時間の表示
-  setInterval(() => {
-    const date = new Date();
-    const h = String("0" + date.getHours()).slice(-2);
-    const m = String("0" + date.getMinutes()).slice(-2);
-    const s = String("0" + date.getSeconds()).slice(-2);
-    const time = `${h}:${m}:${s}`
-    document.querySelector('#clock').innerHTML = time;
-  });
-  //年月日の表示
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  const week = date.getDay();
-  const dayList = ['日', '月', '火', '水', '木', '金', '土'];
-  const weekLabel = dayList[week];
-  document.querySelector('#today').innerHTML = `${year}年 ${month}月 ${day}日 ${weekLabel}`;
 </script>
