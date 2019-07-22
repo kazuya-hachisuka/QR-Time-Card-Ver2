@@ -54,6 +54,10 @@ GEM
     autoprefixer-rails (9.6.1)
       execjs
     awesome_print (1.8.0)
+    awesome_rails_console (0.4.3)
+      awesome_print
+      pry-rails
+      railties
     bcrypt (3.1.13)
     bindex (0.7.0)
     bootsnap (1.4.4)
@@ -140,6 +144,8 @@ GEM
     pry-byebug (3.7.0)
       byebug (~> 11.0)
       pry (~> 0.10)
+    pry-rails (0.3.9)
+      pry (>= 0.10.4)
     public_suffix (3.1.1)
     puma (3.12.1)
     rack (2.0.7)
@@ -250,6 +256,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
+  awesome_rails_console
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.3.1)
   byebug
@@ -263,6 +270,7 @@ DEPENDENCIES
   mini_racer
   pg (>= 0.18, < 2.0)
   pry-byebug
+  pry-rails
   puma (~> 3.11)
   rails (~> 5.2.2)
   rails-flog

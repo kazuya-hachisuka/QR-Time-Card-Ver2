@@ -23,8 +23,12 @@ Rails.application.routes.draw do
 
   resources :staffs do
     resources :works
+      post 'punch_in' => 'works#punch_in', as: 'punch_in'
       patch 'punch_out/:work_id/' => 'works#punch_out', as: 'punch_out'
   end
+
+  post 'works/:work_id/work_breaks' => 'works#break_in', as: 'break_in'
+  patch 'works/:work_id/work_breaks' => 'works#break_out', as: 'break_out'
 
   #localeでのログイン/ログアウト
   get 'login', to: 'sessions#new' #mailとpasswordをnewで入力させる

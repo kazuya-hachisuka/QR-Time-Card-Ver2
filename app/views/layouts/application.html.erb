@@ -28,6 +28,8 @@
               <%= link_to "#{@manager.family_name}#{@manager.given_name}", class: "nav-item" %>
               <%= link_to "managerログアウト", destroy_manager_session_path, class: "nav-item btn btn-outline-dark", method: :delete %>
             <% end %>
+          <% elsif signed_in? %>
+            <%= link_to "ログアウト", logout_path, class: "btn btn-outline-danger", method: :delete %>
           <% else %>
             <%= link_to "管理者登録", new_admin_registration_path, class: "nav-item btn btn-outline-dark" %>
             <%= link_to "管理者ログイン", new_admin_session_path, class: "nav-item btn btn-outline-dark" %>

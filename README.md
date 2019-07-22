@@ -67,7 +67,6 @@ controller作成
 docker-compose run web bundle exec rails g controller admins
 
 gem instal
-docker-compose run web bundle install
 
 db:migrate db:seed_fu
 docker-compose run web bundle exec rails db:migrate db:seed_fu

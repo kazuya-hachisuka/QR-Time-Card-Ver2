@@ -58,6 +58,8 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'pry-byebug'
   gem 'annotate'
+  gem 'awesome_rails_console'
+  gem 'pry-rails'
 end
 
 group :test do

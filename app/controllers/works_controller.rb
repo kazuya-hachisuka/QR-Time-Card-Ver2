@@ -4,9 +4,10 @@ class WorksController < ApplicationController
   def new
     @locale = Locale.find(current_locale.id)
     @staff = Staff.find(params[:staff_id])
+    @working = @staff.works.where(out: nil)
   end
 
-  def create
+  def punch_in
     @work = Work.new
     @work.in = DateTime.now
     staff = Staff.find(params[:staff_id])
@@ -28,12 +29,25 @@ class WorksController < ApplicationController
   end
 
   def break_in
-
+    staff = Staff.find(Work.find(params[:work_id]).staff_id)
+    staff.status = 2
+    staff.save
+    @work_break = WorkBreak.new
+    @work_break.in = DateTime.now
+    @work_break.work_id = params[:work_id]
+    @work_break.save
+    redirect_to locale_path(current_locale)
   end
 
   def break_out
-
+    staff = Staff.find(Work.find(params[:work_id]).staff_id)
+    staff.status = 1
+    staff.save
+    @work_break = WorkBreak.last
+    @work_break.update(out: DateTime.now)
+    redirect_to locale_path(current_locale)
   end
+
   private
 
   def work_params
