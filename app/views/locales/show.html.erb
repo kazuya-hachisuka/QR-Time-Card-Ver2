@@ -1,4 +1,3 @@
-<%= @test %>
 <% if admin_signed_in? || manager_signed_in? %>
 <div class="container">
   <h2>ロケール名：<%= @locale.locale_name %> admin_id:<%= @locale.admin_id %></h2>
@@ -9,28 +8,33 @@
     <thead>
       <tr>
         <th>名前</th>
-        <th>勤怠時間</th>
+        <th>出勤時間</th>
+        <th>退勤</th>
         <th>出退勤ステータス</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
-      <% if @staff.count == 0 %>
+      <% if @staffs.count == 0 %>
         <td>所属スタッフはいません</td>
         <td></td>
         <td></td>
         <td></td>
       <% else %>
-        <% @staff.each do |f| %>
+        <% @staffs.each do |staff| %>
         <tr>
-          <td><%= f.family_name %><%= f.given_name %></td>
-          <td>勤怠時間</td>
-          <% if f.status == 0 %>
-            <td>-</td>
+          <td><%= staff.family_name %><%= staff.given_name %><%= staff.id %></td>
+          <td>出勤時間</td>
+          <% if staff.status == 0 %>
+            <% @staff_works = @works.where(staff_id: staff.id) %>
+            <% @staff_works.each do |work| %>
+              <td><%= work.in %></td>
+              <td><%= work.out %></td>
+            <% end %>
           <% else %>
             <td>出勤中</td>
           <% end %>
-          <td><%= link_to '編集', edit_locale_staff_path(f.locale_id, f.id) %></td>
+          <td><%= link_to '編集', edit_locale_staff_path(staff.locale_id, staff.id) %></td>
         </tr>
         <% end %>
       <% end %>

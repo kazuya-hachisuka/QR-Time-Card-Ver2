@@ -5,6 +5,10 @@ class WorksController < ApplicationController
     @locale = Locale.find(current_locale.id)
     @staff = Staff.find(params[:staff_id])
     @working = @staff.works.where(out: nil)
+    unless @staff.admin_id == @locale.admin_id
+      redirect_to locale_path(current_locale)
+      flash[:other_admin] = "こちらの会社には所属してません"
+    end
   end
 
   def punch_in

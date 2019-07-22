@@ -56,8 +56,7 @@
         const h = String("0" + date.getHours()).slice(-2);
         const m = String("0" + date.getMinutes()).slice(-2);
         const s = String("0" + date.getSeconds()).slice(-2);
-        const time = `${h}:${m}:${s}`
-        document.querySelector('#clock').innerHTML = time;
+        document.querySelector('#clock').innerHTML = `${h}:${m}:${s}`;
       });
       //年月日の表示
       const date = new Date();
