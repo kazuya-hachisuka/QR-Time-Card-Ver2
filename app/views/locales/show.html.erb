@@ -14,7 +14,7 @@
         <th>名前</th>
         <th>出勤</th>
         <th>退勤</th>
-        <th>休憩</th>
+        <th>休憩時間</th>
         <th>労働時間</th>
         <th>詳細</th>
       </tr>
@@ -30,11 +30,20 @@
         <% @works.each do |work| %>
           <% staff = @staffs.find_by(id: work.staff_id) %>
           <td><%= staff.family_name %><%= staff.given_name %></td>
-          <td><%= work.in %></td>
-          <td><%= work.out %></td>
-          <td>-</td>
-          <td>-</td>
-          <td><%= link_to '+', "#" %></td>
+          <% if work.out != nil %>
+            <td><%= work.in.strftime("%Y年%m月%d日 %-H:%M:%S") %></td>
+            <td><%= work.out.strftime("%Y年%m月%d日 %-H:%M:%S") %></td>
+            <td><%= total_work_break(work) %></td>
+            <% breaks = total_work_break(work) %>
+            <td><%= working_hours(work) %></td>
+            <td><%= link_to '+', "#" %></td>
+          <% else %>
+            <td><%= work.in %></td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td><%= link_to '+', "#" %></td>
+          <% end %>
         </tr>
         <% end %>
       <% end %>
