@@ -1,5 +1,10 @@
 class WorksController < ApplicationController
   require "date"
+  def show
+    @work = Work.find(params[:id])
+    @staff = Staff.find(@work.staff_id)
+    @locale = Locale.find(@work.locale_id)
+  end
 
   def new
     @locale = Locale.find(current_locale.id)
