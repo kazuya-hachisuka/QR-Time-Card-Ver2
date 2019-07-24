@@ -51,14 +51,16 @@
     </footer>
     <script>
       //時間の表示
-      setInterval(() => {
+      if(document.getElementById('clock') != null){
+        setInterval(() => {
         const date = new Date();
         const h = String("0" + date.getHours()).slice(-2);
         const m = String("0" + date.getMinutes()).slice(-2);
         const s = String("0" + date.getSeconds()).slice(-2);
         document.querySelector('#clock').innerHTML = `${h}:${m}:${s}`;
-      });
+      })};
       //年月日の表示
+      if(document.getElementById('today') != null){
       const date = new Date();
       const year = date.getFullYear();
       const month = date.getMonth() + 1;
@@ -67,6 +69,7 @@
       const dayList = ['日', '月', '火', '水', '木', '金', '土'];
       const weekLabel = dayList[week];
       document.querySelector('#today').innerHTML = `${year}年 ${month}月 ${day}日 (${weekLabel})`;
+      };
     </script>
   </body>
 </html>

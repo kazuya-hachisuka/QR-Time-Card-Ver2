@@ -4,6 +4,7 @@ class WorksController < ApplicationController
     @work = Work.find(params[:id])
     @staff = Staff.find(@work.staff_id)
     @locale = Locale.find(@work.locale_id)
+    @work_breaks = WorkBreak.where(work_id: params[:id])
   end
 
   def new

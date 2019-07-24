@@ -1,7 +1,7 @@
 <% if admin_signed_in? || manager_signed_in? %>
 <div class="container">
   <div class="row">
-    <div class="h2"><%= @locale.locale_name %> admin_id:<%= @locale.admin_id %></div>
+    <div class="h2"><%= @locale.locale_name %></div>
   </div>
   <div class="row">
     <%= link_to "Staff追加", new_locale_staff_path(@locale.id), class: "btn btn-outline-info mb-3" %>
@@ -31,11 +31,11 @@
           <% staff = @staffs.find_by(id: work.staff_id) %>
           <td><%= staff.family_name %><%= staff.given_name %></td>
           <% if work.out != nil %>
-            <td><%= work.in.strftime("%Y年%m月%d日 %-H:%M:%S") %></td>
-            <td><%= work.out.strftime("%Y年%m月%d日 %-H:%M:%S") %></td>
-            <td><%= total_work_break(work) %></td>
-            <% breaks = total_work_break(work) %>
-            <td><%= working_hours(work) %></td>
+            <td><%= timeFormat(work.in) %></td>
+            <td><%= timeFormat(work.out) %></td>
+            <td><%= totalWorkBreak(work) %></td>
+            <% breaks = totalWorkBreak(work) %>
+            <td><%= workingHours(work) %></td>
             <td><%= link_to '+', staff_work_path(staff.id,work.id) %></td>
           <% else %>
             <td><%= work.in %></td>
