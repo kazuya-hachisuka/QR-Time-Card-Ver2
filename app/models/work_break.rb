@@ -16,4 +16,11 @@
 
 class WorkBreak < ApplicationRecord
   belongs_to :work
+
+  def self.multi_update(work_break_params)
+    work_break_params.to_h.map do |id, work_break_param|
+      work_break = self.find(id)
+      work_break.update_attributes!(work_break_param)
+    end
+  end
 end

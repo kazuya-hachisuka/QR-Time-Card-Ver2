@@ -24,6 +24,15 @@ module ApplicationHelper
     "%dh%02dm" % [hh,mm]
   end
 
+  #1つのwork_breakの合計時間算出用
+  def totalWorkBreak_WB(workBreak)
+    total_sec = 0
+    total_sec = workBreak.out - workBreak.in
+    work_break_min = total_sec.to_i / 60
+    hh, mm = work_break_min.divmod(60)
+    "%dh%02dm" % [hh,mm]
+  end
+
   def timeFormat(material)
     material.strftime("%Y年%m月%d日 %-H:%M")
   end

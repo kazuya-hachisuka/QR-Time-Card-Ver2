@@ -1,7 +1,7 @@
 class WorksController < ApplicationController
   require "date"
   def show
-    @work = Work.find(params[:id])
+    @work = Work.includes(:work_breaks).find(params[:id])
     @staff = Staff.find(@work.staff_id)
     @locale = Locale.find(@work.locale_id)
     @work_breaks = WorkBreak.where(work_id: params[:id])
@@ -15,6 +15,19 @@ class WorksController < ApplicationController
       redirect_to locale_path(current_locale)
       flash[:other_admin] = "こちらの会社には所属してません"
     end
+  end
+
+  def update
+    @work = Work.find(params[:id])
+    if params[:work_breaks].present?
+      ActiveRecord::Base.transaction do
+        @work.update_attributes!(work_params)
+        WorkBreak.multi_update(work_breaks_params)
+      end
+    else
+      @work.update(work_params)
+    end
+    redirect_to locale_path(@work.locale_id)
   end
 
   def punch_in
@@ -65,7 +78,12 @@ class WorksController < ApplicationController
   end
 
   def work_break_params
-    params.require(:work_break).permit(:in, :out, :work_id)
+    params.require(:work_break).permit(:id, :in, :out, :work_id)
+  end
+
+  #pwork_breaks_paramsがunpermitedだったので、permit!で強制的に許可
+  def work_breaks_params
+    params.require(:work_breaks).permit!
   end
 
   def staff_params
