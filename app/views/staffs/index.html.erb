@@ -16,7 +16,7 @@
           <td><%= staff.family_name %>&ensp;<%= staff.given_name %></td>
           <% @locale = Locale.find_by(id: staff.locale_id) %>
           <td><%= @locale.locale_name %></td>
-          <td><%= link_to '勤怠', 'staff_works_path', class:"btn btn-info btn-sm" %></td>
+          <td><%= link_to '勤怠', staff_works_path(staff.id), class:"btn btn-info btn-sm" %></td>
           <td><%= link_to '編集', '#', class: "btn btn-outline-dark btn-sm" %></td>
         </tr>
       <% end %>

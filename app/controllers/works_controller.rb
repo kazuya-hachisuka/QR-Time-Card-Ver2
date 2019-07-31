@@ -1,5 +1,10 @@
 class WorksController < ApplicationController
   require "date"
+  def index
+    @staff = Staff.find(params[:staff_id])
+    @works = Work.where(staff_id: @staff)
+  end
+
   def show
     @work = Work.includes(:work_breaks).find(params[:id])
     @staff = Staff.find(@work.staff_id)

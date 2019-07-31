@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <table class="table">
+      <tbody>
+        <tr>
+          <td>出勤</td>
+          <td>退勤</td>
+          <td>休憩</td>
+          <td>戻り</td>
+        </tr>
+      </tbody>
+      <tbody>
+      <% @works.each do |work| %>
+        <tr>
+          <td><%= l work.in %></td>
+          <td><%= l work.out %></td>
+          <% @work_brake = WorkBreak.where(work_id: work.id) %>
+            <% if @work_break.present? %>
+              <td><% l @work_break.in %></td>
+              <td><% l @work_break.out %></td>
+            <% else %>
+              <td>-</td>
+              <td>-</td>
+            <% end %>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
