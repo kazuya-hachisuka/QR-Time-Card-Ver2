@@ -31,8 +31,8 @@
           <% staff = @staffs.find_by(id: work.staff_id) %>
           <td><%= staff.family_name %><%= staff.given_name %></td>
           <% if work.out != nil %>
-            <td><%= timeFormat(work.in) %></td>
-            <td><%= timeFormat(work.out) %></td>
+            <td><%= l work.in %></td>
+            <td><%= l work.out %></td>
             <td><%= totalWorkBreak(work) %></td>
             <% breaks = totalWorkBreak(work) %>
             <td><%= workingHours(work) %></td>

@@ -33,8 +33,9 @@ module ApplicationHelper
     "%dh%02dm" % [hh,mm]
   end
 
-  def timeFormat(material)
-    material.strftime("%Y年%m月%d日 %-H:%M")
-  end
+  #gem 'i18n_generators'を導入したので使用しない
+  # def timeFormat(material)
+  #   material.strftime("%Y年%m月%d日 %-H:%M")
+  # end
 
 end
