@@ -13,6 +13,23 @@ class WorksController < ApplicationController
   end
 
   def new
+    @locales = Locale.where(admin_id: current_admin.id)
+    @work = Work.new
+    @staff = Staff.find(params[:staff_id])
+  end
+
+  def create
+    @work = Work.new(work_params)
+    if @work.save
+      redirect_to staff_works_path(params[:staff_id])
+      flash[:work_create_result] = "勤怠を追加しました。"
+    else
+      flash[:work_create_result] = "追加出来ませでした。"
+      redirect_to staff_works_path(params[:staff_id])
+    end
+  end
+
+  def punch_new
     @locale = Locale.find(current_locale.id)
     @staff = Staff.find(params[:staff_id])
     @working = @staff.works.where(out: nil)
@@ -86,7 +103,7 @@ class WorksController < ApplicationController
     params.require(:work_break).permit(:id, :in, :out, :work_id)
   end
 
-  #pwork_breaks_paramsがunpermitedだったので、permit!で強制的に許可
+  #work_breaks_paramsがunpermitedだったので、permit!で強制的に許可
   def work_breaks_params
     params.require(:work_breaks).permit!
   end

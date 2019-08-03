@@ -1,30 +1,51 @@
 <div class="container">
   <div class="row">
-    <table class="table">
+    <h3 class="h3"><%= @staff.family_name %>&ensp;<%= @staff.given_name %>さんの勤怠一覧</h3>
+        <%= flash[:work_create_result] %>
+  </div>
+  <span>総労働時間<%= totalWorkTime(@works) %></span>
+</div>
+<div class="container">
+  <div class="row">
+    <%= link_to '戻る', admin_staffs_path(current_admin), class:"btn btn-outline-dark btn-sm m-2" %>
+    <td class="text-center"><%= link_to '勤怠追加', new_staff_work_path,remote: true, class:"btn btn-outline-success btn-sm m-2" %>
+    <div class="modal fade" id="worknew-modal" tabindex="-1" role="dialog" aria-labelledby="worknew-modalLabel" aria-hidden="true"></div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+  <div class="table-responsive">
+    <table class="table text-nowrap">
       <tbody>
         <tr>
-          <td>出勤</td>
-          <td>退勤</td>
-          <td>休憩</td>
-          <td>戻り</td>
+          <th>場所</th>
+          <th>出勤</th>
+          <th>退勤</th>
+          <th>休憩</th>
+          <th>戻り</th>
+          <th>労働時間</th>
         </tr>
       </tbody>
       <tbody>
       <% @works.each do |work| %>
         <tr>
-          <td><%= l work.in %></td>
-          <td><%= l work.out %></td>
-          <% @work_brake = WorkBreak.where(work_id: work.id) %>
+          <% @locale = Locale.find_by(id: work.locale_id) %>
+            <td><%= @locale.locale_name %></td>
+            <td><%= l work.in %></td>
+            <td><%= l work.out %></td>
+          <% @work_break = WorkBreak.find_by(work_id: work.id) %>
             <% if @work_break.present? %>
-              <td><% l @work_break.in %></td>
-              <td><% l @work_break.out %></td>
+              <td><%= l @work_break.in %></td>
+              <td><%= l @work_break.out %></td>
             <% else %>
               <td>-</td>
               <td>-</td>
             <% end %>
+            <td><%= workingHours(work) %></td>
         </tr>
       <% end %>
       </tbody>
     </table>
+  </div>
   </div>
 </div>

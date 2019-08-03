@@ -21,9 +21,9 @@ Rails.application.routes.draw do
   resources :locales, only:[:index, :new, :create, :show] do
     resources :staffs
   end
-
   resources :staffs do
     resources :works
+      get 'punch_new' => 'works#punch_new', as: 'punch_new'
       post 'punch_in' => 'works#punch_in', as: 'punch_in'
       patch 'punch_out/:work_id/' => 'works#punch_out', as: 'punch_out'
   end

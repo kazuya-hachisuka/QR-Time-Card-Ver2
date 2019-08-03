@@ -13,13 +13,8 @@
         <div class="modal-body">
           <div class="container">
             <div class="row">
-              <div class="h4 col-5"></div>
-            </div>
-          </div>
-          <div class="container">
-            <div class="row">
               <table class="table table-sm">
-                <thead class="thead-dark">
+                <thead>
                   <tr>
                     <th>出勤</th>
                     <th>退勤</th>
@@ -27,17 +22,19 @@
                   </tr>
                 </thead>
                 <tbody>
+                  <tr>
                     <td><%= raw sprintf(work.datetime_select(
-                                          :in,{use_month_numbers: true, 
+                      :in,{use_month_numbers: true, 
                                           start_year: 2019, date_separator:'%s',
                                           datetime_separator: '%s',time_separator: '%s'},{class:"inline-select custom-select-sm"}),
                                           '年', '月', '日', '時') + '分' %></td>
                     <td><%= raw sprintf(work.datetime_select(
-                          :out,{use_month_numbers: true, 
-                          start_year: 2019, date_separator:'%s',
-                          datetime_separator: '%s',time_separator: '%s'},{class:"inline-select custom-select-sm"}),
-                          '年', '月', '日', '時') + '分' %></td>
+                      :out,{use_month_numbers: true, 
+                                        start_year: 2019, date_separator:'%s',
+                                        datetime_separator: '%s',time_separator: '%s'},{class:"inline-select custom-select-sm"}),
+                                        '年', '月', '日', '時') + '分' %></td>
                     <td><%= workingHours(@work) %></td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -46,31 +43,33 @@
             <div class="container mt-5">
               <div class="row">
                 <table class="table table-sm">
-                  <thead class="thead-light">
+                  <thead>
                     <tr>
                       <th>休憩入</th>
                       <th>戻り</th>
                       <th>休憩合計</th>
                     </tr>
                   </thead>
-                  <% @work_breaks.each do |work_break| %>
-                    <tbody>
+                  <tbody>
+                    <% @work_breaks.each do |work_break| %>
+                      <tr>
                       <%= fields_for "work_breaks[]",work_break do |workbreak| %>
                         <%= workbreak.hidden_field :id, value: work_break.id %>
                         <td><%= raw sprintf(workbreak.datetime_select(
-                                              :in,{use_month_numbers: true, 
+                          :in,{use_month_numbers: true, 
                                               start_year: 2019, date_separator:'%s',
                                               datetime_separator: '%s',time_separator: '%s'},{class:"inline-select custom-select-sm"}),
                                               '年', '月', '日', '時') + '分' %></td>
                         <td><%= raw sprintf(workbreak.datetime_select(
-                                              :out,{use_month_numbers: true, 
+                          :out,{use_month_numbers: true, 
                                               start_year: 2019, date_separator:'%s',
                                               datetime_separator: '%s',time_separator: '%s'},{class:"inline-select custom-select-sm"}),
                                               '年', '月', '日', '時') + '分' %></td>
                       <% end %>
                         <td><%= totalWorkBreak_WB(work_break) %></td>
-                    </tbody>
-                  <% end %>
+                      </tr>
+                    <% end %>
+                  </tbody>
                 </table>
               </div>
             </div>

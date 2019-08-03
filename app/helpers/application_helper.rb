@@ -32,6 +32,21 @@ module ApplicationHelper
     hh, mm = work_break_min.divmod(60)
     "%dh%02dm" % [hh,mm]
   end
+  #スタッフの勤怠合計算出(勤怠合計-休憩合計)
+  def totalWorkTime(works)
+    total_work_time_sec = 0
+    total_work_break_time_sec = 0
+    works.each do |work|
+      total_work_time_sec += work.out - work.in
+      work_breaks = WorkBreak.where(work_id: work.id)
+      work_breaks.each do |work_break|
+        total_work_break_time_sec += work_break.out - work_break.in
+      end
+    end
+    total_work_time = (total_work_time_sec - total_work_break_time_sec).to_i / 60
+    hh, mm = total_work_time.divmod(60)
+    "%dh%02dm" % [hh,mm]
+  end
 
   #gem 'i18n_generators'を導入したので使用しない
   # def timeFormat(material)
