@@ -2,6 +2,7 @@
   <div class="row">
     <h3 class="h3"><%= @staff.family_name %>&ensp;<%= @staff.given_name %>さんの勤怠一覧</h3>
         <%= flash[:work_create_result] %>
+        <%= flash[:work_delete_result] %>
   </div>
   <span>総労働時間<%= totalWorkTime(@works) %></span>
 </div>
@@ -24,6 +25,7 @@
           <th>休憩</th>
           <th>戻り</th>
           <th>労働時間</th>
+          <th>修正</th>
         </tr>
       </tbody>
       <tbody>
@@ -42,6 +44,8 @@
               <td>-</td>
             <% end %>
             <td><%= workingHours(work) %></td>
+          <td><%= link_to '修正', staff_work_path(@staff.id,work.id), remote: true, class:"btn btn-outline-warning btn-sm" %></td>
+          <div class="modal fade" id="work-modal" tabindex="-1" role="dialog" aria-labelledby="work-modalLabel" aria-hidden="true"></div>
         </tr>
       <% end %>
       </tbody>

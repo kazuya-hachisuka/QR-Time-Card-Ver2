@@ -17,6 +17,6 @@
 #
 
 class Work < ApplicationRecord
-  has_many :work_breaks
+  has_many :work_breaks, dependent: :destroy #関連するwork_breakも削除
   belongs_to :staff
 end

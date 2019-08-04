@@ -21,12 +21,12 @@ class WorksController < ApplicationController
   def create
     @work = Work.new(work_params)
     if @work.save
-      redirect_to staff_works_path(params[:staff_id])
       flash[:work_create_result] = "勤怠を追加しました。"
     else
       flash[:work_create_result] = "追加出来ませでした。"
-      redirect_to staff_works_path(params[:staff_id])
     end
+    url = request.url
+    redirect_back(fallback_location: url)
   end
 
   def punch_new
@@ -50,6 +50,17 @@ class WorksController < ApplicationController
       @work.update(work_params)
     end
     redirect_to locale_path(@work.locale_id)
+  end
+
+  def destroy
+    work = Work.find(params[:id])
+    if work.destroy
+      flash[:work_delete_result] = "削除しました"
+    else
+      flash[:work_delete_result] = "削除出来ませんでした"
+    end
+    url = request.url
+    redirect_back(fallback_location: url)
   end
 
   def punch_in
