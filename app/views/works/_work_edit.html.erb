@@ -1,0 +1,85 @@
+<!-- Modal -->
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="work-modalLabel">
+          <span class="h4"><%= @staff.family_name %>&ensp;<%= @staff.given_name %></span>さんの<span class="h4"><%= @locale.locale_name %></span>での勤怠
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= form_with(model: @work, url: staff_work_path) do |work| %>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+              <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th>出勤</th>
+                    <th>退勤</th>
+                    <th>勤務時間</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><%= raw sprintf(work.datetime_select(
+                      :in,{use_month_numbers: true, 
+                                          start_year: 2019, date_separator:'%s',
+                                          datetime_separator: '%s',time_separator: '%s'},{class:"inline-select custom-select-sm"}),
+                                          '年', '月', '日', '時') + '分' %></td>
+                    <td><%= raw sprintf(work.datetime_select(
+                      :out,{use_month_numbers: true, 
+                                        start_year: 2019, date_separator:'%s',
+                                        datetime_separator: '%s',time_separator: '%s'},{class:"inline-select custom-select-sm"}),
+                                        '年', '月', '日', '時') + '分' %></td>
+                    <td><%= workingHours(@work) %></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <% if @work_breaks.exists? %>
+            <div class="container mt-5">
+              <div class="row">
+                <table class="table table-sm">
+                  <thead>
+                    <tr>
+                      <th>休憩入</th>
+                      <th>戻り</th>
+                      <th>休憩合計</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @work_breaks.each do |work_break| %>
+                      <tr>
+                      <%= fields_for "work_breaks[]",work_break do |workbreak| %>
+                        <%= workbreak.hidden_field :id, value: work_break.id %>
+                        <td><%= raw sprintf(workbreak.datetime_select(
+                          :in,{use_month_numbers: true, 
+                                              start_year: 2019, date_separator:'%s',
+                                              datetime_separator: '%s',time_separator: '%s'},{class:"inline-select custom-select-sm"}),
+                                              '年', '月', '日', '時') + '分' %></td>
+                        <td><%= raw sprintf(workbreak.datetime_select(
+                          :out,{use_month_numbers: true, 
+                                              start_year: 2019, date_separator:'%s',
+                                              datetime_separator: '%s',time_separator: '%s'},{class:"inline-select custom-select-sm"}),
+                                              '年', '月', '日', '時') + '分' %></td>
+                      <% end %>
+                        <td><%= totalWorkBreak_WB(work_break) %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <%= work.submit '更新', class:"btn btn-success" %>
+          <%= link_to '削除', staff_work_path, method: :delete, data: {confirm: '本当に削除しますか??'}, class:"btn btn-outline-danger" %>
+        </div>
+      <% end %>
+    </div>
+  </div>

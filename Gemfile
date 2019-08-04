@@ -39,6 +39,7 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'rqrcode'
 gem 'rqrcode_png'
+gem 'i18n_generators'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
@@ -58,6 +59,8 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'pry-byebug'
   gem 'annotate'
+  gem 'awesome_rails_console'
+  gem 'pry-rails'
 end
 
 group :test do

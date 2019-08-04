@@ -1,0 +1,15 @@
+<%# status == 0 出勤前 %>
+<% if @staff.status == 0 %>
+  <%= link_to '出勤', staff_punch_in_path(params[:staff_id]), class:"btn btn-info", method: :post %>
+<%# status == 1 出勤中 %>
+<% elsif @staff.status == 1 %>
+  <% @working.each do |work| %>
+    <%= link_to '休憩', break_in_path(work), class:"btn btn-success", method: :post %>
+    <%= link_to '退勤', staff_punch_out_path(params[:staff_id], work.id), class:"btn btn-danger", method: :patch %>
+  <% end %>
+<%# status == 2 休憩中 %>
+<% elsif @staff.status == 2 %>
+  <% @working.each do |work| %>
+    <%= link_to '戻り', break_out_path(work), class:"btn btn-warning", method: :patch %>
+  <% end %>
+<% end %>

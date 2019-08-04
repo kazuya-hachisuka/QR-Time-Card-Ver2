@@ -1,37 +1,51 @@
-<%= @test %>
 <% if admin_signed_in? || manager_signed_in? %>
 <div class="container">
-  <h2>ロケール名：<%= @locale.locale_name %> admin_id:<%= @locale.admin_id %></h2>
-  <%= link_to "ログアウト", logout_path, class: "btn btn-outline-danger", method: :delete %>
-  <%= link_to "Staff追加", new_locale_staff_path(@locale.id), class: "btn btn-outline-info" %>
+  <div class="row">
+    <div class="h2"><%= @locale.locale_name %></div>
+  </div>
+  <div class="row">
+    <%= link_to "Staff追加", new_locale_staff_path(@locale.id), class: "btn btn-outline-info btn-sm mb-3" %>
+  </div>
+    <%= flash[:work_delete_result] %>
 </div>
 <div class="container">
   <table class="table table-hover">
-    <thead>
+    <thead style="background-color:#fff2e5;">
       <tr>
         <th>名前</th>
-        <th>勤怠時間</th>
-        <th>出退勤ステータス</th>
-        <th></th>
+        <th>出勤</th>
+        <th>退勤</th>
+        <th>休憩時間</th>
+        <th>労働時間</th>
+        <th>詳細</th>
       </tr>
     </thead>
     <tbody>
-      <% if @staff.count == 0 %>
+      <% if @staffs.count == 0 %>
         <td>所属スタッフはいません</td>
         <td></td>
         <td></td>
         <td></td>
+        <td></td>
       <% else %>
-        <% @staff.each do |f| %>
-        <tr>
-          <td><%= f.family_name %><%= f.given_name %></td>
-          <td>勤怠時間</td>
-          <% if f.status == 0 %>
-            <td>-</td>
+        <% @works.each do |work| %>
+          <% staff = @staffs.find_by(id: work.staff_id) %>
+          <td><%= staff.family_name %><%= staff.given_name %></td>
+          <% if work.out != nil %>
+            <td><%= l work.in %></td>
+            <td><%= l work.out %></td>
+            <td><%= totalWorkBreak(work) %></td>
+            <% breaks = totalWorkBreak(work) %>
+            <td><%= workingHours(work) %></td>
+            <td class="text-center"><%= link_to '+', staff_work_path(staff.id,work.id),remote: true %></td>
+            <div class="modal fade" id="work-modal" tabindex="-1" role="dialog" aria-labelledby="work-modalLabel" aria-hidden="true"></div>
           <% else %>
-            <td>出勤中</td>
+            <td><%= work.in %></td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td><%#= link_to '+', staff_work_path(work[:id]) %></td>
           <% end %>
-          <td><%= link_to '編集', edit_locale_staff_path(f.locale_id, f.id) %></td>
         </tr>
         <% end %>
       <% end %>
@@ -39,5 +53,5 @@
   </table>
 </div>
 <% elsif signed_in? %>
-<%= render 'punch', locale: @locale %>
+  <%= render 'punch', locale: @locale %>
 <% end %>

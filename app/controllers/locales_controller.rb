@@ -10,14 +10,8 @@ class LocalesController < ApplicationController
 
   def show
     @locale = Locale.find(params[:id])
-    @staff = Staff.where(locale_id: @locale)
-    if admin_signed_in?
-      @test = "Admin"
-    elsif manager_signed_in?
-      @test = "Manager"
-    elsif signed_in?
-      @test = "Locale"
-    end
+    @staffs = Staff.where(locale_id: @locale)
+    @works = Work.where(locale_id: @locale)
   end
 
   def new
@@ -39,6 +33,10 @@ class LocalesController < ApplicationController
 
   def locale_params
     params.require(:locale).permit(:locale_name, :admin_id, :control_number, :password, :password_confirmation)
+  end
+
+  def work_params
+    params.require(:work).permit(:in, :out, :locale_id, :staff_id)
   end
 
   # def admin_params

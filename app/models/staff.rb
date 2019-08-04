@@ -30,4 +30,5 @@ class Staff < ApplicationRecord
   validates :given_name_kana, presence: true
   validates :admin_id, presence: true
   belongs_to :locale
+  has_many :works
 end

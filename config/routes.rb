@@ -13,12 +13,23 @@ Rails.application.routes.draw do
   resources :admins, only:[:show] do
     get '/managers/sing_up' => 'managers#new'
     post '/managers/create' => 'managers#create'
+    resources :staffs
   end
 
   resources :managers, only:[:show]
+
   resources :locales, only:[:index, :new, :create, :show] do
     resources :staffs
   end
+  resources :staffs do
+    resources :works
+      get 'punch_new' => 'works#punch_new', as: 'punch_new'
+      post 'punch_in' => 'works#punch_in', as: 'punch_in'
+      patch 'punch_out/:work_id/' => 'works#punch_out', as: 'punch_out'
+  end
+
+  post 'works/:work_id/work_breaks' => 'works#break_in', as: 'break_in'
+  patch 'works/:work_id/work_breaks' => 'works#break_out', as: 'break_out'
 
   #localeでのログイン/ログアウト
   get 'login', to: 'sessions#new' #mailとpasswordをnewで入力させる

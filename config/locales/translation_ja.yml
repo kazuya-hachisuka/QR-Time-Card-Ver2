@@ -1,0 +1,72 @@
+ja:
+  activerecord:
+    models:
+      admin: 管理者  #g
+      locale: ロケール  #g
+      manager: 部長  #g
+      staff: スタッフ  #g
+      work: 作業  #g
+      work_break: 休憩  #g
+
+    attributes:
+      admin:
+        company_name: 会社名  #g
+        company_name_kana: 会社名かな  #g
+        current_sign_in_at: で現在のサインイン  #g
+        current_sign_in_ip: 現在のサインインIP  #g
+        email: Eメール  #g
+        encrypted_password: 暗号化パスワード  #g
+        lacales: ラカレ  #g
+        last_sign_in_at: で最後のサインイン  #g
+        last_sign_in_ip: 最後のサインインIP  #g
+        managers: 管理者  #g
+        remember_created_at: で作成したことを忘れないでください  #g
+        reset_password_sent_at: に送信されたパスワードをリセットする  #g
+        reset_password_token: パスワードトークンをリセットする  #g
+
+      locale:
+        admin: :activerecord.models.admin  #g
+        control_number: 管理番号  #g
+        locale_name: ロケール名  #g
+        manager: :activerecord.models.manager  #g
+        password_digest: パスワードダイジェスト  #g
+        remember_token: トークンを記憶する  #g
+        staffs: スタッフ  #g
+
+      manager:
+        admin: :activerecord.models.admin  #g
+        current_sign_in_at: で現在のサインイン  #g
+        current_sign_in_ip: 現在のサインインIP  #g
+        email: Eメール  #g
+        encrypted_password: 暗号化パスワード  #g
+        family_name: 苗字  #g
+        family_name_kana: 姓カナ  #g
+        given_name: 名  #g
+        given_name_kana: 名カナ  #g
+        last_sign_in_at: で最後のサインイン  #g
+        last_sign_in_ip: 最後のサインインIP  #g
+        locale: :activerecord.models.locale  #g
+        remember_created_at: で作成したことを忘れないでください  #g
+        reset_password_sent_at: に送信されたパスワードをリセットする  #g
+        reset_password_token: パスワードトークンをリセットする  #g
+
+      staff:
+        family_name: 苗字  #g
+        family_name_kana: 姓カナ  #g
+        given_name: 名  #g
+        given_name_kana: 名カナ  #g
+        locale: :activerecord.models.locale  #g
+        qrcode: QRコード  #g
+        status: 状態  #g
+        works: 作品  #g
+
+      work:
+        in: に  #g
+        out: でる  #g
+        staff: :activerecord.models.staff  #g
+        work_breaks: 休憩  #g
+
+      work_break:
+        in: に  #g
+        out: でる  #g
+        work: :activerecord.models.work  #g

@@ -1,4 +1,8 @@
 class StaffsController < ApplicationController
+  def index
+    @staffs = Staff.where(admin_id: current_admin)
+  end
+
   def new
     @staff = Staff.new
     @locale = Locale.find_by(params[:id])
@@ -37,6 +41,10 @@ class StaffsController < ApplicationController
   end
 
   private
+  def admin_params
+    params.require(:admin).permit[:company_name, :company_name_kana]
+  end
+
   def staff_params
     params.require(:staff).permit(:family_name, :family_name_kana, :given_name, :given_name_kana, :admin_id, :locale_id, :qrcode)
   end

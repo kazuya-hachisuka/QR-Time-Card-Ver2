@@ -1,0 +1,44 @@
+<div class="modal-dialog modal-lg" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="worknew-modalLabel">
+        <span class="h4"><%= @staff.family_name %>&ensp;<%= @staff.given_name %></span>さんの勤怠追加
+      </h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <%= form_with(model: @work, url:staff_works_path) do |work|%>
+    <%= work.hidden_field :staff_id, value:@staff.id %>
+    <div class="modal-body">
+      <div class="container">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <p>出勤</p>
+              <%= raw sprintf(work.datetime_select(
+                                                  :in,{use_month_numbers: true, 
+                                                  start_year: 2019, date_separator:'%s',
+                                                  datetime_separator: '%s',time_separator: '%s'},{class:"inline-select custom-select-sm"}),
+                                                  '年', '月', '日', '時') + '分' %>
+            </div>
+            <div class="form-group col-md-6">
+              <p>退勤</p>
+              <%= raw sprintf(work.datetime_select(
+                                                  :out,{use_month_numbers: true, 
+                                                  start_year: 2019, date_separator:'%s',
+                                                  datetime_separator: '%s',time_separator: '%s'},{class:"inline-select custom-select-sm"}),
+                                                  '年', '月', '日', '時') + '分' %>
+            </div>
+          </div>
+      </div>
+      <div class="container">
+        <span>場所：<%= collection_select(:work, :locale_id, @locales, :id, :locale_name,{class:"form-control"}) %></span>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+        <%= work.submit '勤怠追加', class:"btn btn-success btn-sm" %>
+    </div>
+    <% end %>
+  </div>
+</div>
