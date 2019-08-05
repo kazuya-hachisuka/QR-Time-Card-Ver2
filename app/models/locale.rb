@@ -36,4 +36,5 @@ class Locale < ApplicationRecord
   belongs_to :admin
   has_one :manager, through: :admin
   has_many :staffs
+  has_many :locales
 end

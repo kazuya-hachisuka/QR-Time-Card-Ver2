@@ -1,6 +1,6 @@
 class StaffsController < ApplicationController
   def index
-    @staffs = Staff.where(admin_id: current_admin)
+    @staffs = Staff.includes(:locale).where(admin_id: current_admin)
   end
 
   def new
@@ -22,7 +22,7 @@ class StaffsController < ApplicationController
   def edit
     @staff = Staff.find(params[:id])
     @locale = Locale.where(admin_id: current_admin)
-    @admin = "社名を入れる予定"
+    @admin = Admin.find_by(id: current_admin)
     require 'rqrcode'
     require 'rqrcode_png'
     content = "https://www.google.co.jp/"
@@ -42,7 +42,7 @@ class StaffsController < ApplicationController
 
   private
   def admin_params
-    params.require(:admin).permit[:company_name, :company_name_kana]
+    params.require(:admin).permit(:company_name, :company_name_kana)
   end
 
   def staff_params

@@ -1,5 +1,5 @@
 <h2>Staff Edit</h2>
-<%= form_for @staff, url:locale_staff_path do |f| %>
+<%= form_with(model: @staff, url:admin_staff_path) do |f| %>
 <div class="container justify-content-center">
   <div class="row con">
     <div class="form-row col-md-6">
@@ -36,7 +36,7 @@
           <%= @qr %>
         </div>
         <div class="card-footer">
-          <%= @admin %>
+          <h4 class="text-center"><%= @admin.company_name %></h4>
         </div>
       </div>
     </div>

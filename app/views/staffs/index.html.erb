@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h2>Admin staff index</h2>
+    <h2><%= current_admin.company_name %>のスタッフ一覧</h2>
     <table class="table table-hover">
       <thead>
         <tr>
@@ -14,10 +14,9 @@
       <% @staffs.each do |staff| %>
         <tr>
           <td><%= staff.family_name %>&ensp;<%= staff.given_name %></td>
-          <% @locale = Locale.find_by(id: staff.locale_id) %>
-          <td><%= @locale.locale_name %></td>
+          <td><%= staff.locale.locale_name %></td>
           <td><%= link_to '勤怠', staff_works_path(staff.id), class:"btn btn-info btn-sm" %></td>
-          <td><%= link_to '編集', '#', class: "btn btn-outline-dark btn-sm" %></td>
+          <td><%= link_to '編集', edit_admin_staff_path(current_admin.id,staff.id), class: "btn btn-outline-dark btn-sm" %></td>
         </tr>
       <% end %>
       </tbody>
