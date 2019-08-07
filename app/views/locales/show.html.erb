@@ -4,7 +4,10 @@
     <div class="h2"><%= @locale.locale_name %></div>
   </div>
   <div class="row">
-    <%= link_to "Staff追加", new_locale_staff_path(@locale.id), class: "btn btn-outline-info btn-sm mb-3" %>
+    <div class="form-group">
+      <%= link_to "戻る", admin_path(current_admin), class:"btn btn-outline-dark btn-sm"  %>
+      <%= link_to "Staff追加", new_locale_staff_path(@locale.id), class: "btn btn-outline-info btn-sm" %>
+    </div>
   </div>
     <%= flash[:work_delete_result] %>
 </div>
@@ -17,7 +20,7 @@
         <th>退勤</th>
         <th>休憩時間</th>
         <th>労働時間</th>
-        <th>詳細</th>
+        <th>勤怠詳細</th>
       </tr>
     </thead>
     <tbody>
@@ -29,15 +32,14 @@
         <td></td>
       <% else %>
         <% @works.each do |work| %>
-          <% staff = @staffs.find_by(id: work.staff_id) %>
-          <td><%= staff.family_name %><%= staff.given_name %></td>
+          <td><%= work.staff.family_name %><%= work.staff.given_name %></td>
           <% if work.out != nil %>
             <td><%= l work.in %></td>
             <td><%= l work.out %></td>
             <td><%= totalWorkBreak(work) %></td>
             <% breaks = totalWorkBreak(work) %>
             <td><%= workingHours(work) %></td>
-            <td class="text-center"><%= link_to '+', staff_work_path(staff.id,work.id),remote: true %></td>
+            <td class="text-center"><%= link_to '詳細', staff_work_path(work.staff_id,work.id),remote: true,class:"btn btn-outline-secondary btn-sm rounded"%></td>
             <div class="modal fade" id="work-modal" tabindex="-1" role="dialog" aria-labelledby="work-modalLabel" aria-hidden="true"></div>
           <% else %>
             <td><%= work.in %></td>

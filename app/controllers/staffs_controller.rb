@@ -26,9 +26,9 @@ class StaffsController < ApplicationController
     require 'rqrcode'
     require 'rqrcode_png'
     content = "https://www.google.co.jp/"
-    size    = 4
+    size    = 5
     level   = :h            # l, m, q, h
-    @qr = RQRCode::QRCode.new(content, size: size, level: level).as_svg(module_size: 5).html_safe
+    @qr = RQRCode::QRCode.new(content, size: size, level: level).as_svg(module_size: 6).html_safe
   end
 
   def update
