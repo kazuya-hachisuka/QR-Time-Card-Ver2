@@ -10,6 +10,7 @@ class LocalesController < ApplicationController
 
   def show
     @locale = Locale.find(params[:id])
+    @staffs = Staff.where(locale_id: params[:id])
     @works = Work.includes(:staff).where(locale_id: @locale).order(in: :asc)
   end
 

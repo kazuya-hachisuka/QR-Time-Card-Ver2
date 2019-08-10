@@ -5,17 +5,16 @@ class StaffsController < ApplicationController
 
   def new
     @staff = Staff.new
-    @locale = Locale.find_by(params[:id])
-    @admin_id = Locale.where(id: params[:locale_id]).pluck(:admin_id) #もう少し簡単に書けそう
+    @locale = Locale.where(admin_id: params[:admin_id])
+    @admin = Admin.find(params[:admin_id])
   end
 
   def create
     @staff = Staff.new(staff_params)
-    @staff.locale_id = params[:locale_id]
     if @staff.save
-      redirect_to locale_path(params[:locale_id])
+      redirect_to admin_staffs_path(current_admin)
     else
-      redirect_to new_locale_staff_path
+      redirect_to new_admin_staff_path
     end
   end
 

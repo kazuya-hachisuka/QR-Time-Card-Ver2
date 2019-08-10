@@ -1,29 +1,32 @@
-<h2>Staff Create</h2>
-<%= @admin %>
-<%= form_for @staff, url:locale_staffs_path do |f| %>
-<%= "所属ロケール: #{@locale.locale_name}" %>
-<div class="container">
-  <div class="form-row col-md-6">
-    <div class="form-group col-md-6">
-      <%= f.label :姓 %>
-      <%= f.text_field :family_name, class: "form-control", placeholder: "姓" %>
+<%= form_with(model: @staff, url:admin_staffs_path) do |f| %>
+  <div class="container">
+    <h2>スタッフの追加</h2>
+    <div class="form-group">
+      <%= link_to "戻る", admin_path(current_admin), class:"btn btn-outline-dark btn-sm" %>
     </div>
-    <div class="form-group col-md-6">
-      <%= f.label :名 %>
-      <%= f.text_field :given_name, class: "form-control", placeholder: "名" %>
-    </div>
-    <div class="form-group col-md-6">
-      <%= f.label :セイ %>
-      <%= f.text_field :family_name_kana, class: "form-control", placeholder: "セイ" %>
-    </div>
-    <div class="form-group col-md-6">
-      <%= f.label :メイ %>
-      <%= f.text_field :given_name_kana, class: "form-control", placeholder: "メイ" %>
-    </div>
-    <div class="form-group col-md-6">
-      <%= f.hidden_field :admin_id, value: @admin_id %>
-      <%= f.submit '追加', class: "btn btn-outline-info" %>
+    <div class="form-row col-md-6">
+      <div class="form-group col-md-6">
+        <%= f.label :姓 %>
+        <%= f.text_field :family_name, class: "form-control", placeholder: "姓" %>
+      </div>
+      <div class="form-group col-md-6">
+        <%= f.label :名 %>
+        <%= f.text_field :given_name, class: "form-control", placeholder: "名" %>
+      </div>
+      <div class="form-group col-md-6">
+        <%= f.label :セイ %>
+        <%= f.text_field :family_name_kana, class: "form-control", placeholder: "セイ" %>
+      </div>
+      <div class="form-group col-md-6">
+        <%= f.label :メイ %>
+        <%= f.text_field :given_name_kana, class: "form-control", placeholder: "メイ" %>
+      </div>
+      <div class="gorm-group col-md-6">
+        <%= f.label :所属 %>
+        <%= f.collection_select :locale_id, @locale, :id, :locale_name,{},class:"form-control" %>
+        <%= f.hidden_field :admin_id, value: @admin.id %>
+      </div>
+        <%= f.submit '追加', class: "btn btn-outline-info col-md-6 align-self-end" %>
     </div>
   </div>
-</div>
 <% end %>
