@@ -1,47 +1,44 @@
-<div class="container">
-  <h2>Staff Edit</h2>
-  <%= form_with(model: @staff, url:admin_staff_path) do |f| %>
-  <div class="container justify-content-center">
-    <div class="row">
-      <div class="form-row col-md-5" style="height: 15rem">
-        <div class="form-group col-md-6">
-          <%= f.label :姓 %>
-          <%= f.text_field :family_name, class: "form-control" %>
+<%= form_with(model: @staff, url:admin_staff_path) do |f| %>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <%= flash[:staff_create_result] %>
+    <div class="col-6">
+      <div class="card">
+        <div class="card-header">
+          <h3>スタッフ情報の編集</h3>
         </div>
-        <div class="form-group col-md-6">
-          <%= f.label :セイ %>
-          <%= f.text_field :family_name_kana, class: "form-control" %>
-        </div>
-        <div class="form-group col-md-6">
-          <%= f.label :名 %>
-          <%= f.text_field :given_name, class: "form-control" %>
-        </div>
-        <div class="form-group col-md-6">
-          <%= f.label :メイ %>
-          <%= f.text_field :given_name_kana, class: "form-control" %>
-        </div>
-        <div class="form-group col-md-6">
-          <%= f.label :所属 %>
-          <%= f.collection_select :locale_id, @locale, :id, :locale_name, {},class:"form-control" %>
-          <%= f.submit '更新', class: "btn btn-outline-info mt-3" %>
-        </div>
-      </div>
-      <div class="col-md-5">
-        <div class="card m-auto shadow-lg" style="width: 20rem; height: 30rem;">
-          <div class="card-header">
-            <div class="h3 text-center">
-              <%= "#{@staff.family_name} #{@staff.given_name}" %>
+        <div class="card-body">
+          <div class="form-row col-md-12">
+            <div class="form-group col-md-6">
+              <%= f.label :姓 %>
+              <%= f.text_field :family_name, class: "form-control", placeholder: "姓" %>
+            </div>
+            <div class="form-group col-md-6">
+              <%= f.label :名 %>
+              <%= f.text_field :given_name, class: "form-control", placeholder: "名" %>
+            </div>
+            <div class="form-group col-md-6">
+              <%= f.label :セイ %>
+              <%= f.text_field :family_name_kana, class: "form-control", placeholder: "セイ" %>
+            </div>
+            <div class="form-group col-md-6">
+              <%= f.label :メイ %>
+              <%= f.text_field :given_name_kana, class: "form-control", placeholder: "メイ" %>
+            </div>
+            <div class="gorm-group col-md-6">
+              <%= f.label :所属 %>
+              <%= f.collection_select :locale_id, @locale, :id, :locale_name,{},class:"form-control" %>
+              <%= f.hidden_field :admin_id, value: @admin.id %>
             </div>
           </div>
-          <div class="card-body d-flex align-items-center">
-            <%= @qr %>
-          </div>
-          <div class="card-footer">
-            <h4 class="text-center"><%= @admin.company_name %></h4>
-          </div>
+        </div>
+        <div class="card-footer">
+          <%= f.submit '更新',data: {confirm: '情報を更新しますか??'}, class: "btn btn-outline-info btn-sm" %>
+          <%= link_to '戻る', admin_staff_path(current_admin), class:"btn btn-outline-dark btn-sm" %>
+          <%= link_to '削除', admin_staff_path([current_admin.id],params[:id]), data: {confirm: '本当に削除しますか??'}, method: :delete, class:"btn btn-outline-danger"  %>
         </div>
       </div>
     </div>
+    </div>
   </div>
-  <% end %>
-</div>
+<% end %>

@@ -3,6 +3,11 @@ class StaffsController < ApplicationController
     @staffs = Staff.includes(:locale).where(admin_id: current_admin)
   end
 
+  def show
+    @staff = Staff.find(params[:id])
+    @locale = Locale.find_by(id: @staff.locale_id)
+  end
+
   def new
     @staff = Staff.new
     @locale = Locale.where(admin_id: params[:admin_id])
@@ -12,9 +17,13 @@ class StaffsController < ApplicationController
   def create
     @staff = Staff.new(staff_params)
     if @staff.save
-      redirect_to admin_staffs_path(current_admin)
+      @staff.qrcode = "http://localhost:3000/staffs/#{@staff.id}/punch_new"
+      @staff.save
+      flash[:staff_create_result] = "スタッフを追加しました。"
+      redirect_to admin_staff_path(@staff.id)
     else
-      redirect_to new_admin_staff_path
+      flash[:staff_create_result] = "入力項目を確認してくだい。"
+      redirect_to new_admin_staff_path(current_admin)
     end
   end
 
@@ -24,7 +33,7 @@ class StaffsController < ApplicationController
     @admin = Admin.find_by(id: current_admin)
     require 'rqrcode'
     require 'rqrcode_png'
-    content = "https://www.google.co.jp/"
+    content = "#{@staff.qrcode}"
     size    = 5
     level   = :h            # l, m, q, h
     @qr = RQRCode::QRCode.new(content, size: size, level: level).as_svg(module_size: 6).html_safe
@@ -33,10 +42,16 @@ class StaffsController < ApplicationController
   def update
     staff = Staff.find(params[:id])
     if staff.update(staff_params)
-      redirect_to admin_path(current_admin)
+      redirect_to admin_staffs_path(current_admin)
     else
       redirect_to edit_locale_staff_path
     end
+  end
+
+  def destroy
+    @staff = Staff.find(params[:id])
+    #@staff.destroy
+    redirect_to admin_staffs_path(current_admin)
   end
 
   private

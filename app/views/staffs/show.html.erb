@@ -1,0 +1,23 @@
+<%= link_to '一覧へ戻る', admin_staffs_path(current_admin), class:"btn btn-outline-dark btn-sm" %>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <%= flash[:staff_create_result] %>
+    <div class="card" style="width:25rem;">
+      <div class="card-header">
+        <h5 class="text-center">スタッフの詳細</h5>
+      </div>
+      <div class="card-body">
+        <label>所属</label>
+        <h5><%= @locale.locale_name %></h5>
+        <label>名前</label>
+        <h5><%= @staff.given_name %>&emsp;<%= @staff.family_name %></h5>
+        <label>名前(カナ)</label>
+        <h5><%= @staff.given_name_kana %>&emsp;<%= @staff.family_name_kana %></h5>
+      </div>
+      <div class="card-footer">
+        <%= link_to '編集', edit_admin_staff_path(current_admin,@staff), class:"btn btn-outline-info" %>
+        <%= link_to 'QRコード表示', "#", class:"btn btn-outline-success"%>
+      </div>
+    </div>
+  </div>
+</div>
