@@ -3,11 +3,6 @@ class LocalesController < ApplicationController
   # before_action :require_sign_in!
   helper_method :sign_in?
   skip_before_action :require_sign_in!, only: [:new, :create], raise: false
-
-  def index
-    @locale = Locale.all
-  end
-
   def show
     @locale = Locale.find(params[:id])
     @staffs = Staff.where(locale_id: params[:id])
@@ -22,7 +17,7 @@ class LocalesController < ApplicationController
     @locale = Locale.new(locale_params)
     #errorがなければsaveして、passwordはpassword_digestに暗号化され保存される
     if @locale.save
-      redirect_to login_path(@locale)
+      redirect_to admin_path(current_admin)
     else
       render 'new'
     end
