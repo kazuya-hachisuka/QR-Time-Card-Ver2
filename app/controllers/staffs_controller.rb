@@ -1,6 +1,10 @@
 class StaffsController < ApplicationController
   def index
+    if admin_signed_in?
     @staffs = Staff.includes(:locale).where(admin_id: current_admin)
+    else
+      @staff = Staff.includes(:locale).where(admin_id: current_manager.admin_id)
+    end
   end
 
   def show
@@ -30,13 +34,21 @@ class StaffsController < ApplicationController
   def edit
     @staff = Staff.find(params[:id])
     @locale = Locale.where(admin_id: current_admin)
-    @admin = Admin.find_by(id: current_admin)
+    if admin_signed_in?
+      @admin = Admin.find_by(id: current_admin)
+    else
+      @admin = Admin.find_by(id: current_manager.admin_id)
+    end
   end
 
   def update
     staff = Staff.find(params[:id])
     if staff.update(staff_params)
-      redirect_to admin_staffs_path(current_admin)
+      if admin_signed_in?
+        redirect_to admin_staffs_path(current_admin)
+      else
+        redirect_to locale_locale_staffs_path(staff.locale_id)
+      end
     else
       redirect_to edit_locale_staff_path
     end
