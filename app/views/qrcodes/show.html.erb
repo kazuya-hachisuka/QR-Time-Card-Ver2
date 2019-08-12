@@ -1,0 +1,33 @@
+<div clsss="continer">
+  <div class="row justify-content-center pt-5">
+    <div id="qrcode"class="card shadow-lg" style="width:20rem;">
+      <div class="card-header text-center">
+        <h3><%= @staff.family_name %> <%= @staff.given_name %></h3>
+      </div>
+      <div class="card-body content-center">
+        <%= @qr %>
+      </div>
+      <div class="card-footer text-center">
+        <h3><%= @admin.company_name %></h3>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row justify-content-center">
+    <a href="" class="qr btn btn-info" id="download">download</a>
+  </div>
+</div>
+<style>
+canvas{
+
+}
+</style>
+<script>
+html2canvas(document.querySelector("#qrcode")).then(canvas => {{}
+    var imgData = canvas.toDataURL();
+    document.getElementById("download").href = imgData;
+    document.getElementById("download").download = 'test.jpg'
+});
+
+</script>

@@ -31,12 +31,6 @@ class StaffsController < ApplicationController
     @staff = Staff.find(params[:id])
     @locale = Locale.where(admin_id: current_admin)
     @admin = Admin.find_by(id: current_admin)
-    require 'rqrcode'
-    require 'rqrcode_png'
-    content = "#{@staff.qrcode}"
-    size    = 5
-    level   = :h            # l, m, q, h
-    @qr = RQRCode::QRCode.new(content, size: size, level: level).as_svg(module_size: 6).html_safe
   end
 
   def update
