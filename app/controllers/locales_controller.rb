@@ -4,10 +4,6 @@ class LocalesController < ApplicationController
   helper_method :sign_in?
   skip_before_action :require_sign_in!, only: [:new, :create], raise: false
 
-  def index
-    @locale = Locale.all
-  end
-
   def show
     @locale = Locale.find(params[:id])
     @staffs = Staff.where(locale_id: params[:id])
