@@ -16,7 +16,7 @@
       </div>
       <div class="card-footer">
         <%= link_to '編集', edit_admin_staff_path(current_admin,@staff), class:"btn btn-outline-info" %>
-        <%= link_to 'QRコード表示', "#", class:"btn btn-outline-success"%>
+        <%= link_to 'QRコード表示', admin_staff_qrcodes_path(current_admin,@staff), class:"btn btn-outline-success" %>
       </div>
     </div>
   </div>

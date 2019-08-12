@@ -1,0 +1,28 @@
+<div clsss="continer">
+  <div class="row justify-content-center pt-3">
+    <div id="qrcode"class="card shadow-lg" style="width:20rem;">
+      <div class="card-header text-center">
+        <h3><%= @staff.family_name %> <%= @staff.given_name %></h3>
+      </div>
+      <div class="card-body d-flex justify-content-center my-5">
+        <%= @qr %>
+      </div>
+      <div class="card-footer text-center">
+        <h3><%= @admin.company_name %></h3>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row justify-content-center">
+    <a href="" class="btn btn-info mt-2" id="download">QRコードダウンロード</a>
+    <%= link_to 'スタッフ一覧へ戻る', admin_staffs_path(current_admin), class:"btn btn-outline-dark mt-2" %>
+  </div>
+</div>
+<script>
+html2canvas(document.querySelector("#qrcode")).then(canvas => {{}
+    var imgData = canvas.toDataURL();
+    document.getElementById("download").href = imgData;
+    document.getElementById("download").download = 'test.jpg'
+});
+</script>

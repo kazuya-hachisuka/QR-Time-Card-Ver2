@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   resources :admins, only:[:show] do
     get '/managers/sing_up' => 'managers#new'
     post '/managers/create' => 'managers#create'
-    resources :staffs
+    resources :staffs do
+      resource :qrcodes, only:[:show]
+    end
   end
 
   resources :managers, only:[:show]
@@ -21,6 +23,7 @@ Rails.application.routes.draw do
   resources :locales, only:[:index, :new, :create, :show] do
     resources :staffs, only:[:edit, :update]
   end
+
   resources :staffs do
     resources :works
       get 'punch_new' => 'works#punch_new', as: 'punch_new'
