@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   resources :managers, only:[:show]
 
   resources :locales, only:[:index, :new, :create, :show] do
-    resources :staffs, only:[:edit, :update]
+    resources :locale_staffs, only:[:index, :edit, :update]
   end
 
   resources :staffs do
