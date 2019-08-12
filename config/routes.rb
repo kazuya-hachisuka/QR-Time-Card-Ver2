@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   resources :managers, only:[:show]
 
   resources :locales, only:[:index, :new, :create, :show] do
-    resources :staffs
+    resources :staffs, only:[:edit, :update]
   end
   resources :staffs do
     resources :works

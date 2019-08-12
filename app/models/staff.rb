@@ -29,6 +29,8 @@ class Staff < ApplicationRecord
   validates :given_name, presence: true
   validates :given_name_kana, presence: true
   validates :admin_id, presence: true
+
+  belongs_to :admin
   belongs_to :locale
   has_many :works
 end

@@ -1,2 +1,24 @@
 <%= flash[:error] %>
-<%= render partial:'sidebar' %>
+<div class="card-columns mt-5">
+  <div class="card card-body text-center">
+    <h3>ロケールメニュー</h3>
+    <ul class="list-group list-group-flush">
+    <% @locale.each do |locale| %>
+      <li class="list-group-item h5"><%= link_to "#{locale.locale_name}", locale_path(locale) %></li>
+    <% end %>
+    </ul>
+  </div>
+  <div class="card card-body text-center">
+    <h3>スタッフメニュー</h3>
+      <ul class="list-unstyled">
+        <li class="h5"><%= link_to 'スタッフ一覧', admin_staffs_path(current_admin.id) %></li>
+        <li class="h5"><%= link_to 'スタッフ追加', new_admin_staff_path(current_admin.id) %></li>
+      </ul>
+  </div>
+  <div class="card card-body text-center">
+    <h3>マネージャーメニュー</h3>
+    <ul class="list-unstyled">
+      <li class="h5"><%= link_to 'マネージャー追加', new_manager_registration_path %></li>
+    </ul>
+  </div>
+</div>

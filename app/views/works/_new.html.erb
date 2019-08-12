@@ -32,12 +32,11 @@
           </div>
       </div>
       <div class="container">
-        <span>場所：<%= collection_select(:work, :locale_id, @locales, :id, :locale_name,{class:"form-control"}) %></span>
+        <span>場所：<%= collection_select(:work, :locale_id, @locales, :id, :locale_name,{},class:"form-control col-4") %></span>
       </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-        <%= work.submit '勤怠追加', class:"btn btn-success btn-sm" %>
+      <%= work.submit '勤怠追加', class:"btn btn-success btn-sm" %>
     </div>
     <% end %>
   </div>
