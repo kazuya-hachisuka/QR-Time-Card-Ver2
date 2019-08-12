@@ -3,6 +3,7 @@
   <div class="card card-body text-center">
     <h3>ロケールメニュー</h3>
     <ul class="list-group list-group-flush">
+      <li class="list-group-item h5"><%= link_to 'ロケール追加', new_locale_path %></li>
     <% @locale.each do |locale| %>
       <li class="list-group-item h5"><%= link_to "#{locale.locale_name}", locale_path(locale) %></li>
     <% end %>

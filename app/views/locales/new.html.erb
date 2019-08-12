@@ -1,17 +1,26 @@
-<div class="form-group">
-  <%= form_for @locale do |l|%>
-    <%= l.label :ロケール名 %>
-    <%= l.text_field :locale_name, class: "form-control" %>
+<%= form_with(model:@locale) do |l|%>
+<div class="row mt-5">
+  <div class="card" style="width:20rem;">
+    <div class="card-header text-center">
+      <h4>ロケール追加</h4>
+    </div>
+    <div class="card-body">
+      <div class="form-group">
+          <%= l.label :ロケール名 %>
+          <%= l.text_field :locale_name, class: "form-control" %>
 
-    <%= l.label :管理番号 %>
-    <%= l.text_field :control_number, class: "form-control"%>
-    <%= l.hidden_field :admin_id, value: current_admin.id %>
+          <%= l.label :管理番号 %>
+          <%= l.text_field :control_number, class: "form-control"%>
+          <%= l.hidden_field :admin_id, value: current_admin.id %>
 
-    <%= l.label :パスワード %>
-    <%= l.password_field :password, class: "form-control" %>
+          <%= l.label :パスワード %>
+          <%= l.password_field :password, class: "form-control" %>
 
-    <%= l.label :パスワード確認 %>
-    <%= l.password_field :password_confirmation, class: "form-control"%>
-    <%= l.submit "作成", class: "btn btn-info" %>
-  <% end %>
+          <%= l.label :パスワード確認 %>
+          <%= l.password_field :password_confirmation, class: "form-control"%>
+      </div>
+          <%= l.submit "作成", class: "btn btn-info" %>
+    </div>
+  </div>
 </div>
+  <% end %>

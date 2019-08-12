@@ -8,7 +8,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="bg-light">
+  <body>
     <header>
       <nav class="navbar sticky-top" style="background-color:#ff8e00;">
         <% if admin_signed_in? || manager_signed_in? %>
@@ -39,7 +39,7 @@
         </div>
       </nav>
     </header>
-    <div class="container-fluid mb-5">
+    <div class="container mb-5">
       <%= yield %>
     </div>
     <footer class="fixed-bottom" style="background-color:#ff8e00">
