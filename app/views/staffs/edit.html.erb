@@ -4,7 +4,7 @@
       <%= flash[:staff_create_result] %>
     <div class="col-6">
       <div class="card">
-        <div class="card-header">
+        <div class="card-header text-center">
           <h3>スタッフ情報の編集</h3>
         </div>
         <div class="card-body">
@@ -35,7 +35,7 @@
         <div class="card-footer">
           <%= f.submit '更新',data: {confirm: '情報を更新しますか??'}, class: "btn btn-outline-info btn-sm" %>
           <%= link_to '戻る', admin_staff_path(current_admin), class:"btn btn-outline-dark btn-sm" %>
-          <%= link_to '削除', admin_staff_path([current_admin.id],params[:id]), data: {confirm: '本当に削除しますか??'}, method: :delete, class:"btn btn-outline-danger"  %>
+          <%= link_to '削除', admin_staff_path([current_admin.id],params[:id]), data: {confirm: '本当に削除しますか??'}, method: :delete, class:"btn btn-outline-danger btn-sm"  %>
         </div>
       </div>
     </div>
