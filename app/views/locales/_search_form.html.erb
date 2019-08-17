@@ -1,0 +1,12 @@
+<div class=container>
+  <div class="row">
+    <div class="form-group">
+      <%= search_form_for(@search, url:locale_path ) do |q| %>
+        <%= q.datetime_select(:in_gteq, {use_month_numbers: true, date_separator: ' / ', default: Date.today.beginning_of_month, start_year: 2019}, {class:"inline-select custom-select-sm"} )%>
+        <span>〜</span>
+        <%= q.datetime_select(:in_lteq, {use_month_numbers: true, date_separator: ' / ', default: Date.today, start_year: 2019}, {class:"inline-select custom-select-sm"} )%>
+        <%= q.submit '絞り込む', class:"btn btn-outline-info btn-sm" %>
+      <% end %>
+    </div>
+  </div>
+</div>
