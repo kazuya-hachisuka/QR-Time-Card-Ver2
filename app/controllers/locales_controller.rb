@@ -5,7 +5,6 @@ class LocalesController < ApplicationController
   skip_before_action :require_sign_in!, only: [:new, :create], raise: false
   def show
     @locale = Locale.find(params[:id])
-    @staffs = Staff.where(locale_id: params[:id])
     @works = Work.includes(:staff).where(locale_id: @locale).order(in: :asc)
   end
 
