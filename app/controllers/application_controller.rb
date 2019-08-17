@@ -91,4 +91,12 @@ class ApplicationController < ActionController::Base
 		end
   end
 
+  def company_id
+    if admin_signed_in?
+      company_id = current_admin.id
+    else
+      company_id = current_manager.admin_id
+    end
+  end
+
 end

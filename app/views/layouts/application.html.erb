@@ -15,7 +15,7 @@
           <% if admin_signed_in? %>
             <%= link_to "#{current_admin.company_name}", admin_path(current_admin) %>
           <% else %>
-            <%= link_to "#{@admin.company_name}" %>
+            <p>Kintaikun</p>
           <% end %>
         <% else %>
           <p>Kintaiくん</p>
@@ -25,7 +25,6 @@
             <% if admin_signed_in? %>
               <%= link_to "管理者ログアウト", destroy_admin_session_path, class: "nav-item btn btn-outline-dark", method: :delete %>
             <% else %>
-              <%= link_to "#{@manager.family_name}#{@manager.given_name}", class: "nav-item" %>
               <%= link_to "managerログアウト", destroy_manager_session_path, class: "nav-item btn btn-outline-dark", method: :delete %>
             <% end %>
           <% elsif signed_in? %>

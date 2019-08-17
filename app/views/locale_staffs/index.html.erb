@@ -4,8 +4,10 @@
     <div class="container">
       <div class="row">
         <div class="form-group">
+        <% if admin_signed_in? %>
           <%= link_to '戻る', admin_path(current_admin), class:"btn btn-outline-dark btn-sm" %>
           <%= link_to 'スタッフ追加', new_admin_staff_path(current_admin), class:"btn btn-outline-success btn-sm" %>
+        <% end %>
         </div>
       </div>
     </div>
@@ -24,7 +26,11 @@
           <td><%= staff.family_name %>&ensp;<%= staff.given_name %></td>
           <td><%= staff.locale.locale_name %></td>
           <td><%= link_to '勤怠', staff_works_path(staff.id), class:"btn btn-info btn-sm" %></td>
-          <td><%= link_to '詳細', admin_staff_path(current_admin.id,staff.id), remote: true, class: "btn btn-outline-dark btn-sm" %></td>
+          <% if admin_signed_in? %>
+            <td><%= link_to '詳細', admin_staff_path(current_admin.id,staff.id), remote: true, class: "btn btn-outline-dark btn-sm" %></td>
+          <% else %>
+            <td><%= link_to '詳細', admin_staff_path(current_manager.admin_id,staff.id), remote: true, class: "btn btn-outline-dark btn-sm" %></td>
+          <% end %>
           <div class="modal fade" id="staffsShow-modal" tabindex="-1" role="dialog" aria-labelledby="staffsShow-modalLabel" aria-hidden="true"></div>
         </tr>
         <% end %>

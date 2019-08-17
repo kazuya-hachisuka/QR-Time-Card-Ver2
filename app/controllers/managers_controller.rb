@@ -4,6 +4,7 @@ class ManagersController < ApplicationController
   def show
     @manager = Manager.find(params[:id])
     @locale = Locale.find_by(id: @manager.locale_id)
+    @works = Work.includes(:staff).where(locale_id: @locale.id)
     @admin = Admin.find_by(id: @manager.admin_id)
   end
 

@@ -13,7 +13,7 @@ class WorksController < ApplicationController
   end
 
   def new
-    @locales = Locale.where(admin_id: current_admin.id)
+    @locales = Locale.where(admin_id: company_id)
     @work = Work.new
     @staff = Staff.find(params[:staff_id])
   end
@@ -49,7 +49,11 @@ class WorksController < ApplicationController
     else
       @work.update(work_params)
     end
-    redirect_to locale_path(@work.locale_id)
+    if admin_signed_in?
+      redirect_to locale_path(@work.locale_id)
+    elsif manager_signed_in?
+      redirect_to manager_path(current_manager)
+    end
   end
 
   def destroy

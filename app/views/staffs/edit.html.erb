@@ -25,17 +25,23 @@
               <%= f.label :メイ %>
               <%= f.text_field :given_name_kana, class: "form-control", placeholder: "メイ" %>
             </div>
+            <% if admin_signed_in? %>
             <div class="gorm-group col-md-6">
               <%= f.label :所属 %>
               <%= f.collection_select :locale_id, @locale, :id, :locale_name,{},class:"form-control" %>
-              <%= f.hidden_field :admin_id, value: @admin.id %>
             </div>
+              <%= f.hidden_field :admin_id, value: @admin.id %>
+            <% end %>
           </div>
         </div>
         <div class="card-footer">
           <%= f.submit '更新',data: {confirm: '情報を更新しますか??'}, class: "btn btn-outline-info btn-sm" %>
-          <%= link_to '戻る', admin_staff_path(current_admin), class:"btn btn-outline-dark btn-sm" %>
-          <%= link_to '削除', admin_staff_path([current_admin.id],params[:id]), data: {confirm: '本当に削除しますか??'}, method: :delete, class:"btn btn-outline-danger btn-sm"  %>
+          <% if admin_signed_in? %>
+            <%= link_to '戻る', admin_staff_path(current_admin), class:"btn btn-outline-dark btn-sm" %>
+            <%= link_to '削除', admin_staff_path([current_admin.id],params[:id]), data: {confirm: '本当に削除しますか??'}, method: :delete, class:"btn btn-outline-danger btn-sm"  %>
+          <% else %>
+            <%= link_to '戻る', locale_locale_staffs_path(@staff.locale_id), class:"btn btn-outline-dark btn-sm" %>
+          <% end %>
         </div>
       </div>
     </div>

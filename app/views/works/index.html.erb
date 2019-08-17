@@ -9,7 +9,11 @@
 <div class="container">
   <div class="row">
     <div class="form-group">
-      <%= link_to '戻る', admin_staffs_path(current_admin), class:"btn btn-outline-dark btn-sm" %>
+      <% if admin_signed_in? %>
+        <%= link_to '戻る', admin_staffs_path(current_admin), class:"btn btn-outline-dark btn-sm" %>
+      <% else %>
+        <%= link_to '戻る', locale_locale_staffs_path(current_manager.locale_id), class:"btn btn-outline-dark btn-sm" %>
+      <% end %>
       <%= link_to '勤怠追加', new_staff_work_path,remote: true, class:"btn btn-outline-success btn-sm" %>
       <div class="modal fade" id="worknew-modal" tabindex="-1" role="dialog" aria-labelledby="worknew-modalLabel" aria-hidden="true"></div>
     </div>

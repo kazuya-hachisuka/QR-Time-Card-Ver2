@@ -16,7 +16,11 @@
 <div class="container">
   <div class="row justify-content-center">
     <a href="" class="btn btn-info mt-2" id="download">QRコードダウンロード</a>
-    <%= link_to 'スタッフ一覧へ戻る', admin_staffs_path(current_admin), class:"btn btn-outline-dark mt-2" %>
+    <% if admin_signed_in? %>
+      <%= link_to 'スタッフ一覧へ戻る', admin_staffs_path(current_admin), class:"btn btn-outline-dark mt-2" %>
+    <% else %>
+      <%= link_to 'スタッフ一覧へ戻る', locale_locale_staffs_path(@staff.locale_id), class:"btn btn-outline-dark mt-2" %>
+    <% end %>
   </div>
 </div>
 <script>
