@@ -23,8 +23,8 @@
         <tr>
           <td><%= staff.family_name %>&ensp;<%= staff.given_name %></td>
           <td><%= staff.locale.locale_name %></td>
-          <td><%= link_to '勤怠', staff_works_path(staff.id), class:"btn btn-info btn-sm" %></td>
-          <td><%= link_to '詳細', admin_staff_path(current_admin.id,staff.id), remote: true, class: "btn btn-outline-dark btn-sm" %></td>
+          <td><%= link_to '勤怠表示', staff_works_path(staff.id), class:"btn btn-info btn-sm" %></td>
+          <td><%= link_to '詳細表示', admin_staff_path(current_admin.id,staff.id), remote: true, class: "btn btn-outline-dark btn-sm" %></td>
           <div class="modal fade" id="staffsShow-modal" tabindex="-1" role="dialog" aria-labelledby="staffsShow-modalLabel" aria-hidden="true"></div>
         </tr>
       <% end %>

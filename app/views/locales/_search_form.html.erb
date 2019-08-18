@@ -1,31 +1,36 @@
+<%= search_form_for @search, url: locale_path do |q| %>
 <div class="container">
   <div class="row">
-    <div class="col-3">
-      <%= search_form_for @search, url: locale_path do |q| %>
-        <div class="form-group">
-          <div class="input-group" data-target-input="nearest">
-            <%= q.text_field :in_gteq, id: "in_gteq", class: "form-control datetimepicker", data: { target: '#in_gteq'} %>
-            <div class="input-group-append" data-target="#in_gteq" data-toggle="datetimepicker">
-              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-            </div>
-          </div>
-          <div class="input-group my-2" data-target-input="nearest">
-            <%= q.text_field :in_lteq, id: "in_lteq", class: "form-control datetimepicker", data: { target: '#in_lteq'}%>
-            <div class="input-group-append" data-target="#in_lteq" data-toggle="datetimepicker">
-              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-            </div>
-          </div>
-          <%= q.submit '絞り込み',class:"btn btn-success btn-sm" %>
+    <div class="form-group">
+      <div class="input-group" data-target-input="nearest">
+        <%= q.text_field :in_gteq, id: "in_gteq", class: "form-control datetimepicker", data: { target: '#in_gteq'} %>
+        <div class="input-group-append" data-target="#in_gteq" data-toggle="datetimepicker">
+          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>
-      <% end %>
+      </div>
     </div>
-    <script type="text/javascript">
-        $(function () {
-            $('.datetimepicker').datetimepicker({
-              locale: 'ja',
-              format: 'YYYY年MM月DD日 HH:mm'
-            });
-        });
-    </script>
+    <div class="form-group mx-2">
+      <div class="input-group" data-target-input="nearest">
+        <%= q.text_field :in_lteq, id: "in_lteq", class: "form-control datetimepicker", data: { target: '#in_lteq'}%>
+        <div class="input-group-append" data-target="#in_lteq" data-toggle="datetimepicker">
+          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+<div class="container">
+  <div class="row">
+    <%= q.submit '絞り込み',class:"btn btn-success btn-sm" %>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(function () {
+    $('.datetimepicker').datetimepicker({
+      locale: 'ja',
+        format: 'YYYY年MM月DD日 HH:mm'
+      });
+  });
+</script>

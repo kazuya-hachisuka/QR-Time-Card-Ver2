@@ -1,10 +1,6 @@
 class StaffsController < ApplicationController
   def index
-    if admin_signed_in?
-    @staffs = Staff.includes(:locale).where(admin_id: current_admin)
-    else
-      @staff = Staff.includes(:locale).where(admin_id: current_manager.admin_id)
-    end
+    @staffs = Staff.includes(:locale).where(admin_id: company_id)
   end
 
   def show

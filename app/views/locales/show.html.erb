@@ -8,12 +8,13 @@
       <%= link_to "戻る", admin_path(current_admin), class:"btn btn-outline-dark btn-sm" %>
       <%= link_to "所属スタッフ一覧", locale_locale_staffs_path(@locale), class:"btn btn-info btn-sm" %>
     </div>
-      <%= render 'search_form' %>
   </div>
     <%= flash[:work_delete_result] %>
 </div>
+<%= render 'search_form' %>
 <div class="container">
-  <h4>勤怠時間合計<%= totalWorkTime(@works) %></h4>
+  <div class="row">
+  <h4 class="py-2">勤怠時間合計<%= totalWorkTime(@works) %></h4>
   <table class="table table-hover">
     <thead class="thead-light">
       <tr>
@@ -55,6 +56,7 @@
       <% end %>
     </tbody>
   </table>
+  </div>
 </div>
 <% elsif signed_in? %>
   <%= render 'punch', locale: @locale %>
