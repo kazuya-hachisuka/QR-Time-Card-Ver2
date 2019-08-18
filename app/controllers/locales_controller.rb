@@ -3,9 +3,11 @@ class LocalesController < ApplicationController
   # before_action :require_sign_in!
   helper_method :sign_in?
   skip_before_action :require_sign_in!, only: [:new, :create], raise: false
+
   def show
     @locale = Locale.find(params[:id])
-    @works = Work.includes(:staff).where(locale_id: @locale).order(in: :asc)
+    @search = Work.ransack(params[:q])
+    @works = Work.ransack(params[:q]).result .includes(:staff).where(locale_id: @locale).order(in: :asc)
   end
 
   def new

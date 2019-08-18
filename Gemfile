@@ -40,6 +40,10 @@ gem 'devise'
 gem 'rqrcode'
 gem 'rqrcode_png'
 gem 'i18n_generators'
+gem 'ransack'
+gem "bootstrap4-datetime-picker-rails"
+gem 'momentjs-rails'
+gem "font-awesome-rails"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

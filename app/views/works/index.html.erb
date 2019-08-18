@@ -4,7 +4,6 @@
         <%= flash[:work_create_result] %>
         <%= flash[:work_delete_result] %>
   </div>
-  <h5 class="p-2">総労働時間<%= totalWorkTime(@works) %></h5>
 </div>
 <div class="container">
   <div class="row">
@@ -19,41 +18,43 @@
     </div>
   </div>
 </div>
+<%= render 'search_form' %>
 <div class="container">
   <div class="row">
-  <div class="table-responsive">
-    <table class="table text-nowrap">
-      <tbody>
-        <tr>
-          <th>場所</th>
-          <th>出勤</th>
-          <th>退勤</th>
-          <th>休憩</th>
-          <th>戻り</th>
-          <th>労働時間</th>
-          <th>勤怠修正</th>
-        </tr>
-      </tbody>
-      <tbody>
-      <% @works.each do |work| %>
-        <tr>
-            <td><%= work.locale.locale_name %></td>
-            <td><%= l work.in %></td>
-            <td><%= l work.out %></td>
-            <% if @work.present? %>
-              <td><%= l work.work_break.in %></td>
-              <td><%= l work.work_break.out %></td>
-            <% else %>
-              <td>-</td>
-              <td>-</td>
-            <% end %>
-            <td><%= workingHours(work) %></td>
-          <td><%= link_to '修正', staff_work_path(@staff.id,work.id), remote: true, class:"btn btn-outline-warning btn-sm" %></td>
-          <div class="modal fade" id="work-modal" tabindex="-1" role="dialog" aria-labelledby="work-modalLabel" aria-hidden="true"></div>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
-  </div>
+  <h4 class=py-2>総労働時間<%= totalWorkTime(@works) %></h4>
+    <div class="table-responsive">
+      <table class="table text-nowrap">
+        <tbody>
+          <tr>
+            <th>場所</th>
+            <th>出勤</th>
+            <th>退勤</th>
+            <th>休憩</th>
+            <th>戻り</th>
+            <th>労働時間</th>
+            <th>勤怠修正</th>
+          </tr>
+        </tbody>
+        <tbody>
+        <% @works.each do |work| %>
+          <tr>
+              <td><%= work.locale.locale_name %></td>
+              <td><%= l work.in %></td>
+              <td><%= l work.out %></td>
+              <% if @work.present? %>
+                <td><%= l work.work_break.in %></td>
+                <td><%= l work.work_break.out %></td>
+              <% else %>
+                <td>-</td>
+                <td>-</td>
+              <% end %>
+              <td><%= workingHours(work) %></td>
+            <td><%= link_to '修正', staff_work_path(@staff.id,work.id), remote: true, class:"btn btn-outline-warning btn-sm" %></td>
+            <div class="modal fade" id="work-modal" tabindex="-1" role="dialog" aria-labelledby="work-modalLabel" aria-hidden="true"></div>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

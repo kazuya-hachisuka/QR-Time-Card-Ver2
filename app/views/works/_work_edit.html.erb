@@ -24,12 +24,12 @@
                 <tbody>
                   <tr>
                     <td><%= raw sprintf(work.datetime_select(
-                      :in,{use_month_numbers: true, 
+                      :in,{use_month_numbers: true,
                                           start_year: 2019, date_separator:'%s',
                                           datetime_separator: '%s',time_separator: '%s'},{class:"inline-select custom-select-sm"}),
                                           '年', '月', '日', '時') + '分' %></td>
                     <td><%= raw sprintf(work.datetime_select(
-                      :out,{use_month_numbers: true, 
+                      :out,{use_month_numbers: true,
                                         start_year: 2019, date_separator:'%s',
                                         datetime_separator: '%s',time_separator: '%s'},{class:"inline-select custom-select-sm"}),
                                         '年', '月', '日', '時') + '分' %></td>

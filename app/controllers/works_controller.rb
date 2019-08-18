@@ -2,7 +2,9 @@ class WorksController < ApplicationController
   require "date"
   def index
     @staff = Staff.find(params[:staff_id])
-    @works = Work.includes(:locale).where(staff_id: @staff).order(in: :asc)
+    @search = Work.ransack(params[:q])
+    @works = Work.ransack(params[:q]).result.includes(:locale).where(staff_id: @staff).order(id: :asc)
+    #@works = Work.includes(:locale).where(staff_id: @staff).order(in: :asc)
   end
 
   def show
