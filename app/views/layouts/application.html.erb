@@ -8,7 +8,6 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= favicon_link_tag('QR.ico') %>
   </head>
-
   <body>
     <header>
       <nav class="navbar sticky-top" style="background-color:#ff8e00;">
@@ -31,10 +30,17 @@
           <% elsif signed_in? %>
             <%= link_to "ログアウト", logout_path, class: "btn btn-outline-danger", method: :delete %>
           <% else %>
-            <%= link_to "管理者登録", new_admin_registration_path, class: "nav-item btn btn-outline-dark" %>
-            <%= link_to "管理者ログイン", new_admin_session_path, class: "nav-item btn btn-outline-dark" %>
-            <%= link_to "managerログイン", manager_session_path, class: "nav-item btn btn-outline-dark" %>
-            <%= link_to "localeログイン", login_path, class: "nav-item btn btn-outline-dark" %>
+            <div class="dropdown dropleft">
+              <button type="button" id="loginManu"class="btn btn-outline-dark btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                ログイン
+              </button>
+              <div class="dropdown-menu" aria-labelledby="loginManu">
+                <%= link_to "管理者登録", new_admin_registration_path, class: "nav-item btn btn-outline-dark dropdown-item" %>
+                <%= link_to "管理者ログイン", new_admin_session_path, class: "nav-item btn btn-outline-dark dropdown-item" %>
+                <%= link_to "managerログイン", manager_session_path, class: "nav-item btn btn-outline-dark dropdown-item" %>
+                <%= link_to "localeログイン", login_path, class: "nav-item btn btn-outline-dark dropdown-item" %>
+              </div>
+            </div>
           <% end %>
         </div>
       </nav>
