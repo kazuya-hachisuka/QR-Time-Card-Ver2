@@ -25,10 +25,10 @@
             <% if admin_signed_in? %>
               <%= link_to "管理者ログアウト", destroy_admin_session_path, class: "nav-item btn btn-outline-dark", method: :delete %>
             <% else %>
-              <%= link_to "managerログアウト", destroy_manager_session_path, class: "nav-item btn btn-outline-dark", method: :delete %>
+              <%= link_to "現場管理者ログアウト", destroy_manager_session_path, class: "nav-item btn btn-outline-dark", method: :delete %>
             <% end %>
           <% elsif signed_in? %>
-            <%= link_to "ログアウト", logout_path, class: "btn btn-outline-danger", method: :delete %>
+            <%= link_to "場所ログアウト", logout_path, class: "btn btn-outline-danger", method: :delete %>
           <% else %>
             <div class="dropdown dropleft">
               <button type="button" id="loginManu"class="btn btn-outline-dark btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -37,8 +37,8 @@
               <div class="dropdown-menu" aria-labelledby="loginManu">
                 <%= link_to "管理者登録", new_admin_registration_path, class: "nav-item btn btn-outline-dark dropdown-item" %>
                 <%= link_to "管理者ログイン", new_admin_session_path, class: "nav-item btn btn-outline-dark dropdown-item" %>
-                <%= link_to "managerログイン", manager_session_path, class: "nav-item btn btn-outline-dark dropdown-item" %>
-                <%= link_to "localeログイン", login_path, class: "nav-item btn btn-outline-dark dropdown-item" %>
+                <%= link_to "現場管理者ログイン", manager_session_path, class: "nav-item btn btn-outline-dark dropdown-item" %>
+                <%= link_to "場所ログイン", login_path, class: "nav-item btn btn-outline-dark dropdown-item" %>
               </div>
             </div>
           <% end %>
