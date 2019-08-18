@@ -12,24 +12,22 @@
     <%= work.hidden_field :staff_id, value:@staff.id %>
     <div class="modal-body">
       <div class="container">
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <p>出勤</p>
-              <%= raw sprintf(work.datetime_select(
-                                                  :in,{use_month_numbers: true, 
-                                                  start_year: 2019, date_separator:'%s',
-                                                  datetime_separator: '%s',time_separator: '%s'},{class:"inline-select custom-select-sm"}),
-                                                  '年', '月', '日', '時') + '分' %>
-            </div>
-            <div class="form-group col-md-6">
-              <p>退勤</p>
-              <%= raw sprintf(work.datetime_select(
-                                                  :out,{use_month_numbers: true, 
-                                                  start_year: 2019, date_separator:'%s',
-                                                  datetime_separator: '%s',time_separator: '%s'},{class:"inline-select custom-select-sm"}),
-                                                  '年', '月', '日', '時') + '分' %>
+        <div class="form-row">
+          <%= work.label :出勤 %>
+          <div class="input-group" data-target-input="nearest">
+            <%= work.text_field :in, id: "in", class: "form-control datetimepicker", data: { target: '#in'} %>
+            <div class="input-group-append" data-target="#in" data-toggle="datetimepicker">
+              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
             </div>
           </div>
+          <%= work.label :退勤 %>
+          <div class="input-group" data-target-input="nearest">
+            <%= work.text_field :out, id: "out", class: "form-control datetimepicker", data: { target: '#out'} %>
+            <div class="input-group-append" data-target="#out" data-toggle="datetimepicker">
+              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="container">
         <span>場所：<%= collection_select(:work, :locale_id, @locales, :id, :locale_name,{},class:"form-control col-4") %></span>
@@ -41,3 +39,12 @@
     <% end %>
   </div>
 </div>
+<script type="text/javascript">
+  $(function () {
+    $('.datetimepicker').datetimepicker({
+      locale: 'ja',
+      //フォーマットをしてすると型違いでcreateできない
+      //format: 'YYYY年MM月DD日 HH:mm'
+      });
+  });
+</script>
