@@ -10,7 +10,7 @@ class StaffsController < ApplicationController
 
   def new
     @staff = Staff.new
-    @locale = Locale.where(admin_id: params[:admin_id])
+    @locale = Locale.where(admin_id: params[:admin_id]).order(:id)
     @admin = Admin.find(params[:admin_id])
   end
 
