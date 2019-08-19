@@ -1,10 +1,10 @@
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="row justify-content-center mt-5">
-    <div class="card" style="width:20rem;">
-      <div class="card-header">
-        <h3 class="text-center">現場管理者ログイン</h3>
-      </div>
-      <div class="card-body">
+<div class="row justify-content-center mt-5">
+  <div class="card" style="width:20rem;">
+    <div class="card-header">
+      <h3 class="text-center">現場管理者ログイン</h3>
+    </div>
+    <div class="card-body">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="form-group">
           <%= f.label :メールアドレス %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email",class:"form-control",placeholder:"1@1" %>
@@ -23,7 +23,7 @@
           <%= f.submit 'ログイン', class:"btn btn-info form-control" %>
         </div>
         <%= render "managers/shared/links" %>
-      </div>
+      <% end %>
     </div>
   </div>
-<% end %>
+</div>
