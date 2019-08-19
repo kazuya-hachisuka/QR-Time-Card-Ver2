@@ -1,5 +1,5 @@
 class ManagersController < ApplicationController
-  before_action :authenticate_manager!
+  before_action :authenticate_manager!, except: [:new]
 
   def show
     @manager = Manager.find(params[:id])
@@ -10,9 +10,8 @@ class ManagersController < ApplicationController
 
   def new
     @admin = Admin.find(params[:admin_id])
-    @locale = Locale.where(admin_id: params[:admin_id])
+    @locale = Locale.where(admin_id: params[:admin_id]).order(:id)
     @manager = Manager.new
-  # binding.pry
   end
 
   def create

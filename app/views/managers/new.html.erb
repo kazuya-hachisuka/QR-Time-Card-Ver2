@@ -1,31 +1,52 @@
-<h1>manager test</h1>
-<div class="container">
-  <%= form_for @manager, url: admin_managers_create_path do |f| %>
-    <%= f.text_field :admin_id, readonly: true, value: @admin.id, class: "form-control-plaintext" %>
-    <%= f.collection_select :locale_id, @locale, :id,:locale_name %>
-    <div class="form-group">
-      <label>姓</label>
-      <%= f.text_field :family_name, class: "form-control" %>
+<%= form_with(model: @manager ,url: admin_managers_create_path(admin_id: @admin.id)) do |f| %>
+  <div class="row justify-content-center mt-5">
+    <div class="col-6 mb-3">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="text-center">現場管理者追加</h3>
+        </div>
+        <div class="card-body">
+          <div class="form-row col-md-12">
+            <div class="form-group col-md-6">
+              <%= f.label :姓 %>
+              <%= f.text_field :family_name, class: "form-control" %>
+            </div>
+            <div class="form-group col-md-6">
+              <%= f.label :名 %>
+              <%= f.text_field :given_name, class: "form-control" %>
+            </div>
+            <div class="form-group col-md-6">
+              <%= f.label :セイ %>
+              <%= f.text_field :family_name_kana, class: "form-control" %>
+            </div>
+            <div class="form-group col-md-6">
+              <%= f.label :メイ %>
+              <%= f.text_field :given_name_kana, class: "form-control" %>
+            </div>
+            <div class="form-group col-12">
+              <%= f.label :メールアドレス %>
+              <%= f.email_field :email, class: "form-control" %>
+            </div>
+            <div class="form-group col-12">
+              <%= f.label :パスワード %>
+              <%= f.password_field :password, class: "form-control", placeholder:"6文字以上"%>
+            </div>
+            <div class="form-group col-12">
+              <%= f.label :パスワード確認用 %>
+              <%= f.password_field :encrypted_password, class:"form-control", placeholder:"確認用" %>
+            </div>
+            <div class="form-group col-12">
+              <%= f.hidden_field :admin_id, value: @admin.id  %>
+              <%= f.label :担当 %>
+              <%= f.collection_select :locale_id, @locale, :id,:locale_name, {},class: "form-control" %>
+            </div>
+            <div class="form-group col-12">
+            <%= link_to '戻る', admin_path(current_admin), class:"btn btn-outline-dark" %>
+            <%= f.submit '作成',class:"btn btn-outline-info" %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-      <%= f.text_field :given_name, class: "form-control" %>
-    <div class="form-group">
-    </div>
-    <div class="form-group">
-      <%= f.text_field :family_name_kana, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.text_field :given_name_kana, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.email_field :email, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.password_field :password, class: "form-control"%>
-    </div>
-    <div class="form-group">
-      <%= f.password_field :encrypted_password, class:"form-control" %>
-    </div>
-    <%= f.submit '作成',class:"btn btn-outline-info" %>
-  <% end %>
-  <%# <% binding.pry %> %>
-</div>
+  </div>
+<% end %>
