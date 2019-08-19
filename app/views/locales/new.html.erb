@@ -1,26 +1,24 @@
-<%= form_with(model:@locale) do |l|%>
-<div class="row mt-5">
-  <div class="card" style="width:20rem;">
-    <div class="card-header text-center">
-      <h4>ロケール追加</h4>
-    </div>
-    <div class="card-body">
-      <div class="form-group">
-          <%= l.label :ロケール名 %>
-          <%= l.text_field :locale_name, class: "form-control" %>
-
-          <%= l.label :管理番号 %>
-          <%= l.text_field :control_number, class: "form-control"%>
-          <%= l.hidden_field :admin_id, value: current_admin.id %>
-
-          <%= l.label :パスワード %>
-          <%= l.password_field :password, class: "form-control" %>
-
-          <%= l.label :パスワード確認 %>
-          <%= l.password_field :password_confirmation, class: "form-control"%>
+<%= form_with(model:@locale) do |locale|%>
+  <div class="row justify-content-center mt-5">
+    <div class="card" style="width:20rem;">
+      <div class="card-header text-center">
+        <h4>ロケール追加</h4>
       </div>
-          <%= l.submit "作成", class: "btn btn-info" %>
+      <div class="card-body">
+        <div class="form-group">
+          <%= locale.label :ロケール名 %>
+          <%= locale.text_field :locale_name, class: "form-control" %>
+          <%= locale.label :管理番号 %>
+          <%= locale.text_field :control_number, class: "form-control"%>
+          <%= locale.hidden_field :admin_id, value: current_admin.id %>
+          <%= locale.label :パスワード %>
+          <%= locale.password_field :password, class: "form-control" %>
+          <%= locale.label :パスワード確認 %>
+          <%= locale.password_field :password_confirmation, class: "form-control"%>
+        </div>
+          <%= locale.submit '作成', class: "btn btn-info" %>
+          <%= link_to '戻る', admin_path(current_admin), class: "btn btn-outline-dark" %>
+      </div>
     </div>
   </div>
-</div>
-  <% end %>
+<% end %>
