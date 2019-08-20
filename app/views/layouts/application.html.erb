@@ -8,17 +8,17 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= favicon_link_tag('QR.ico') %>
   </head>
-  <body>
+  <body style="padding-top: 4.5rem;">
     <header>
-      <nav class="navbar sticky-top" style="background-color:#ff8e00;">
+      <nav class="navbar fixed-top main-color">
         <% if admin_signed_in? || manager_signed_in? %>
           <% if admin_signed_in? %>
             <%= link_to "#{current_admin.company_name}", admin_path(current_admin) %>
           <% else %>
-            <p>Kintaikun</p>
+            <span class="navbar-brand mb-0 h1">Kintaiくん</span>
           <% end %>
         <% else %>
-          <p>Kintaiくん</p>
+          <span class="navbar-brand mb-0 h1">Kintaiくん</span>
         <% end %>
         <div class="nav-item">
           <% if admin_signed_in? || manager_signed_in? %>
@@ -28,7 +28,7 @@
               <%= link_to "現場管理者ログアウト", destroy_manager_session_path, class: "nav-item btn btn-outline-dark", method: :delete %>
             <% end %>
           <% elsif signed_in? %>
-            <%= link_to "場所ログアウト", logout_path, class: "btn btn-outline-danger", method: :delete %>
+            <%= link_to "場所ログアウト", logout_path, class: "btn btn-outline-dark", method: :delete %>
           <% else %>
             <div class="dropdown dropleft">
               <button type="button" id="loginManu"class="btn btn-outline-dark btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -48,8 +48,8 @@
     <div class="container mb-5">
       <%= yield %>
     </div>
-    <footer class="fixed-bottom" style="background-color:#ff8e00">
-      <div class="container mt-2">
+    <footer class="fixed-bottom main-color">
+      <div class="container">
         <div class="row">
           <span class="text-monospace m-2">QR-TimeCard</span>
         </div>
