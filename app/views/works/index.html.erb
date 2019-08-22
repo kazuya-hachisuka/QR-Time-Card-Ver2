@@ -31,13 +31,14 @@
             <th>退勤</th>
             <th>休憩</th>
             <th>戻り</th>
+            <th>深夜帯</th>
             <th>労働時間</th>
             <th>勤怠修正</th>
           </tr>
         </tbody>
         <tbody>
-        <% @works.each do |work| %>
-          <tr>
+          <% @works.each do |work| %>
+            <tr>
               <td><%= work.locale.locale_name %></td>
               <td><%= l work.in %></td>
               <td><%= l work.out %></td>
@@ -48,11 +49,12 @@
                 <td>-</td>
                 <td>-</td>
               <% end %>
+              <td><%= convertToTime(midnight(work.in,work.out)) %></td>
               <td><%= workingHours(work) %></td>
-            <td><%= link_to '修正', staff_work_path(@staff.id,work.id), remote: true, class:"btn btn-outline-warning btn-sm" %></td>
-            <div class="modal fade" id="work-modal" tabindex="-1" role="dialog" aria-labelledby="work-modalLabel" aria-hidden="true"></div>
-          </tr>
-        <% end %>
+              <td><%= link_to '修正', staff_work_path(@staff.id,work.id), remote: true, class:"btn btn-outline-warning btn-sm" %></td>
+              <div class="modal fade" id="work-modal" tabindex="-1" role="dialog" aria-labelledby="work-modalLabel" aria-hidden="true"></div>
+            </tr>
+          <% end %>
         </tbody>
       </table>
     </div>

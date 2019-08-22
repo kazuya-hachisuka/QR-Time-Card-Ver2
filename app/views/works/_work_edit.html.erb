@@ -76,8 +76,8 @@
           <% end %>
         </div>
         <div class="modal-footer">
-          <%= work.submit '更新', class:"btn btn-outline-success" %>
           <%= link_to '削除', staff_work_path, method: :delete, data: {confirm: '本当に削除しますか??'}, class:"btn btn-outline-danger" %>
+          <%= work.submit '更新', class:"btn btn-outline-success" %>
         </div>
       <% end %>
     </div>
