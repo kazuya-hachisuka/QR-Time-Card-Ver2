@@ -58,7 +58,7 @@ class StaffsController < ApplicationController
 
   private
   def admin_params
-    params.require(:admin).permit(:company_name, :company_name_kana)
+    params.require(:admin).permit(:id, :company_name, :company_name_kana)
   end
 
   def staff_params
