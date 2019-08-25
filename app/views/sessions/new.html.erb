@@ -2,8 +2,8 @@
   <div class="row">
     <div class="col-sm-6 offset-sm-3">
       <h2 class="text-center mt-3">場所ログイン</h2>
-      <form class="justify-content-center px-md-5 px-3">
       <%= form_for :session, url: login_path do |f| %>
+      <form class="justify-content-center px-md-5 px-3">
         <div class="form-group">
           <%= f.label :管理番号 %>
           <%= f.text_field :control_number, class: "form-control" %>
@@ -15,8 +15,8 @@
         <div class="form-group">
           <%= f.submit :ログイン, class: "btn btn-info form-control" %>
         </div>
-      <% end %>
       </form>
+      <% end %>
     </div>
   </div>
 </div>
