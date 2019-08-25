@@ -20,7 +20,7 @@ class StaffsController < ApplicationController
       @staff.qrcode = "http://localhost:3000/staffs/#{@staff.id}/punch_new"
       @staff.save
       flash[:staff_create_result] = "スタッフを追加しました。"
-      redirect_to admin_staff_path(@staff.id)
+      redirect_to admin_staff_path(current_admin.id,@staff.id)
     else
       flash[:staff_create_result] = "入力項目を確認してくだい。"
       redirect_to new_admin_staff_path(current_admin)
@@ -52,7 +52,7 @@ class StaffsController < ApplicationController
 
   def destroy
     @staff = Staff.find(params[:id])
-    #@staff.destroy
+    @staff.destroy
     redirect_to admin_staffs_path(current_admin)
   end
 
