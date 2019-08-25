@@ -32,6 +32,7 @@ module ApplicationHelper
     hh, mm = work_break_min.divmod(60)
     "%dh%02dm" % [hh,mm]
   end
+
   #スタッフの勤怠合計算出(勤怠合計-休憩合計)
   def totalWorkTime(works)
     total_work_time_sec = 0
@@ -48,6 +49,19 @@ module ApplicationHelper
     "%dh%02dm" % [hh,mm]
   end
 
+  def totalWorkBreakTime(works)
+    total_work_break_time_sec = 0
+    works.each do |work|
+      work_breaks = WorkBreak.where(work_id: work.id)
+      work_breaks.each do |work_break|
+        total_work_break_time_sec += work_break.out - work_break.in
+      end
+    end
+    total_work_break_time = total_work_break_time_sec.to_i / 60
+    hh, mm = total_work_break_time.divmod(60)
+    "%dh%02dm" % [hh,mm]
+  end
+
   #gem 'i18n_generators'を導入したので使用しない
   # def timeFormat(material)
   #   material.strftime("%Y年%m月%d日 %-H:%M")
@@ -61,7 +75,6 @@ module ApplicationHelper
   end
 
   def midnight(work_in, work_out)
-
     work_5 = work_in.to_date
     work_5 = work_5.to_s + " 5:00:00"
     work_5 = work_5.in_time_zone
@@ -174,4 +187,11 @@ module ApplicationHelper
     end
   end
 
+  def midnightTotalTime(works)
+    midnightTotalTime = 0
+    works.each do |work|
+      midnightTotalTime += midnight(work.in, work.out)
+    end
+    convertToTime(midnightTotalTime)
+  end
 end

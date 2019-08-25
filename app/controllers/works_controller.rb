@@ -3,11 +3,11 @@ class WorksController < ApplicationController
   def index
     @staff = Staff.find(params[:staff_id])
     @search = Work.ransack(params[:q])
-    @works = Work.ransack(params[:q]).result.includes(:locale).where(staff_id: @staff).order(id: :asc)
+    @works = @search.result.includes(:locale).where(staff_id: @staff).order(in: :asc)
   end
 
   def show
-    @work = Work.includes(:work_breaks).find(params[:id])
+    @work = Work.find(params[:id])
     @staff = Staff.find(@work.staff_id)
     @locale = Locale.find(@work.locale_id)
     @work_breaks = WorkBreak.where(work_id: params[:id])

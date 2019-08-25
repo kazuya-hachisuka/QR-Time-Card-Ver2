@@ -1,6 +1,6 @@
   <div class="modal-dialog modal-md" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header main-color">
         <h5 class="modal-title" id="staffsShow-modalLabel">
           <span class="h4"><%= @staff.family_name %>&ensp;<%= @staff.given_name %></span>さんの情報
         </h5>
@@ -10,9 +10,9 @@
       </div>
         <div class="modal-body">
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">所属： <%= @locale.locale_name %></li>
-            <li class="list-group-item">名前： <%= "#{@staff.family_name} #{@staff.given_name}" %></li>
-            <li class="list-group-item">名前(カナ)： <%= "#{@staff.family_name_kana} #{@staff.given_name_kana}" %></li>
+            <li class="list-group-item">所属： <span class="h5"><%= @locale.locale_name %></span></li>
+            <li class="list-group-item">名前： <span class="h5"><%= "#{@staff.family_name} #{@staff.given_name}" %></span></li>
+            <li class="list-group-item">名前(カナ)： <span class="h5"><%= "#{@staff.family_name_kana} #{@staff.given_name_kana}" %></span></li>
           </ul>
         </div>
         <div class="modal-footer">

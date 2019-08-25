@@ -21,36 +21,31 @@
 <%= render 'search_form' %>
 <div class="container">
   <div class="row">
-  <h4 class=py-2>総労働時間<%= totalWorkTime(@works) %></h4>
-    <div class="table-responsive">
+  <h4 class="py-2">総労働時間<%= totalWorkTime(@works) %></h4>
+  <h4 class="p-2">休憩合計 <%= totalWorkBreakTime(@works) %></h4>
+  <h4 class="p-2">深夜帯合計 <%= midnightTotalTime(@works) %></h4>
+    <div class="table-responsive table-hover">
       <table class="table text-nowrap">
-        <tbody>
+        <thead class="thead-light">
           <tr>
             <th>場所</th>
             <th>出勤</th>
             <th>退勤</th>
-            <th>休憩</th>
-            <th>戻り</th>
-            <th>深夜帯</th>
+            <th>休憩合計</th>
             <th>労働時間</th>
+            <th>深夜帯</th>
             <th>勤怠修正</th>
           </tr>
-        </tbody>
+        </thead>
         <tbody>
           <% @works.each do |work| %>
             <tr>
               <td><%= work.locale.locale_name %></td>
               <td><%= l work.in %></td>
               <td><%= l work.out %></td>
-              <% if @work.present? %>
-                <td><%= l work.work_break.in %></td>
-                <td><%= l work.work_break.out %></td>
-              <% else %>
-                <td>-</td>
-                <td>-</td>
-              <% end %>
-              <td><%= convertToTime(midnight(work.in,work.out)) %></td>
+              <td><%= totalWorkBreak(work) %></td>
               <td><%= workingHours(work) %></td>
+              <td><%= convertToTime(midnight(work.in,work.out)) %></td>
               <td><%= link_to '修正', staff_work_path(@staff.id,work.id), remote: true, class:"btn btn-outline-warning btn-sm" %></td>
               <div class="modal fade" id="work-modal" tabindex="-1" role="dialog" aria-labelledby="work-modalLabel" aria-hidden="true"></div>
             </tr>

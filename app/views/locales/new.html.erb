@@ -16,8 +16,12 @@
           <%= locale.label :パスワード確認 %>
           <%= locale.password_field :password_confirmation, class: "form-control"%>
         </div>
-        <%= link_to '戻る', admin_path(current_admin), class: "btn btn-outline-dark" %>
-        <%= locale.submit '作成', class: "btn btn-info" %>
+      </div>
+      <div class="card-footer d-flex flex-row-reverse">
+        <div class="row">
+          <%= link_to '戻る', admin_path(current_admin), class: "btn btn-outline-dark mr-2" %>
+          <%= locale.submit '追加', class: "btn btn-info" %>
+        </div>
       </div>
     </div>
   </div>

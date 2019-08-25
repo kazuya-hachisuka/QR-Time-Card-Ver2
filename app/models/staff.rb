@@ -32,5 +32,5 @@ class Staff < ApplicationRecord
 
   belongs_to :admin
   belongs_to :locale
-  has_many :works, :dependent => :delete_all
+  has_many :works, dependent: :delete_all
 end

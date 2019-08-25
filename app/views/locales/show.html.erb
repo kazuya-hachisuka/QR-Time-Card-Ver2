@@ -40,9 +40,8 @@
             <td><%= l work.in %></td>
             <td><%= l work.out %></td>
             <td><%= totalWorkBreak(work) %></td>
-            <% breaks = totalWorkBreak(work) %>
             <td><%= workingHours(work) %></td>
-            <td class="text-center"><%= link_to '詳細', staff_work_path(work.staff_id,work.id),remote: true,class:"btn btn-outline-secondary btn-sm rounded"%></td>
+            <td><%= link_to '詳細', staff_work_path(work.staff_id,work.id),remote: true,class:"btn btn-outline-secondary btn-sm rounded"%></td>
             <div class="modal fade" id="work-modal" tabindex="-1" role="dialog" aria-labelledby="work-modalLabel" aria-hidden="true"></div>
           <% else %>
             <td><%= work.in %></td>

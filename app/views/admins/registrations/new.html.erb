@@ -1,39 +1,39 @@
-<div class="row justify-content-center mt-5">
-  <div class="card mb-3" style="width:20rem;">
-    <div class="card-header main-color">
-      <h2 class="text-center">新規登録</h2>
-    </div>
-    <div class="card-body">
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
-        <div class="form-group">
-          <%= f.label :会社名 %>
-          <%= f.text_field :company_name, class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :会社名カナ %>
-          <%= f.text_field :company_name_kana, class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :メールアドレス %>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :パスワード %>
-          <% if @minimum_password_length %>
-          <%# <em> (= @minimum_password_length characters minimum)</em> %>
-          <% end %>
-          <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "パスワード#{@minimum_password_length}文字以上" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :パスワード確認用 %>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "パスワード確認用"  %>
-        </div>
-        <div class="form-group">
-          <%= f.submit "登録", class: "btn btn-info form-control" %>
-        </div>
-        <%= render "admins/shared/links" %>
-      <% end %>
+<div class="conteiner" style="background-color:#f5f5f5";>
+  <div class="row">
+    <div class="col-sm-6 offset-sm-3 ">
+      <h2 class="text-center mt-3">新規登録</h2>
+      <form class="justify-content-center mx-3">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+          <div class="form-group">
+            <%= f.label :会社名 %>
+            <%= f.text_field :company_name, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :会社名カナ %>
+            <%= f.text_field :company_name_kana, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :メールアドレス %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :パスワード %>
+            <% if @minimum_password_length %>
+            <%# <em> (= @minimum_password_length characters minimum)</em> %>
+            <% end %>
+            <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "パスワード#{@minimum_password_length}文字以上" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :パスワード確認用 %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "パスワード確認用"  %>
+          </div>
+          <div class="form-group">
+            <%= f.submit "登録", class: "btn btn-info form-control" %>
+          </div>
+          <%= render "admins/shared/links" %>
+        <% end %>
+      </form>
     </div>
   </div>
 </div>

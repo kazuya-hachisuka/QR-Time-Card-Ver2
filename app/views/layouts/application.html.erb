@@ -2,13 +2,14 @@
 <html>
   <head>
     <title>QR-Time-Card-ver2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= favicon_link_tag('QR.ico') %>
   </head>
-  <body style="padding-top: 4.5rem;">
+  <body style="padding-top: 4rem;">
     <header>
       <nav class="navbar fixed-top main-color">
         <% if admin_signed_in? || manager_signed_in? %>
@@ -45,7 +46,7 @@
         </div>
       </nav>
     </header>
-    <div class="container mb-5">
+    <div class="container-fluid mb-5">
       <%= yield %>
     </div>
     <footer class="fixed-bottom main-color">
