@@ -5,10 +5,9 @@
       <%= form_with(model:@locale) do |locale|%>
       <form class="justify-content-center px-md-5 px-3">
         <div class="form-group mx-3">
-          <%= locale.label :ロケール名 %>
+          <%= locale.label :勤務地名 %>
           <%= locale.text_field :locale_name, class: "form-control" %>
-          <%= locale.label :管理番号 %>
-          <%= locale.text_field :control_number, class: "form-control"%>
+          <%= locale.hidden_field :control_number, value: @control_number %>
           <%= locale.hidden_field :admin_id, value: current_admin.id %>
           <%= locale.label :パスワード %>
           <%= locale.password_field :password, class: "form-control" %>

@@ -1,4 +1,4 @@
-<%= search_form_for @search, url: locale_path do |q| %>
+<%= search_form_for @search, url: manager_path do |q| %>
 <div class="container">
   <div class="row">
     <div class="form-group">
@@ -9,19 +9,22 @@
         </div>
       </div>
     </div>
-    <div class="form-group mx-md-2">
+    <div class="form-group mx-2">
       <div class="input-group" id="in_lteq" data-target-input="nearest">
         <%= q.text_field :in_lteq, class: "form-control datetimepicker-input", data: { target: '#in_lteq'}%>
         <div class="input-group-append" data-target="#in_lteq" data-toggle="datetimepicker">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>
-        <%= q.submit '絞り込む',class:"btn btn-success btn-sm ml-2" %>
       </div>
     </div>
   </div>
 </div>
-<% end %>
-
+<div class="container">
+  <div class="row">
+    <%= q.submit '絞り込み',class:"btn btn-success btn-sm" %>
+    <% end %>
+  </div>
+</div>
 
 <script type="text/javascript">
   $(function () {

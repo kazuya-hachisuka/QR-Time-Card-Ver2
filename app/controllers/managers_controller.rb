@@ -2,9 +2,10 @@ class ManagersController < ApplicationController
   before_action :authenticate_manager!, except: [:new]
 
   def show
+    @search = Work.ransack(params[:q])
     @manager = Manager.find(params[:id])
     @locale = Locale.find_by(id: @manager.locale_id)
-    @works = Work.includes(:staff).where(locale_id: @locale.id)
+    @works = @search.result.includes(:staff).where(locale_id: @locale.id)
     @admin = Admin.find_by(id: @manager.admin_id)
   end
 

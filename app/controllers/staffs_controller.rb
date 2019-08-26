@@ -1,4 +1,5 @@
 class StaffsController < ApplicationController
+  before_action :admin_signed_in? || :manager_signed_in?
   def index
     @staffs = Staff.includes(:locale).where(admin_id: company_id)
   end

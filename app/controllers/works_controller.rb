@@ -1,4 +1,6 @@
 class WorksController < ApplicationController
+  before_action :current_locale
+  before_action :admin_signed_in? || :manager_signed_in? || :signed_in?
   require "date"
   def index
     @staff = Staff.find(params[:staff_id])
@@ -31,6 +33,7 @@ class WorksController < ApplicationController
   end
 
   def punch_new
+    if signed_in?
     @locale = Locale.find(current_locale.id)
     @staff = Staff.find(params[:staff_id])
     @working = @staff.works.where(out: nil)
@@ -39,6 +42,9 @@ class WorksController < ApplicationController
       flash[:other_admin] = "こちらの会社には所属してません"
     end
     @id = current_locale.id
+    else
+      redirect_to root_path
+    end
   end
 
   def update

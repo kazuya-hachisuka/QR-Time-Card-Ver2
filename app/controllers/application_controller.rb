@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
     if admin_signed_in?
       admin_path(id: current_admin[:id])
     elsif manager_signed_in?
-      manager_path(id: current_manager[:id])
+      manager_path(current_manager[:id])
     else
 			root_path
     end
@@ -33,25 +33,24 @@ class ApplicationController < ActionController::Base
     @current_locale ||= Locale.find_by(remember_token: remember_token)
   end
 
-    #remenber_tokenを作成し、localeモデルとcookieにセットする
-    def locale_sign_in(locale)
-      remember_token = Locale.new_remember_token
-      cookies.permanent[:locale_remember_token] = remember_token
-      locale.update!(remember_token: Locale.encrypt(remember_token))
-      @current_locale = locale
-    end
+  #remenber_tokenを作成し、localeモデルとcookieにセットする
+  def locale_sign_in(locale)
+    remember_token = Locale.new_remember_token
+    cookies.permanent[:locale_remember_token] = remember_token
+    locale.update!(remember_token: Locale.encrypt(remember_token))
+    @current_locale = locale
+  end
 
-    #ログアウト処理
-    def locale_sign_out
-      @current_locale = nil
-      cookies.delete(:locale_remember_token)
-    end
-
-    def signed_in?
-      @current_locale.present?
-    end
+  #ログアウト処理
+  def locale_sign_out
+    @current_locale = nil
+    cookies.delete(:locale_remember_token)
+  end
 
   private
+  def signed_in?
+    @current_locale.present?
+  end
 
   def authenticate_admin
     if admin_signed_in?

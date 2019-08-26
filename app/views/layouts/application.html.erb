@@ -14,12 +14,12 @@
       <nav class="navbar fixed-top main-color">
         <% if admin_signed_in? || manager_signed_in? %>
           <% if admin_signed_in? %>
-            <%= link_to "#{current_admin.company_name}", admin_path(current_admin) %>
+            <span class="navbar-brand mb-0 h1"><%= link_to "#{current_admin.company_name}", admin_path(current_admin) %></span>
           <% else %>
-            <span class="navbar-brand mb-0 h1">Kintaiくん</span>
+            <span class="navbar-brand mb-0 h1">QR Time card</span>
           <% end %>
         <% else %>
-          <span class="navbar-brand mb-0 h1">Kintaiくん</span>
+          <span class="navbar-brand mb-0 h1">QR Time card</span>
         <% end %>
         <div class="nav-item">
           <% if admin_signed_in? || manager_signed_in? %>
@@ -31,15 +31,17 @@
           <% elsif signed_in? %>
             <%= link_to "勤務地ログアウト", logout_path, class: "btn btn-outline-dark", method: :delete %>
           <% else %>
-            <div class="dropdown dropleft">
-              <button type="button" id="loginManu"class="btn btn-outline-dark btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                ログイン
-              </button>
-              <div class="dropdown-menu" aria-labelledby="loginManu">
-                <%= link_to "管理者登録", new_admin_registration_path, class: "nav-item btn btn-outline-dark dropdown-item" %>
-                <%= link_to "管理者ログイン", new_admin_session_path, class: "nav-item btn btn-outline-dark dropdown-item" %>
-                <%= link_to "マネージャーログイン", manager_session_path, class: "nav-item btn btn-outline-dark dropdown-item" %>
-                <%= link_to "勤務地ログイン", login_path, class: "nav-item btn btn-outline-dark dropdown-item" %>
+            <div class="form-inline">
+              <%= link_to "新規登録", new_admin_registration_path, class: "btn btn-outline-dark btn-sm nav-item mr-2" %>
+              <div class="dropdown">
+                <button type="button" id="loginManu"class="btn btn-outline-dark btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  ログイン
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="loginManu">
+                  <%= link_to "管理者ログイン", new_admin_session_path, class: "nav-item btn btn-outline-dark dropdown-item" %>
+                  <%= link_to "マネージャーログイン", manager_session_path, class: "nav-item btn btn-outline-dark dropdown-item" %>
+                  <%= link_to "勤務地ログイン", login_path, class: "nav-item btn btn-outline-dark dropdown-item" %>
+                </div>
               </div>
             </div>
           <% end %>

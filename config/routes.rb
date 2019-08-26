@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'top#top'
 
-  resources :admins, only:[:show] do
+  resources :admins, only:[:show, :edit] do
     get '/managers/sing_up' => 'managers#new'
     post '/managers/create' => 'managers#create'
     resources :staffs do

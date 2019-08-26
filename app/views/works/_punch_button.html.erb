@@ -1,3 +1,4 @@
+<p>ボタンをクリックしてください</p>
 <%# status == 0 出勤前 %>
 <% if @staff.status == 0 %>
   <%= link_to '出勤', staff_punch_in_path(params[:staff_id]), class:"btn btn-info", method: :post %>
@@ -14,7 +15,7 @@
   <% end %>
 <% end %>
 <script>
-10秒何もしないとページ遷移
+//10秒何もしないとページ遷移
 var id = '<%=(@id) %>';
 var url = `http://localhost:3000/locales/${id}`
 setTimeout("redirect()", 1000*10);

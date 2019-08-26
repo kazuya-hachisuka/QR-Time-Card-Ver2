@@ -1,4 +1,5 @@
 class QrcodesController < ApplicationController
+  before_action :admin_signed_in? || :manager_signed_in?
   def show
     @staff = Staff.find(params[:staff_id])
     @admin = Admin.find(params[:admin_id])
