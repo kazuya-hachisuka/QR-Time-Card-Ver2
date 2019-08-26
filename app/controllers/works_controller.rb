@@ -38,6 +38,8 @@ class WorksController < ApplicationController
       redirect_to locale_path(current_locale)
       flash[:other_admin] = "こちらの会社には所属してません"
     end
+    @id = current_locale.id
+    #@idForJs = @id.to_json
   end
 
   def update

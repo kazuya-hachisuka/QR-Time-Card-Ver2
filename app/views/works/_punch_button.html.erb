@@ -13,3 +13,12 @@
     <%= link_to '戻り', break_out_path(work), class:"btn btn-warning", method: :patch %>
   <% end %>
 <% end %>
+<script>
+//10秒何もしないとページ遷移
+var id = '<%=(@id) %>';
+var url = `http://localhost:3000/locales/3`
+setTimeout("redirect()", 1000*10);
+function redirect(){
+  window.location.replace(url)
+}
+</script>

@@ -5,7 +5,7 @@
 </div>
 <div class="container">
   <div class="row justify-content-center">
-        <div class="h5"><%= flash[:other_admin] %></div>
+    <div class="h5"><%= flash[:other_admin] %></div>
     <div id="today" class="punch_today"></div>
   </div>
 </div>
@@ -81,6 +81,7 @@
         outputData.parentElement.hidden = true;
       }
     }
-    // requestAnimationFrame(tick);
+    //これをコメントアウトするとカメラを読み込まない
+    requestAnimationFrame(tick);
   }
 </script>

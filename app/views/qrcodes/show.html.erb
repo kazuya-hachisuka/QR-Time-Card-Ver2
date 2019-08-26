@@ -1,10 +1,15 @@
 <div clsss="continer">
-  <div class="row justify-content-center pt-3">
-    <div id="qrcode"class="card shadow-lg" style="width:20rem;">
+    <% if admin_signed_in? %>
+      <%= link_to 'スタッフ一覧へ戻る', admin_staffs_path(current_admin), class:"btn btn-outline-dark btn-sm my-1" %>
+    <% else %>
+      <%= link_to 'スタッフ一覧へ戻る', locale_locale_staffs_path(@staff.locale_id), class:"btn btn-outline-dark btn-sm my-1" %>
+    <% end %>
+  <div class="row justify-content-center py-1">
+    <div id="qrcode"class="card shadow-lg" style="width:18rem;">
       <div class="card-header text-center">
         <h3><%= @staff.family_name %> <%= @staff.given_name %></h3>
       </div>
-      <div class="card-body d-flex justify-content-center my-5">
+      <div class="card-body d-flex justify-content-center my-4">
         <%= @qr %>
       </div>
       <div class="card-footer text-center">
@@ -15,12 +20,7 @@
 </div>
 <div class="container">
   <div class="row justify-content-center">
-    <a href="" class="btn btn-info mt-2" id="download">QRコードダウンロード</a>
-    <% if admin_signed_in? %>
-      <%= link_to 'スタッフ一覧へ戻る', admin_staffs_path(current_admin), class:"btn btn-outline-dark mt-2" %>
-    <% else %>
-      <%= link_to 'スタッフ一覧へ戻る', locale_locale_staffs_path(@staff.locale_id), class:"btn btn-outline-dark mt-2" %>
-    <% end %>
+    <a href="" class="btn btn-info mt-1" id="download">QRコードダウンロード</a>
   </div>
 </div>
 <script>

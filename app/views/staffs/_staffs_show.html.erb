@@ -17,11 +17,11 @@
         </div>
         <div class="modal-footer">
           <% if admin_signed_in? %>
-            <%= link_to '編集', edit_admin_staff_path(current_admin,@staff), class:"btn btn-outline-info" %>
             <%= link_to 'QRコード表示', admin_staff_qrcodes_path(current_admin,@staff), class:"btn btn-outline-success" %>
+            <%= link_to '編集', edit_admin_staff_path(current_admin,@staff), class:"btn btn-outline-info" %>
           <% else %>
-            <%= link_to '編集', edit_admin_staff_path(current_manager.admin_id,@staff), class:"btn btn-outline-info" %>
             <%= link_to 'QRコード表示', admin_staff_qrcodes_path(current_manager.admin_id,@staff), class:"btn btn-outline-success" %>
+            <%= link_to '編集', edit_admin_staff_path(current_manager.admin_id,@staff), class:"btn btn-outline-info" %>
           <% end %>
         </div>
     </div>
