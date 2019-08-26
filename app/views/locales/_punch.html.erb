@@ -1,11 +1,11 @@
-<div class="container">
+<%= flash[:other_admin] %>
+<div class="container pt-5">
   <div class="row justify-content-center">
-    <div class="h1"><%= locale.locale_name %></div>
+    <div class="h1 locale-name"><%= locale.locale_name %></div>
   </div>
 </div>
 <div class="container">
-  <div class="row justify-content-center">
-    <div class="h5"><%= flash[:other_admin] %></div>
+  <div class="row justify-content-center pt-4">
     <div id="today" class="punch_today"></div>
   </div>
 </div>

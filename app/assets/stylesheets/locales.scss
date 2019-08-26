@@ -6,11 +6,17 @@
 }
 
 .punch_today{
-  font-size:1.5rem;
-  margin:2px
+  font-size: 2rem;
+  margin:8px
 }
 .punch_clock{
   font-size:6rem;
   font-weight:bold;
   margin:8px;
+}
+
+@media  (max-width: 575.98px){
+	.punch_clock {
+    font-size: 4.5rem;
+	}
 }
