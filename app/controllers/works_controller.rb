@@ -2,6 +2,7 @@ class WorksController < ApplicationController
   before_action :current_locale
   before_action :admin_signed_in? || :manager_signed_in? || :signed_in?
   require "date"
+
   def index
     @staff = Staff.find(params[:staff_id])
     @search = Work.ransack(params[:q])

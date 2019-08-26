@@ -9,7 +9,7 @@
         </div>
       </div>
     </div>
-    <div class="form-group mx-2">
+    <div class="form-group ml-md-2">
       <div class="input-group" id="in_lteq" data-target-input="nearest">
         <%= q.text_field :in_lteq, class: "form-control datetimepicker-input", data: { target: '#in_lteq'}%>
         <div class="input-group-append" data-target="#in_lteq" data-toggle="datetimepicker">
@@ -17,15 +17,12 @@
         </div>
       </div>
     </div>
+    <div class="form-group ml-1">
+      <%= q.submit '絞り込み',class:"btn btn-success" %>
+    </div>
   </div>
 </div>
-<div class="container">
-  <div class="row">
-    <%= q.submit '絞り込み',class:"btn btn-success btn-sm" %>
-    <% end %>
-  </div>
-</div>
-
+<% end %>
 <script type="text/javascript">
   $(function () {
     $('.datetimepicker-input').datetimepicker({
