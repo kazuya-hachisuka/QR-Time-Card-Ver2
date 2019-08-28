@@ -24,12 +24,12 @@
         <div class="nav-item">
           <% if admin_signed_in? || manager_signed_in? %>
             <% if admin_signed_in? %>
-              <%= link_to "管理者ログアウト", destroy_admin_session_path, class: "nav-item btn btn-outline-dark", method: :delete %>
+              <%= link_to "管理者ログアウト", destroy_admin_session_path, class: "nav-item btn btn-outline-dark btn-sm", method: :delete %>
             <% else %>
-              <%= link_to "マネージャーログアウト", destroy_manager_session_path, class: "nav-item btn btn-outline-dark", method: :delete %>
+              <%= link_to "マネージャーログアウト", destroy_manager_session_path, class: "nav-item btn btn-outline-dark btn-sm", method: :delete %>
             <% end %>
           <% elsif signed_in? %>
-            <%= link_to "勤務地ログアウト", logout_path, class: "btn btn-outline-dark", method: :delete %>
+            <%= link_to "勤務地ログアウト", logout_path, class: "btn btn-outline-dark btn-sm", method: :delete %>
           <% else %>
             <div class="form-inline">
               <%= link_to "新規登録", new_admin_registration_path, class: "btn btn-outline-dark btn-sm nav-item mr-2" %>

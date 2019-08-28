@@ -44,6 +44,7 @@ gem 'ransack'
 gem "bootstrap4-datetime-picker-rails"
 gem 'momentjs-rails'
 gem "font-awesome-rails"
+gem 'font-awesome-sass', '~> 5.4.1'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
@@ -53,6 +54,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rails-flog', require: 'flog'
   gem 'bullet'
+  gem 'better_errors' #consoleのエラー表示切り替え
+  gem 'binding_of_caller'　#consoleのエラー表示切り替え
 end
 
 group :development do

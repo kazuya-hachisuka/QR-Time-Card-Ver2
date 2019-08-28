@@ -1,10 +1,10 @@
 <% if admin_signed_in? || manager_signed_in? %>
-<div class="container">
+<div class="container mt-3">
   <div class="row">
     <div class="h2"><%= @locale.locale_name %></div>
   </div>
   <div class="row">
-    <span>管理番号:<%= @locale.control_number %></span>
+    <span class="h5">管理番号:<%= @locale.control_number %></span>
   </div>
   <div class="row">
     <div class="form-group">
@@ -17,47 +17,50 @@
 <div class="container">
   <div class="row">
     <h4 class="py-2">勤怠時間合計<%= totalWorkTime(@works) %></h4>
-    <table class="table table-hover">
-      <thead class="thead-light">
-        <tr>
-          <th>名前</th>
-          <th>出勤</th>
-          <th>退勤</th>
-          <th>休憩時間</th>
-          <th>労働時間</th>
-          <th>勤怠詳細</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% if @locale.staffs.count == 0 %>
-          <td>所属スタッフはいません</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        <% else %>
-          <% @works.each do |work| %>
-            <td><%= work.staff.family_name %><%= work.staff.given_name %></td>
-            <% if work.out != nil %>
-              <td><%= l work.in %></td>
-              <td><%= l work.out %></td>
-              <td><%= totalWorkBreak(work) %></td>
-              <% breaks = totalWorkBreak(work) %>
-              <td><%= workingHours(work) %></td>
-              <td class="text-center"><%= link_to '詳細', staff_work_path(work.staff_id,work.id),remote: true,class:"btn btn-outline-secondary btn-sm rounded"%></td>
-              <div class="modal fade" id="work-modal" tabindex="-1" role="dialog" aria-labelledby="work-modalLabel" aria-hidden="true"></div>
-            <% else %>
-              <td><%= work.in %></td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td><%#= link_to '+', staff_work_path(work[:id]) %></td>
-            <% end %>
+    <div class="table-responsive table-hover">
+      <table class="table text-nowrap">
+        <thead class="thead-light">
+          <tr>
+            <th>名前</th>
+            <th>出勤</th>
+            <th>退勤</th>
+            <th>休憩時間</th>
+            <th>労働時間</th>
+            <th>勤怠詳細</th>
           </tr>
+        </thead>
+        <tbody>
+          <tr>
+          <% if @locale.staffs.count == 0 %>
+            <td>所属スタッフはいません</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          <% else %>
+            <% @works.each do |work| %>
+              <td><%= work.staff.family_name %><%= work.staff.given_name %></td>
+              <% if work.out != nil %>
+                <td><%= l work.in %></td>
+                <td><%= l work.out %></td>
+                <td><%= totalWorkBreak(work) %></td>
+                <% breaks = totalWorkBreak(work) %>
+                <td><%= workingHours(work) %></td>
+                <td class="text-center"><%= link_to '詳細', staff_work_path(work.staff_id,work.id),remote: true,class:"btn btn-outline-secondary btn-sm rounded"%></td>
+                <div class="modal fade" id="work-modal" tabindex="-1" role="dialog" aria-labelledby="work-modalLabel" aria-hidden="true"></div>
+              <% else %>
+                <td><%= work.in %></td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td><%#= link_to '+', staff_work_path(work[:id]) %></td>
+              <% end %>
+            <% end %>
           <% end %>
-        <% end %>
-      </tbody>
-    </table>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 <% elsif signed_in? %>

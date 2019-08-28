@@ -2,6 +2,7 @@ class StaffsController < ApplicationController
   before_action :admin_signed_in? || :manager_signed_in?
   def index
     @staffs = Staff.includes(:locale).where(admin_id: company_id)
+    #flash[:success] = 'スタッフ情報を更新しました。'
   end
 
   def show
@@ -20,10 +21,10 @@ class StaffsController < ApplicationController
     if @staff.save
       @staff.qrcode = "http://localhost:3000/staffs/#{@staff.id}/punch_new"
       @staff.save
-      flash[:staff_create_result] = "スタッフを追加しました。"
+      flash[:success] = 'スタッフを追加しました。'
       redirect_to admin_staff_path(current_admin.id,@staff.id)
     else
-      flash[:staff_create_result] = "入力項目を確認してくだい。"
+      flash[:danger] = '入力項目を確認してくだい。'
       redirect_to new_admin_staff_path(current_admin)
     end
   end
@@ -42,6 +43,7 @@ class StaffsController < ApplicationController
     staff = Staff.find(params[:id])
     if staff.update(staff_params)
       if admin_signed_in?
+        flash[:success] = 'スタッフ情報を更新しました。'
         redirect_to admin_staffs_path(current_admin)
       else
         redirect_to locale_locale_staffs_path(staff.locale_id)

@@ -37,11 +37,11 @@
           <div class="form-group col-12">
             <div class="float-right">
               <% if admin_signed_in? %>
-                <%= link_to '戻る', admin_staff_path(current_admin), class:"btn btn-outline-dark" %>
+                <%= link_to '戻る', admin_staffs_path(current_admin), class:"btn btn-outline-dark" %>
               <% else %>
                 <%= link_to '戻る', locale_locale_staffs_path(@staff.locale_id), class:"btn btn-outline-dark" %>
               <% end %>
-              <%= f.submit '更新',data: {confirm: '情報を更新しますか??'}, class: "btn btn-info ml-2" %>
+              <%= f.submit '更新', class: "btn btn-info ml-2" %>
             </div>
           </div>
         </div>

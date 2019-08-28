@@ -4,9 +4,13 @@ class WorksController < ApplicationController
   require "date"
 
   def index
-    @staff = Staff.find(params[:staff_id])
-    @search = Work.ransack(params[:q])
-    @works = @search.result.includes(:locale).where(staff_id: @staff).order(in: :asc)
+    if admin_signed_in? || manager_signed_in? || signed_in?
+      @staff = Staff.find(params[:staff_id])
+      @search = Work.ransack(params[:q])
+      @works = @search.result.includes(:locale).where(staff_id: @staff).order(in: :asc)
+    else
+      redirect_to root_path
+    end
   end
 
   def show
