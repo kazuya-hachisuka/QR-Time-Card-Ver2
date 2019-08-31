@@ -1,8 +1,23 @@
-<%= form_for :session, url: login_path do |f| %>
-<%= f.label :管理番号 %>
-<%= f.text_field :control_number, class: "form-control" %>
-
-<%= f.label :パスワード %>
-<%= f.password_field :password, class: "form-control" %>
-<%= f.submit :ログイン, class: "btn btn-info" %>
-<% end %>
+<div class="container-fluid" style="background-color:#f5f5f5; height:550px;">
+  <div class="row">
+    <div class="col-sm-6 offset-sm-3">
+      <h2 class="text-center mt-3">勤務地ログイン</h2>
+      <%= render 'layouts/alert' %>
+      <%= form_for :session, url: login_path do |f| %>
+      <form class="justify-content-center px-md-5 px-3">
+        <div class="form-group mx-3">
+          <%= f.label :勤務地番号 %>
+          <%= f.text_field :control_number, class: "form-control" %>
+        </div>
+        <div class="form-group mx-3">
+          <%= f.label :パスワード %>
+          <%= f.password_field :password, class: "form-control" %>
+        </div>
+        <div class="form-group mx-3">
+          <%= f.submit :ログイン, class: "btn btn-info form-control" %>
+        </div>
+      </form>
+      <% end %>
+    </div>
+  </div>
+</div>

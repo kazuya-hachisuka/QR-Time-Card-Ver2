@@ -1,14 +1,13 @@
 <div class="container-fluid" style="background-color:#f5f5f5; height:570px;">
   <div class="row">
     <div class="col-sm-6 offset-sm-3">
-      <%= flash[:staff_create_result] %>
-      <h3 class="text-center mt-3">スタッフ情報の編集</h3>
-      <%= form_with(model: @staff, url:admin_staff_path) do |f| %>
+      <h4 class="text-center mt-3">マネージャー情報の編集</h4>
+      <%= form_with(model: @manager, url:admin_manager_path) do |f| %>
       <form class="justify-content-center">
         <div class="form-row col-md-12">
           <% if admin_signed_in? %>
             <div class="form-group col-md-12 my-1">
-              <%= link_to '削除', admin_staff_path([current_admin.id],params[:id]), data: {confirm: '本当に削除しますか??'}, method: :delete, class:"btn btn-outline-danger btn-sm float-right" %>
+              <%#= link_to '削除', admin_staff_path([current_admin.id],params[:id]), data: {confirm: '本当に削除しますか??'}, method: :delete, class:"btn btn-outline-danger btn-sm float-right" %>
             </div>
           <% end %>
           <div class="form-group col-md-6">
@@ -33,13 +32,13 @@
             <%= f.collection_select :locale_id, @locales, :id, :locale_name,{},class:"form-control" %>
           </div>
           <% end %>
-          <%= f.hidden_field :admin_id, value: @admin.id %>
+          <%#= f.hidden_field :admin_id, value: @admin.id %>
           <div class="form-group col-12">
             <div class="float-right">
               <% if admin_signed_in? %>
-                <%= link_to '戻る', admin_staffs_path(current_admin), class:"btn btn-outline-dark" %>
+                <%= link_to '戻る', admin_managers_path(current_admin), class:"btn btn-outline-dark" %>
               <% else %>
-                <%= link_to '戻る', locale_locale_staffs_path(@staff.locale_id), class:"btn btn-outline-dark" %>
+                <%= link_to '戻る', manager_path(@manager.id), class:"btn btn-outline-dark" %>
               <% end %>
               <%= f.submit '更新', class: "btn btn-info ml-2" %>
             </div>

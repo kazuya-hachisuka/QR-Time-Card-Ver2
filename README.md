@@ -72,10 +72,13 @@ db:migrate db:seed_fu
 docker-compose run web bundle exec rails db:migrate db:seed_fu
 
 コンテナのbashに接続
-docker exec -it  qr-timecard-ver2_web_1 bash
+docker exec -it qr-timecard-ver2_web_1 bash
 bundle exec rails c
 
 docker attach qr-timecard-ver2_web_1
+
+bundle update
+docker-compose run web bundle exec bundle update
 
 docker imageの削除
 docker rmi -f id

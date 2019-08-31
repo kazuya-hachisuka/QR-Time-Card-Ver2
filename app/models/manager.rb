@@ -41,5 +41,5 @@ class Manager < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   belongs_to :admin, optional: true
-  has_one :locale, through: :admin
+  belongs_to :locale
 end

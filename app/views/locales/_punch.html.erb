@@ -1,11 +1,10 @@
-<div class="container">
+<div class="container pt-5">
   <div class="row justify-content-center">
-    <div class="h1"><%= locale.locale_name %></div>
+    <div class="h1 locale-name"><%= locale.locale_name %></div>
   </div>
 </div>
 <div class="container">
-  <div class="row justify-content-center">
-        <div class="h5"><%= flash[:other_admin] %></div>
+  <div class="row justify-content-center pt-4">
     <div id="today" class="punch_today"></div>
   </div>
 </div>
@@ -23,12 +22,10 @@
         <span id="outputData"></span>
       </div>
     </div>
+    <%= render 'layouts/alert' %>
     <div class="row justify-content-center">
-      <div id="outputMessage">タイムカードをかざしてください</div>
+      <div id="outputMessage">タイムカードをカメラにかざしてください</div>
     </div>
-  </div>
-  <div class="row justify-content-center">
-      <%= link_to 'punch', staff_punch_new_path(staff_id: 4), class:"btn btn-dark" %>
   </div>
 </div>
 <script>
@@ -84,6 +81,7 @@
         outputData.parentElement.hidden = true;
       }
     }
-    // requestAnimationFrame(tick);
+    //これをコメントアウトするとカメラを読み込まない
+    requestAnimationFrame(tick);
   }
 </script>

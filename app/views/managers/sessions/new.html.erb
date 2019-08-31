@@ -1,26 +1,29 @@
-<div class="card" style="width:20rem;">
-  <div class="card-header text-center">
-    <h2>Manager Login</h2>
-  </div>
-  <div class="card-body">
-    <div class="form-group">
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email",class:"form-control",placeholder:"1@1" %>
-
-        <%= f.label :password %><br />
-        <%= f.password_field :password, autocomplete: "current-password", class:"form-control",placeholder:"888888" %>
-
-      <% if devise_mapping.rememberable? %>
-          <%= f.check_box :remember_me %>
-          <%= f.label :remember_me %>
+<div class="container-fluid" style="background-color:#f5f5f5; height:550px;">
+  <div class="row">
+    <div class="col-sm-6 offset-sm-3">
+      <h2 class="text-center mt-3">マネージャーログイン</h2>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <form class="justify-content-center px-md-5 px-3">
+        <div class="form-group">
+          <%= f.label :メールアドレス %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email",class:"form-control",placeholder:"1@1" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :パスワード %><br />
+          <%= f.password_field :password, autocomplete: "current-password", class:"form-control",placeholder:"888888" %>
+        </div>
+        <div class="form-group">
+          <% if devise_mapping.rememberable? %>
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          <% end %>
+        </div>
+        <div class="form-group">
+          <%= f.submit 'ログイン', class:"btn btn-info form-control" %>
+        </div>
+        <%= render "managers/shared/links" %>
+      </form>
       <% end %>
-
-      <div class="actions">
-        <%= f.submit "Log in", class: "btn btn-info" %>
-      </div>
-    <% end %>
-    <%= render "managers/shared/links" %>
     </div>
   </div>
 </div>

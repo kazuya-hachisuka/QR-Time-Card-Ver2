@@ -5,7 +5,7 @@
       <div class="row">
         <div class="form-group">
           <%= link_to 'メインメニューへ戻る', admin_path(current_admin), class:"btn btn-outline-dark btn-sm" %>
-          <%= link_to 'スタッフ追加', new_admin_staff_path(current_admin), class:"btn btn-outline-success btn-sm" %>
+          <%= link_to 'マネージャー追加', admin_managers_sing_up_path(current_admin.id), class:"btn btn-outline-success btn-sm" %>
         </div>
       </div>
     </div>
@@ -20,18 +20,21 @@
         <tr>
           <th>名前</th>
           <th>所属</th>
-          <th>勤怠</th>
-          <th>スタッフ情報</th>
+          <th>メールアドレス</th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
-      <% @staffs.each do |staff| %>
+      <% @managers.each do |manager| %>
         <tr>
-          <td><%= staff.family_name %>&ensp;<%= staff.given_name %></td>
-          <td><%= staff.locale.locale_name %></td>
-          <td><%= link_to '勤怠表示', staff_works_path(staff.id), class:"btn btn-outline-info btn-sm" %></td>
-          <td><%= link_to '詳細表示', admin_staff_path(current_admin.id,staff.id), remote: true, class: "btn btn-outline-dark btn-sm" %></td>
+          <td><%= manager.family_name %>&ensp;<%= manager.given_name %></td>
+          <td><%= manager.locale.locale_name %></td>
+          <td><%= manager.email %></td>
+          <!--<td><%= link_to '詳細表示', admin_staff_path(current_admin.id,manager.id), remote: true, class: "btn btn-outline-dark btn-sm" %></td> -->
           <div class="modal fade" id="staffsShow-modal" tabindex="-1" role="dialog" aria-labelledby="staffsShow-modalLabel" aria-hidden="true"></div>
+          <td><%= link_to '編集', edit_admin_manager_path(id: manager.id), class:"btn btn-outline-dark btn-sm" %></td>
+          <td><%= link_to '削除', admin_manager_path(id: manager.id), method: :delete, data: {confirm: '本当に削除しますか??'}, class:"btn btn-outline-danger btn-sm" %></td>
         </tr>
       <% end %>
       </tbody>

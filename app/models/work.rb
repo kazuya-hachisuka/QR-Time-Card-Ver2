@@ -17,7 +17,7 @@
 #
 
 class Work < ApplicationRecord
-  has_many :work_breaks, dependent: :destroy #関連するwork_breakも削除
   belongs_to :staff
   belongs_to :locale
+  has_many :work_breaks, dependent: :destroy #関連するwork_breakも削除
 end

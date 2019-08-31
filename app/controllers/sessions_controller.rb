@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
       locale_sign_in(@locale)
       redirect_to locale_path(@locale[:id])
     else
-      flash.now[:danger] = t('.flash.invaled_password')
+      flash[:danger] = 'パスワードが間違っています。'
       render 'new'
     end
   end
@@ -31,7 +31,7 @@ class SessionsController < ApplicationController
   def set_locale
     @locale = Locale.find_by!(control_number: session_params[:control_number])
   rescue
-    flash.now[:danger] = t('.flash.invalid_control_number')
+    flash[:danger] = '勤務地番号を入力してください。'
     render action: 'new'
   end
 

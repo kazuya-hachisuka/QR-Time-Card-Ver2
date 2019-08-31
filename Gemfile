@@ -41,9 +41,10 @@ gem 'rqrcode'
 gem 'rqrcode_png'
 gem 'i18n_generators'
 gem 'ransack'
-gem "bootstrap4-datetime-picker-rails"
+gem 'bootstrap4-datetime-picker-rails'
 gem 'momentjs-rails'
-gem "font-awesome-rails"
+#gem "font-awesome-rails"
+gem 'font-awesome-sass', '~> 5.9.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
@@ -52,7 +53,6 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rails-flog', require: 'flog'
-  gem 'bullet'
 end
 
 group :development do
@@ -66,6 +66,9 @@ group :development do
   gem 'annotate'
   gem 'awesome_rails_console'
   gem 'pry-rails'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'bullet'
 end
 
 group :test do
@@ -73,7 +76,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  gem 'webdrivers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

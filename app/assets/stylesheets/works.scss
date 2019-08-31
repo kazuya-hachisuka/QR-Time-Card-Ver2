@@ -2,10 +2,30 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .punch_button_today{
-  font-size: 1.5rem;
+  font-size: 2rem;
+  margin: 8px;
 }
 
 .punch_button_clock{
-  font-size: 4rem;
+  font-size: 6rem;
   font-weight: bold;
+  margin: 8px;
+}
+
+.locale-name{
+  font-size: 4rem;
+}
+
+.staff-name{
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+@media  (max-width: 575.98px){
+	.punch_button_clock {
+    font-size: 4.5rem;
+  }
+  .locale-name{
+    font-size: 2.5rem;
+  }
 }

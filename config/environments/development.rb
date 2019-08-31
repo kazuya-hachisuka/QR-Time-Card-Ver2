@@ -67,4 +67,7 @@ Rails.application.configure do
     Bullet.rails_logger = true # Railsログに出力
   end
 
+  if Rails.env.development?
+    BetterErrors::Middleware.allow_ip! "0.0.0.0/0"
+  end
 end

@@ -2,47 +2,57 @@
 <html>
   <head>
     <title>QR-Time-Card-ver2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag('QR.ico') %>
   </head>
-
-  <body>
+  <body style="padding-top: 4rem;">
     <header>
-      <nav class="navbar sticky-top" style="background-color:#ff8e00;">
+      <nav class="navbar fixed-top main-color">
         <% if admin_signed_in? || manager_signed_in? %>
           <% if admin_signed_in? %>
-            <%= link_to "#{current_admin.company_name}", admin_path(current_admin) %>
+            <span class="navbar-brand mb-0 h1"><%= link_to "#{current_admin.company_name}", admin_path(current_admin) %></span>
           <% else %>
-            <p>Kintaikun</p>
+            <span class="navbar-brand mb-0 h1">QR Time card</span>
           <% end %>
         <% else %>
-          <p>Kintaiくん</p>
+          <span class="navbar-brand mb-0 h1">QR Time card</span>
         <% end %>
         <div class="nav-item">
           <% if admin_signed_in? || manager_signed_in? %>
             <% if admin_signed_in? %>
-              <%= link_to "管理者ログアウト", destroy_admin_session_path, class: "nav-item btn btn-outline-dark", method: :delete %>
+              <%= link_to "管理者ログアウト", destroy_admin_session_path, class: "nav-item btn btn-outline-dark btn-sm", method: :delete %>
             <% else %>
-              <%= link_to "managerログアウト", destroy_manager_session_path, class: "nav-item btn btn-outline-dark", method: :delete %>
+              <%= link_to "マネージャーログアウト", destroy_manager_session_path, class: "nav-item btn btn-outline-dark btn-sm", method: :delete %>
             <% end %>
           <% elsif signed_in? %>
-            <%= link_to "ログアウト", logout_path, class: "btn btn-outline-danger", method: :delete %>
+            <%= link_to "勤務地ログアウト", logout_path, class: "btn btn-outline-dark btn-sm", method: :delete %>
           <% else %>
-            <%= link_to "管理者登録", new_admin_registration_path, class: "nav-item btn btn-outline-dark" %>
-            <%= link_to "管理者ログイン", new_admin_session_path, class: "nav-item btn btn-outline-dark" %>
-            <%= link_to "managerログイン", manager_session_path, class: "nav-item btn btn-outline-dark" %>
-            <%= link_to "localeログイン", login_path, class: "nav-item btn btn-outline-dark" %>
+            <div class="form-inline">
+              <%= link_to "新規登録", new_admin_registration_path, class: "btn btn-outline-dark btn-sm nav-item mr-2" %>
+              <div class="dropdown">
+                <button type="button" id="loginManu"class="btn btn-outline-dark btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  ログイン
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="loginManu">
+                  <%= link_to "管理者ログイン", new_admin_session_path, class: "nav-item btn btn-outline-dark dropdown-item" %>
+                  <%= link_to "マネージャーログイン", manager_session_path, class: "nav-item btn btn-outline-dark dropdown-item" %>
+                  <%= link_to "勤務地ログイン", login_path, class: "nav-item btn btn-outline-dark dropdown-item" %>
+                </div>
+              </div>
+            </div>
           <% end %>
         </div>
       </nav>
     </header>
-    <div class="container mb-5">
+    <div class="container-fluid mb-5">
       <%= yield %>
     </div>
-    <footer class="fixed-bottom" style="background-color:#ff8e00">
-      <div class="container mt-2">
+    <footer class="fixed-bottom main-color">
+      <div class="container">
         <div class="row">
           <span class="text-monospace m-2">QR-TimeCard</span>
         </div>

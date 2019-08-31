@@ -1,10 +1,10 @@
 class AdminsController < ApplicationController
   before_action :authenticate_admin!
-  before_action :correct_admin?
+  #before_action :correct_admin?
 
   def show
     @admin = Admin.find(params[:id])
-    @locale = Locale.where(admin_id: @admin)
+    @locale = Locale.where(admin_id: @admin).order(:id)
   end
 
   private

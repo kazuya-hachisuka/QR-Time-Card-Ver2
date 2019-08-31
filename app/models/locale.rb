@@ -24,6 +24,7 @@ class Locale < ApplicationRecord
   #admin_idが同じ場合にcontroller_numberをunique: trueにしたい
   #validates :
   validates :admin_id,presence: true
+  validates :control_number, uniqueness: true
 
   def self.new_remember_token
     SecureRandom.urlsafe_base64
@@ -34,7 +35,7 @@ class Locale < ApplicationRecord
   end
 
   belongs_to :admin
-  has_one :manager, through: :admin
+  has_many :manager
   has_many :staffs
-  has_many :locales
+  has_many :works
 end

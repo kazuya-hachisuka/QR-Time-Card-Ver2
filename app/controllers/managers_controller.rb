@@ -1,27 +1,60 @@
 class ManagersController < ApplicationController
-  before_action :authenticate_manager!
+  before_action :authenticate_admin!, only:[:index, :new, :create, :edit]
+  before_action :authenticate_manager!, unless: -> { admin_signed_in?}
+
+  def index
+    @managers = Manager.includes(:locale).where(admin_id: current_admin.id)
+  end
 
   def show
+    @search = Work.ransack(params[:q])
     @manager = Manager.find(params[:id])
     @locale = Locale.find_by(id: @manager.locale_id)
-    @works = Work.includes(:staff).where(locale_id: @locale.id)
+    @works = @search.result.includes(:staff).where(locale_id: @locale.id)
     @admin = Admin.find_by(id: @manager.admin_id)
   end
 
   def new
     @admin = Admin.find(params[:admin_id])
-    @locale = Locale.where(admin_id: params[:admin_id])
+    @locale = Locale.where(admin_id: params[:admin_id]).order(:id)
     @manager = Manager.new
-  # binding.pry
   end
 
   def create
     manager = Manager.new(manager_params)
     if manager.save
-      redirect_to manager_session_path
+      flash[:success] = 'マネージャーを追加しました。'
+      redirect_to admin_path(current_admin)
     else
-      redirect_to root_path
+      flash[:danger] = '入力項目を確認してください。'
+      redirect_to admin_managers_sing_up_path
     end
+  end
+
+  def edit
+    @manager = Manager.find(params[:id])
+    @locales = Locale.where(admin_id: params[:admin_id]).order(:id)
+  end
+
+  def update
+    manager = Manager.find(params[:id])
+    if manager.update(manager_params)
+      flash[:success] = 'マネージャー情報を更新しました。'
+      redirect_to admin_managers_path(current_admin)
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    manager = Manager.find(params[:id])
+    if manager.destroy
+      flash[:success] = 'マネージャーを削除しました。'
+      redirect_to admin_managers_path
+    else
+      render 'index'
+    end
+
   end
 
   private

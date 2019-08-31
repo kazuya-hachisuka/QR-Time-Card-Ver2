@@ -1,27 +1,25 @@
-  <div class="modal-dialog modal-md" role="document">
+  <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staffsShow-modalLabel">
-          <span class="h4"><%= @staff.family_name %>&ensp;<%= @staff.given_name %></span>さんの情報
-        </h5>
+        <h5 class="modal-title" id="staffsShow-modalLabel">スタッフ情報</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
         <div class="modal-body">
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">所属： <%= @locale.locale_name %></li>
-            <li class="list-group-item">名前： <%= "#{@staff.family_name} #{@staff.given_name}" %></li>
-            <li class="list-group-item">名前(カナ)： <%= "#{@staff.family_name_kana} #{@staff.given_name_kana}" %></li>
+            <li class="list-group-item">名前： <span class="h6"><%= "#{@staff.family_name} #{@staff.given_name}" %></span></li>
+            <li class="list-group-item">カナ： <span class="h6"><%= "#{@staff.family_name_kana} #{@staff.given_name_kana}" %></span></li>
+            <li class="list-group-item">所属： <span class="h6"><%= @locale.locale_name %></span></li>
           </ul>
         </div>
         <div class="modal-footer">
           <% if admin_signed_in? %>
-            <%= link_to '編集', edit_admin_staff_path(current_admin,@staff), class:"btn btn-outline-info" %>
             <%= link_to 'QRコード表示', admin_staff_qrcodes_path(current_admin,@staff), class:"btn btn-outline-success" %>
+            <%= link_to '編集', edit_admin_staff_path(current_admin,@staff), class:"btn btn-outline-info" %>
           <% else %>
-            <%= link_to '編集', edit_admin_staff_path(current_manager.admin_id,@staff), class:"btn btn-outline-info" %>
             <%= link_to 'QRコード表示', admin_staff_qrcodes_path(current_manager.admin_id,@staff), class:"btn btn-outline-success" %>
+            <%= link_to '編集', edit_admin_staff_path(current_manager.admin_id,@staff), class:"btn btn-outline-info" %>
           <% end %>
         </div>
     </div>

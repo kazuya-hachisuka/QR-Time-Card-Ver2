@@ -1,14 +1,20 @@
 class WorksController < ApplicationController
+  before_action :current_locale
+  before_action :admin_signed_in? || :manager_signed_in? || :signed_in?
   require "date"
+
   def index
-    @staff = Staff.find(params[:staff_id])
-    @search = Work.ransack(params[:q])
-    @works = Work.ransack(params[:q]).result.includes(:locale).where(staff_id: @staff).order(id: :asc)
-    #@works = Work.includes(:locale).where(staff_id: @staff).order(in: :asc)
+    if admin_signed_in? || manager_signed_in? || signed_in?
+      @staff = Staff.find(params[:staff_id])
+      @search = Work.ransack(params[:q])
+      @works = @search.result.includes(:locale).where(staff_id: @staff).order(in: :asc)
+    else
+      redirect_to root_path
+    end
   end
 
   def show
-    @work = Work.includes(:work_breaks).find(params[:id])
+    @work = Work.find(params[:id])
     @staff = Staff.find(@work.staff_id)
     @locale = Locale.find(@work.locale_id)
     @work_breaks = WorkBreak.where(work_id: params[:id])
@@ -23,21 +29,26 @@ class WorksController < ApplicationController
   def create
     @work = Work.new(work_params)
     if @work.save
-      flash[:work_create_result] = "勤怠を追加しました。"
+      flash[:success] = "勤怠を追加しました。"
     else
-      flash[:work_create_result] = "追加出来ませでした。"
+      flash[:danger] = "追加出来ませでした。"
     end
     url = request.url
     redirect_back(fallback_location: url)
   end
 
   def punch_new
+    if signed_in?
     @locale = Locale.find(current_locale.id)
     @staff = Staff.find(params[:staff_id])
     @working = @staff.works.where(out: nil)
-    unless @staff.admin_id == @locale.admin_id
-      redirect_to locale_path(current_locale)
-      flash[:other_admin] = "こちらの会社には所属してません"
+      unless @staff.admin_id == @locale.admin_id
+        flash[:danger] = "こちらの会社には所属してません。"
+        redirect_to locale_path(current_locale)
+      end
+    @id = current_locale.id
+    else
+      redirect_to root_path
     end
   end
 

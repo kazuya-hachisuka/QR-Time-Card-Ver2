@@ -1,5 +1,5 @@
 class LocaleStaffsController < ApplicationController
-
+  before_action :admin_signed_in? || :manager_signed_in?
   def index
     @locale = Locale.preload(:staffs).find(params[:locale_id])
   end
