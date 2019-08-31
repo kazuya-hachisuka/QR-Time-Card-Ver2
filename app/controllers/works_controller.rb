@@ -29,9 +29,9 @@ class WorksController < ApplicationController
   def create
     @work = Work.new(work_params)
     if @work.save
-      flash[:work_create_result] = "勤怠を追加しました。"
+      flash[:success] = "勤怠を追加しました。"
     else
-      flash[:work_create_result] = "追加出来ませでした。"
+      flash[:danger] = "追加出来ませでした。"
     end
     url = request.url
     redirect_back(fallback_location: url)
@@ -42,10 +42,10 @@ class WorksController < ApplicationController
     @locale = Locale.find(current_locale.id)
     @staff = Staff.find(params[:staff_id])
     @working = @staff.works.where(out: nil)
-    unless @staff.admin_id == @locale.admin_id
-      redirect_to locale_path(current_locale)
-      flash[:other_admin] = "こちらの会社には所属してません"
-    end
+      unless @staff.admin_id == @locale.admin_id
+        flash[:danger] = "こちらの会社には所属してません。"
+        redirect_to locale_path(current_locale)
+      end
     @id = current_locale.id
     else
       redirect_to root_path

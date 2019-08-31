@@ -55,6 +55,7 @@ class StaffsController < ApplicationController
   def destroy
     @staff = Staff.find(params[:id])
     @staff.destroy
+    flash[:success] = 'スタッフを削除しました。'
     redirect_to admin_staffs_path(current_admin)
   end
 
