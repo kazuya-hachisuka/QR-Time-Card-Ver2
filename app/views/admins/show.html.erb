@@ -34,6 +34,7 @@
         <div class="card-body text-center">
           <h4 class="font-weight-bold">マネージャーメニュー</h4>
           <ul class="list-group list-group-flush">
+            <li class="h5 list-group-item"><%= link_to 'マネージャー一覧', admin_managers_path(current_admin.id) %></li>
             <li class="h5 list-group-item"><%= link_to 'マネージャー追加', admin_managers_sing_up_path(current_admin.id) %></li>
           </ul>
         </div>

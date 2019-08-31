@@ -1,18 +1,16 @@
-  <div class="modal-dialog modal-md" role="document">
+  <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
-      <div class="modal-header main-color">
-        <h5 class="modal-title" id="staffsShow-modalLabel">
-          <span class="h4"><%= @staff.family_name %>&ensp;<%= @staff.given_name %></span>さんの情報
-        </h5>
+      <div class="modal-header">
+        <h5 class="modal-title" id="staffsShow-modalLabel">スタッフ情報</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
         <div class="modal-body">
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">所属： <span class="h5"><%= @locale.locale_name %></span></li>
-            <li class="list-group-item">名前： <span class="h5"><%= "#{@staff.family_name} #{@staff.given_name}" %></span></li>
-            <li class="list-group-item">名前(カナ)： <span class="h5"><%= "#{@staff.family_name_kana} #{@staff.given_name_kana}" %></span></li>
+            <li class="list-group-item">名前： <span class="h6"><%= "#{@staff.family_name} #{@staff.given_name}" %></span></li>
+            <li class="list-group-item">カナ： <span class="h6"><%= "#{@staff.family_name_kana} #{@staff.given_name_kana}" %></span></li>
+            <li class="list-group-item">所属： <span class="h6"><%= @locale.locale_name %></span></li>
           </ul>
         </div>
         <div class="modal-footer">

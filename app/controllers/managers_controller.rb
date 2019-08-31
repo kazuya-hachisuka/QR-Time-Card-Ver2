@@ -1,5 +1,10 @@
 class ManagersController < ApplicationController
-  before_action :authenticate_manager!, except: [:new]
+  before_action :authenticate_admin!, only:[:index, :new,:create]
+  before_action :authenticate_manager!, unless: -> { admin_signed_in?}
+
+  def index
+    @managers = Manager.includes(:locale).where(admin_id: current_admin.id)
+  end
 
   def show
     @search = Work.ransack(params[:q])
@@ -18,10 +23,23 @@ class ManagersController < ApplicationController
   def create
     manager = Manager.new(manager_params)
     if manager.save
-      redirect_to manager_session_path
+      flash[:success] = 'マネージャーを追加しました。'
+      redirect_to admin_path(current_admin)
     else
-      redirect_to root_path
+      flash[:danger] = '入力項目を確認してください。'
+      redirect_to admin_managers_sing_up_path
     end
+  end
+
+  def destroy
+    manager = Manager.find(params[:id])
+    if manager.destroy
+      flash[:success] = 'マネージャーを削除しました。'
+      redirect_to admin_managers_path
+    else
+      render 'index'
+    end
+
   end
 
   private

@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="h2 py-2"><%= current_admin.company_name %><span class="float-left float-md-none h4">のスタッフ一覧</span></div>
+    <div class="container">
+      <div class="row">
+        <div class="form-group">
+          <%= link_to 'メインメニューへ戻る', admin_path(current_admin), class:"btn btn-outline-dark btn-sm" %>
+          <%= link_to 'マネージャー追加', admin_managers_sing_up_path(current_admin.id), class:"btn btn-outline-success btn-sm" %>
+        </div>
+      </div>
+    </div>
+      <%= render 'layouts/alert' %>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="table-responsive table-hover">
+    <table class="table text-nowrap">
+      <thead class="thead-light">
+        <tr>
+          <th>名前</th>
+          <th>所属</th>
+          <th>メールアドレス</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @managers.each do |manager| %>
+        <tr>
+          <td><%= manager.family_name %>&ensp;<%= manager.given_name %></td>
+          <td><%= manager.locale.locale_name %></td>
+          <td><%= manager.email %></td>
+          <!--<td><%= link_to '詳細表示', admin_staff_path(current_admin.id,manager.id), remote: true, class: "btn btn-outline-dark btn-sm" %></td> -->
+          <div class="modal fade" id="staffsShow-modal" tabindex="-1" role="dialog" aria-labelledby="staffsShow-modalLabel" aria-hidden="true"></div>
+          <td><%= link_to '削除', admin_manager_path(id: manager.id), method: :delete, data: {confirm: '本当に削除しますか??'}, class:"btn btn-outline-danger btn-sm"%></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>

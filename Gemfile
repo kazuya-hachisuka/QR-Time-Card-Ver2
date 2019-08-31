@@ -41,10 +41,10 @@ gem 'rqrcode'
 gem 'rqrcode_png'
 gem 'i18n_generators'
 gem 'ransack'
-gem "bootstrap4-datetime-picker-rails"
+gem 'bootstrap4-datetime-picker-rails'
 gem 'momentjs-rails'
-gem "font-awesome-rails"
-gem 'font-awesome-sass', '~> 5.4.1'
+#gem "font-awesome-rails"
+gem 'font-awesome-sass', '~> 5.9.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
@@ -53,9 +53,6 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rails-flog', require: 'flog'
-  gem 'bullet'
-  gem 'better_errors' #consoleのエラー表示切り替え
-  gem 'binding_of_caller'　#consoleのエラー表示切り替え
 end
 
 group :development do
@@ -69,6 +66,9 @@ group :development do
   gem 'annotate'
   gem 'awesome_rails_console'
   gem 'pry-rails'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'bullet'
 end
 
 group :test do
