@@ -1,6 +1,5 @@
 <div class="container">
   <div class="row">
-  <%= flash[:error] %>
     <div class="card-columns mx-auto mt-5">
       <div class="card overflow-auto" style="max-height:315px;">
         <div class="card-body text-center">
@@ -15,18 +14,18 @@
       </div>
       <div class="card">
         <div class="card-body text-center">
-          <h4 class="font-weight-bold">スタッフメニュー</h4>
-          <ul class="list-group list-group-flush overflow-auto">
-            <li class="h5 list-group-item"><%= link_to 'スタッフ一覧', admin_staffs_path(current_admin.id) %></li>
-            <li class="h5 list-group-item"><%= link_to 'スタッフ追加', new_admin_staff_path(current_admin.id) %></li>
+          <h4 class="font-weight-bold">管理者メニュー</h4>
+          <ul class="list-group list-group-flush">
+            <li class="h5 list-group-item"><%= link_to '管理者情報変更', edit_admin_registration_path(current_admin.id) %></li>
           </ul>
         </div>
       </div>
       <div class="card">
         <div class="card-body text-center">
-          <h4 class="font-weight-bold">管理者メニュー</h4>
-          <ul class="list-group list-group-flush">
-            <li class="h5 list-group-item"><%= link_to '管理者情報変更', edit_admin_registration_path(current_admin.id) %></li>
+          <h4 class="font-weight-bold">スタッフメニュー</h4>
+          <ul class="list-group list-group-flush overflow-auto">
+            <li class="h5 list-group-item"><%= link_to 'スタッフ一覧', admin_staffs_path(current_admin.id) %></li>
+            <li class="h5 list-group-item"><%= link_to 'スタッフ追加', new_admin_staff_path(current_admin.id) %></li>
           </ul>
         </div>
       </div>
