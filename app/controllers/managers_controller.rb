@@ -1,5 +1,5 @@
 class ManagersController < ApplicationController
-  before_action :authenticate_admin!, only:[:index, :new,:create]
+  before_action :authenticate_admin!, only:[:index, :new, :create, :edit]
   before_action :authenticate_manager!, unless: -> { admin_signed_in?}
 
   def index
@@ -28,6 +28,21 @@ class ManagersController < ApplicationController
     else
       flash[:danger] = '入力項目を確認してください。'
       redirect_to admin_managers_sing_up_path
+    end
+  end
+
+  def edit
+    @manager = Manager.find(params[:id])
+    @locales = Locale.where(admin_id: params[:admin_id]).order(:id)
+  end
+
+  def update
+    manager = Manager.find(params[:id])
+    if manager.update(manager_params)
+      flash[:success] = 'マネージャー情報を更新しました。'
+      redirect_to admin_managers_path(current_admin)
+    else
+      render 'edit'
     end
   end
 

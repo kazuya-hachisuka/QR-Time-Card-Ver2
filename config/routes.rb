@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :admins, only:[:show, :edit] do
     get '/managers/sing_up' => 'managers#new'
     post '/managers/create' => 'managers#create'
-    resources :managers, only:[:index, :destroy]
+    resources :managers, only:[:index, :destroy, :edit, :update]
     resources :staffs do
       resource :qrcodes, only:[:show]
     end

@@ -30,7 +30,7 @@ class StaffsController < ApplicationController
 
   def edit
     @staff = Staff.find(params[:id])
-    @locale = Locale.where(admin_id: current_admin)
+    @locales = Locale.where(admin_id: current_admin)
     if admin_signed_in?
       @admin = Admin.find_by(id: current_admin)
     else
