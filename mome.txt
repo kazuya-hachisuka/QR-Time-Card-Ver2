@@ -1,0 +1,65 @@
+
+## Memo備忘
+
+Railsのコンテナを起動してRailsのプロジェクトを作成するコマンド
+$ docker-compose run web rails new . --force --database=mysql
+
+Railsイメージのビルド実行コマンド
+$ docker-compose build
+
+rm tmp/pids/server.pid
+
+config/database.ymlの修正内容
+default内の項目を修正
+password: password
+host: db
+
+コンテナをデタッチドモード（バックグラウンド）で実行するコマンド
+$ docker-compose up -d
+
+RailsのコンテナでDB作成のタスクを実行するコマンド
+$ docker-compose run web bundle exec rake db:create
+
+deviseのinstall用のコマンド
+docker-compose bundleを実行した後
+docker-compose up -dでコンテナを再起動したあとに下記を実行
+docker-compose exec web bundle exec rails g devise:install
+
+deviseでのモデル
+docker-compose run web bundle exec rails g devise Admin
+
+deviseでコントローラ作成
+docker-compose run web bundle exec rails g devise:controllers admins
+
+deviseでのview作成
+docker-compose run web bundle exec rails g devise:views
+
+model作成
+docker-compose run web bundle exec rails g model Locale
+
+docker-compose run web bundle exec rake db:migrate
+
+controller作成
+docker-compose run web bundle exec rails g controller admins
+
+gem instal
+
+db:migrate db:seed_fu
+docker-compose run web bundle exec rails db:migrate db:seed_fu
+
+コンテナのbashに接続
+docker exec -it qr-timecard-ver2_web_1 bash
+bundle exec rails c
+
+docker attach qr-timecard-ver2_web_1
+
+bundle update
+docker-compose run web bundle exec bundle update
+
+docker imageの削除
+docker rmi -f id
+-fでforce
+
+出勤時にadmin_id == locale.admin_id を調べる
+QRcodeに配列をもたせることはできるか？
+配列をバラし絵、出退勤を可能にする
