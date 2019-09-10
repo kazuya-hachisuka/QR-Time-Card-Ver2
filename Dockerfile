@@ -7,3 +7,8 @@ COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
 RUN bundle install
 COPY . /app
+
+EXPOSE 3000
+RUN RAILS_ENV=production bundle exec rake assets:precompile
+RUN rm -f tmp/pids/server.pid
+CMD ["bundle", "exec", "rails", "s", "puma", "-b", "0.0.0.0", "-p", "3000", "-e", "production"]
