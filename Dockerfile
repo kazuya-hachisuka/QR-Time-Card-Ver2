@@ -9,5 +9,11 @@ RUN bundle install
 COPY . /app
 
 EXPOSE 3000
+ENV RAILS_ENV production
+
+ARG RAILS_MASTER_KEY
+ENV RAILS_MASTER_KEY $RAILS_MASTER_KEY
+
+RUN RAILS_ENV=production bundle exec rake assets:precompile
 RUN rm -f tmp/pids/server.pid
 CMD ["bundle", "exec", "rails", "s", "puma", "-b", "0.0.0.0", "-p", "3000", "-e", "production"]
