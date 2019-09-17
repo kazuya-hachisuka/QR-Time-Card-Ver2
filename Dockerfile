@@ -9,6 +9,3 @@ RUN bundle install
 COPY . /app
 
 EXPOSE 3000
-
-RUN rm -f tmp/pids/server.pid
-CMD ["bundle", "exec", "rails", "s", "puma", "-b", "0.0.0.0", "-p", "3000"]
